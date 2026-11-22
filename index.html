@@ -63,6 +63,8 @@ h3{font-size:17px;margin:0 0 8px}
 .half{display:grid;grid-template-columns:1fr 1fr;gap:8px}.half .btn{margin:0}
 img.preview{width:100%;border-radius:12px;display:block;background:var(--soft);border:1px solid var(--line)}
 img.preview.story{max-width:300px;margin:0 auto}
+.reelbox{margin-top:18px;padding-top:14px;border-top:2px solid var(--line)}
+.reelbox h3{margin:0 0 6px}
 textarea,input[type=text],input[type=date],input[type=time],select{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:10px;min-width:0}
 textarea{min-height:200px;line-height:1.6}
 label.f{display:block;font-size:13px;font-weight:700;color:var(--sub);margin:10px 0 4px}
@@ -250,6 +252,27 @@ h2{border-left:5px solid #B89B5E;padding-left:10px}
         <li>「キャプションを入力」を指で長押し →「ペースト」</li>
         <li>「シェア」で完成！</li>
       </ol>
+    </div>
+    <div class="reelbox">
+      <h3>🎬 リールにも出す</h3>
+      <p class="hint">同じネタの<b>縦長（9:16）の画像</b>です。文字や電話番号は、インスタのボタンや文字で隠れない<b>まん中</b>に入れてあります。上の写真・文字を変えると、こちらも変わります。</p>
+      <img class="preview story" id="reelImg" alt="リール用の画像">
+      <div class="flow3">
+        <button class="btn main" type="button" onclick="saveImg('reelImg','reel');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+        <button class="btn main" type="button" onclick="copyFrom('postText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+        <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+      </div>
+      <div class="guide">
+        <b>インスタでの操作（リール）</b>
+        <ol>
+          <li>下の「＋」→ 下の「リール」</li>
+          <li>①で保存した画像を選ぶ</li>
+          <li>「♪ 音楽」で曲を選ぶ（なくてもOK）→「次へ」</li>
+          <li>「キャプションを入力」を指で長押し →「ペースト」</li>
+          <li>「シェア」で完成！</li>
+        </ol>
+      </div>
+      <p class="hint">プロフィールの一覧では、リールは<b>上と下が少し切れて</b>見えます。大事な文字は切れない場所に入れてあるので、そのままで大丈夫です。</p>
     </div>
     <p class="hint">💡 「🖼 おすすめ写真」は、この学校の写真集から内容に合うものが自動で出ます。季節の写真や、今日の教習のようすは「📱 自分の写真」から。<b>教習生やスタッフの顔が写る写真は、ご本人の許可があるときだけ</b>使ってください。</p>
   </div>
@@ -548,23 +571,23 @@ hakatanomori:{key:"hakatanomori",name:"アイルモータースクール博多�
   tel:"092-935-6500",senior:{tel:"092-935-6500",hours:"平日 10:30〜20:30／土日 10:30〜18:30",note:""},addr:"福岡県糟屋郡志免町王子1-28-16",
   hours:"受付 10:30〜20:00（月〜金）／10:30〜18:00（土日）",closed:"毎週火曜・学校指定日・年末年始",offDow:[2],
   entry:[[3,"17:10"],[6,"14:00"],[0,"14:00"]],entryText:"毎週 水曜17:10／土曜14:00／日曜14:00",
-  bus:"無料スクールバス 全15路線（博多駅・吉塚駅・宇美駅・大橋駅など。博多駅シャトル便は毎時・約20分）",busN:"全15路線",busFrom:"博多駅・吉塚駅・宇美駅・大橋駅など",
+  bus:"無料スクールバス 16路線（博多駅・吉塚駅・宇美駅・大橋駅など。博多駅シャトル便は毎時・約20分）",busN:"16路線",busFrom:"博多駅・吉塚駅・宇美駅・大橋駅など",
   area:"福岡市・志免町・宇美町・粕屋町・須恵町",near:"博多の森・東平尾公園の中。博多駅から約25分",
   insta:"ill_ms_hakatanomori",url:"https://www.ill-ms.com/hakatanomori/",
   tags:["#アイル博多の森","#志免町"],
   cars:["普通車AT","普通車MT","普通二輪","小型二輪","大型二輪","6輪コース"],
-  merits:[["🚃","博多駅から約25分"],["🏬","博多マルイで申し込み・相談できる"],["🚌","無料スクールバス 全15路線"],["📋","4つの教習プランから選べる"],["🙋","指導員の指名OK・女性指導員も"],["⚡","電柱・電線のない見通しのいいコース"],["📶","WiFi・USB・漫画のフリースペース"],["🍛","食堂・レストランあり"],["📱","スマホで予約・キャンセル"],["🚏","スマホでバスの到着を確認"]],
+  merits:[["🚃","博多駅から約25分"],["🏬","博多マルイで申し込み・相談できる"],["🚌","無料スクールバス 16路線"],["📋","4つの教習プランから選べる"],["🙋","指導員の指名OK・女性指導員も"],["⚡","電柱・電線のない見通しのいいコース"],["📶","WiFi・USB・漫画のフリースペース"],["🍛","食堂・レストランあり"],["📱","スマホで予約・キャンセル"],["🚏","スマホでバスの到着を確認"]],
   has:{big:false,tokushu:false,nishu:false,fork:false,six:true,paper:false}},
 shimonoseki:{key:"shimonoseki",name:"アイルモータースクール下関",short:"アイル下関",place:"下関",en:"SHIMONOSEKI",
   tel:"0120-888-762",senior:{tel:"083-287-0018",hours:"平日 10:00〜20:00／日曜 10:00〜18:00",note:""},addr:"山口県下関市菊川町吉賀1588",
   hours:"受付 9:00〜20:00（月・水〜土）／9:00〜18:00（日）",closed:"火曜・年末年始・ゴールデンウィーク",offDow:[2],
   entry:[[3,"17:15"],[6,"10:05"]],entryText:"毎週 水曜17:15／土曜10:05（二輪・大型特殊・限定解除は 水曜18:15／土曜11:05）",
-  bus:"無料スクールバス 全8路線（小月・長府・新下関・埴生・厚狭・川棚温泉・黒井村・小串・美祢 など）",busN:"全8路線",busFrom:"小月駅・長府駅・新下関駅・厚狭駅・川棚温泉駅・美祢駅など",
+  bus:"無料スクールバス 全7路線（小月・川棚・新下関・市内・長府・埴生・厚狭・美祢・西市・滝部 方面）",busN:"全7路線",busFrom:"小月・川棚・新下関・長府・埴生・厚狭・美祢・西市・滝部 方面",
   area:"下関市・菊川町・豊田町・豊浦町・豊北町・山陽小野田市・美祢市",near:"小月ICから約15分、道の駅きくがわの近く",
   insta:"ill_ms_shimonoseki",url:"https://www.ill-ms.com/shimonoseki/",
   tags:["#アイル下関","#下関市"],
   cars:["普通車AT","普通車MT","普通二輪","小型二輪","大型二輪","大型特殊","普通二種","6輪コース"],
-  merits:[["💰","割引がたくさんあってお得"],["📅","土日祝も教習・検定OK"],["🙋","好きな指導員を指名できる"],["🚌","無料スクールバス 全8路線"],["⏱","短期で卒業できるプランあり"],["📋","都合に合わせた教習プラン"],["🏛","おしゃれな校舎と教習車"],["🏍","二輪の車種がそろっている"],["📱","ネット予約で便利"],["🛋","吹き抜けのロビー・アンティーク小物"]],
+  merits:[["💰","割引がたくさんあってお得"],["📅","土日祝も教習・検定OK"],["🙋","好きな指導員を指名できる"],["🚌","無料スクールバス 全7路線"],["⏱","短期で卒業できるプランあり"],["📋","都合に合わせた教習プラン"],["🏛","おしゃれな校舎と教習車"],["🏍","二輪の車種がそろっている"],["📱","ネット予約で便利"],["🛋","吹き抜けのロビー・アンティーク小物"]],
   has:{big:false,tokushu:true,nishu:true,fork:false,six:true,paper:true}},
 };
 const SCHOOL_ORDER=["buzen","moji","hakatanomori","shimonoseki"];
@@ -2627,7 +2650,7 @@ b:`アイル博多の森のコースは、
 空が広くて、見通しのいいコース。
 博多の森・東平尾公園の中にある、気持ちのいい場所です🌳`},
 {c:"SCHOOL",pk:"bus",h:"博多駅から\n毎時シャトル",s:"片道約20分",t:["#博多駅","#スクールバス"],
-b:`アイル博多の森の無料スクールバスは全15路線🚌
+b:`アイル博多の森の無料スクールバスは16路線🚌
 
 博多駅シャトル便は毎時運行、片道約20分。
 スマホで、バスの到着時間も確認できます📱
@@ -2709,14 +2732,18 @@ b:`アイル下関の外階段は、緑に囲まれています🌳
 
 季節ごとに表情がかわる、写真映えスポット📸
 教習に来たときに、見てみてくださいね😊`},
-{c:"SCHOOL",pk:"bus",h:"スクールバス\n全8路線",s:"下関市内から広く",t:["#スクールバス","#下関市"],
-b:`アイル下関の無料スクールバスは全8路線🚌
+{c:"SCHOOL",pk:"bus",h:"スクールバス\n全7路線",s:"下関市内から広く",t:["#スクールバス","#下関市"],
+b:`アイル下関の無料スクールバスは全7路線🚌
 
-小月・長府・新下関・埴生・厚狭（山陽本線）
-川棚温泉・黒井村・小串（山陰本線）
-美祢（美祢線）などから通えます。
+◎ 小月方面
+◎ 川棚方面
+◎ 新下関・市内方面
+◎ 長府方面
+◎ 埴生方面
+◎ 厚狭・美祢・西市方面
+◎ 滝部方面
 
-予約便もあります😊`},
+下関市立大学・梅光学院大学・東亜大学に通う学生さんも、ラクラク通学できます🎓`},
 {c:"SCHOOL",pk:"bike",h:"二輪の車種が\nそろっています",s:"バイクの免許もアイル下関で",t:["#バイク免許","#下関市"],
 b:`アイル下関は、二輪の車種がそろっています🏍
 
@@ -2901,11 +2928,11 @@ b:`アイル博多の森の効果測定（学科の模擬テスト）は、5つ�
 🇳🇵 ネパール語
 
 外国の方も、安心して勉強できます😊`},
-{c:"SCHOOL",pk:"bus",h:"スクールバス\n全15路線",s:"福岡市内・糟屋郡を広く",t:["#スクールバス","#福岡市"],
-b:`アイル博多の森の無料スクールバスは全15路線🚌
+{c:"SCHOOL",pk:"bus",h:"スクールバス\n16路線",s:"福岡市内・糟屋郡を広く",t:["#スクールバス","#福岡市"],
+b:`アイル博多の森の無料スクールバスは16路線🚌
 
 🚌 博多駅シャトル便・天神線・長者原篠栗線・宇美線・貴船四王寺坂線・志免月隈線・粕屋線・筥松松島線・千代吉塚線・板付諸岡線・須恵線・竹下山王線
-📞 予約制：キャナルシティ専門学校線・千早線・大橋線
+📞 予約制：キャナルシティ専門学校線・千早線・大橋線 など
 
 スマホの「バスキャッチ」で、バスがいまどこか確認できます📱`}
 );
@@ -3197,7 +3224,8 @@ async function drawPost(){if(!cur)return;const tok=++drawTok;let img=null,stock=
   if(pmode==="own"&&own.post)img=own.post;else if(pmode!=="none"){const i=pick.post!=null?pick.post:sp||photoIdx(cur.pk,curDate,shift,cur.c);img=await loadImg(i);stock=isStock(i)}
   if(tok!==drawTok)return;
   const h=[$("eH1").value,$("eH2").value].filter(x=>x.trim()).join("\n")||" ";
-  $("postImg").src=drawCard({h,s:$("eS").value,cat:CATJ[cur.c]},img,stock)}
+  $("postImg").src=drawCard({h,s:$("eS").value,cat:CATJ[cur.c]},img,stock);
+  if($("reelImg"))$("reelImg").src=drawReel({h,s:$("eS").value,cat:CATJ[cur.c]},img,stock)}
 /* 白いカード（黒と金の二重線＋角の段々：アール・デコ） */
 function paper(ctx,x,y,w,h,r){ctx.save();ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=30;ctx.shadowOffsetY=10;ctx.fillStyle="#FBF9F4";ctx.fillRect(x,y,w,h);ctx.restore();
   ctx.save();ctx.strokeStyle=BLK;ctx.lineWidth=3;ctx.strokeRect(x+20,y+20,w-40,h-40);ctx.strokeStyle=GOLD;ctx.lineWidth=1.5;ctx.strokeRect(x+29,y+29,w-58,h-58);
@@ -3228,6 +3256,30 @@ function drawCard(p,img,stock){const W=1080,H=1350,[cv,ctx]=newCanvas(W,H);const
     dots3(ctx,W/2,y-hs*.42);
     if(p.s){const fs=fitSize(ctx,[p.s],W-260,46,900);ctx.font=`900 ${fs}px ${FONT}`;const sw=ctx.measureText(p.s).width;ctx.fillStyle=BLK;ctx.fillRect(W/2-sw/2-24,y+46-fs*.95,sw+48,fs*1.36);ctx.fillStyle=GOLD_L;ctx.fillText(p.s,W/2,y+46)}
     ctx.fillStyle=C.ink;ctx.font=`900 32px ${FONT}`;ctx.fillText(SHOP.name+" ｜ ☎ "+SHOP.tel,W/2,H-62)}
+  return cv.toDataURL("image/jpeg",.9)}
+/* リールの画像（1080×1920）。文字は横120〜960・縦280〜1500 の中だけ（ボタンで隠れない・一覧で切れない） */
+function drawReel(p,img,stock){const W=1080,H=1920,X0=120,X1=960,TW=X1-X0,[cv,ctx]=newCanvas(W,H);const lines=p.h.split("\n");
+  if(img){cover(ctx,img,0,0,W,H);
+    const tg=ctx.createLinearGradient(0,0,0,560);tg.addColorStop(0,"rgba(25,15,10,.6)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,560);
+    const g=ctx.createLinearGradient(0,780,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.45,"rgba(25,15,10,.66)");g.addColorStop(1,"rgba(25,15,10,.9)");ctx.fillStyle=g;ctx.fillRect(0,780,W,H-780);
+    signBoard(ctx,W/2,290,.95);
+    let y=1478;ctx.fillStyle=GOLD_L;shadowText(ctx,true);ctx.font=`900 ${fitSize(ctx,["☎ "+SHOP.tel],TW,58,900)}px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,y);
+    y-=72;ctx.fillStyle="rgba(255,255,255,.94)";ctx.font=`700 ${fitSize(ctx,[SHOP.name],TW,32,700)}px ${FONT}`;ctx.fillText(SHOP.name,W/2,y);shadowText(ctx,false);
+    if(p.s){y-=96;ctx.font=`700 ${fitSize(ctx,[p.s],TW,46,700)}px ${FONT}`;ctx.fillStyle=GOLD_L;shadowText(ctx,true);ctx.fillText(p.s,W/2,y);shadowText(ctx,false)}
+    const hs=fitSize(ctx,lines,TW,116,900);y-=p.s?82:110;ctx.fillStyle="#fff";shadowText(ctx,true);
+    for(let i=lines.length-1;i>=0;i--){ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(lines[i],W/2,y);y-=hs*1.24}shadowText(ctx,false);
+    if(p.cat)badge(ctx,p.cat,W/2,y-hs*.2-10,30);
+  }else{wood(ctx,0,0,W,H,0,3.6);
+    paper(ctx,96,250,W-192,1290,30);
+    signBoard(ctx,W/2,322,.82);
+    if(p.cat)badge(ctx,p.cat,W/2,520,32);droneIcon(ctx,W/2,p.cat?700:660,190,false);
+    const hs=fitSize(ctx,lines,TW-60,116,900),blockH=lines.length*hs*1.26;let y=1010-blockH/2+hs*.85;ctx.fillStyle=C.ink;
+    lines.forEach(l=>{ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(l,W/2,y);y+=hs*1.26});
+    dots3(ctx,W/2,y-hs*.42);
+    if(p.s){const fs=fitSize(ctx,[p.s],TW-80,48,900);ctx.font=`900 ${fs}px ${FONT}`;const sw=ctx.measureText(p.s).width;ctx.fillStyle=BLK;ctx.fillRect(W/2-sw/2-24,y+50-fs*.95,sw+48,fs*1.36);ctx.fillStyle=GOLD_L;ctx.fillText(p.s,W/2,y+50)}
+    ctx.fillStyle=C.ink;ctx.font=`700 ${fitSize(ctx,[SHOP.name],TW-60,32,700)}px ${FONT}`;ctx.fillText(SHOP.name,W/2,1400);
+    ctx.font=`900 ${fitSize(ctx,["☎ "+SHOP.tel],TW-60,54,900)}px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,1470)}
+  if(stock){ctx.save();ctx.font=`500 24px ${FONT}`;ctx.fillStyle="rgba(255,255,255,.95)";ctx.shadowColor="rgba(0,0,0,.6)";ctx.shadowBlur=6;ctx.fillText("※写真はイメージです",W/2,428);ctx.restore()}
   return cv.toDataURL("image/jpeg",.9)}
 function renderUpcoming(){const el=$("upcoming");el.innerHTML="";const t=new Date();
   for(let k=0;k<10;k+=1){const d=new Date(t);d.setDate(t.getDate()+k);const p=postFor(d,0);
