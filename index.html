@@ -148,11 +148,11 @@ h2{border-left:5px solid #B89B5E;padding-left:10px}
 /* 学校をえらぶ画面 */
 .pick{position:fixed;inset:0;z-index:70;overflow-y:auto;overflow-x:hidden;color:#fff;padding:max(58px,env(safe-area-inset-top,0px)) 16px 120px;
   background:
-    radial-gradient(ellipse 75% 40% at 50% 0%,rgba(233,217,175,.22),rgba(0,0,0,0) 72%),
-    radial-gradient(ellipse 120% 95% at 50% 45%,rgba(0,0,0,0) 45%,rgba(0,0,0,.7) 100%),
-    repeating-conic-gradient(from 90deg at 50% -2%,rgba(184,155,94,.10) 0deg 1deg,transparent 1deg 6deg),
+    radial-gradient(ellipse 85% 50% at 50% 0%,rgba(233,217,175,.30),rgba(0,0,0,0) 75%),
+    radial-gradient(ellipse 120% 95% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 100%),
+    repeating-conic-gradient(from 90deg at 50% -2%,rgba(184,155,94,.13) 0deg 1deg,transparent 1deg 6deg),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-opacity='.16'%3E%3Cpath d='M0 36 L36 0 L72 36 L36 72 Z'/%3E%3Cpath d='M8 36 L36 8 L64 36 L36 64 Z' stroke-opacity='.09'/%3E%3C/g%3E%3Cg fill='%23B89B5E' fill-opacity='.35'%3E%3Cpath d='M36 -3l3 3-3 3-3-3z'/%3E%3Cpath d='M36 69l3 3-3 3-3-3z'/%3E%3Cpath d='M-3 36l3-3 3 3-3 3z'/%3E%3Cpath d='M69 36l3-3 3 3-3 3z'/%3E%3C/g%3E%3C/svg%3E"),
-    #0F0F0F}
+    #2B2824}
 .pick::before{content:"";position:fixed;inset:10px;border:1px solid rgba(184,155,94,.75);outline:1px solid rgba(184,155,94,.4);outline-offset:-6px;pointer-events:none;z-index:0;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%280 0%29 scale%281 1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") left 4px top 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%2864 0%29 scale%28-1 1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") right 4px top 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%280 64%29 scale%281 -1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") left 4px bottom 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%2864 64%29 scale%28-1 -1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") right 4px bottom 4px/64px no-repeat}
 .pick::after{content:"";position:fixed;left:50%;bottom:10px;width:min(560px,calc(100vw - 20px));aspect-ratio:2/1;transform:translateX(-50%);pointer-events:none;z-index:0;
@@ -167,20 +167,24 @@ h2{border-left:5px solid #B89B5E;padding-left:10px}
 .pick .orn i{width:9px;height:9px;transform:rotate(45deg);border:1px solid #B89B5E;display:block}
 .pick .orn i:nth-child(2){background:#B89B5E}
 .pick h1{font-family:"Josefin Sans",sans-serif;font-weight:700;letter-spacing:.3em;color:#E9D9AF;font-size:clamp(22px,7vw,30px);margin:14px 0 2px;padding-left:.3em}
-.pick .sub{color:#B89B5E;letter-spacing:.4em;font-size:12px;margin:0 0 6px}
+.pick .sub{color:#D9C08A;letter-spacing:.45em;font-size:15px;font-weight:600;font-family:"Josefin Sans",sans-serif;margin:10px 0 6px;padding-left:.45em}
 .pick p.q{font-weight:900;font-size:18px;margin:18px 0 12px}
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pcard{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;border:1.5px solid #B89B5E;padding:0;overflow:hidden;cursor:pointer;color:#fff;font:inherit;text-align:center;
-  background:radial-gradient(ellipse 90% 70% at 50% 100%,rgba(184,155,94,.22),rgba(0,0,0,0) 70%),linear-gradient(#1D1B18,#111)}
+  background:radial-gradient(ellipse 90% 70% at 50% 100%,rgba(184,155,94,.26),rgba(0,0,0,0) 70%),linear-gradient(#3A3630,#2A2723)}
 .pcard::before{content:"";position:absolute;inset:6px;border:1px solid rgba(233,217,175,.6);z-index:1;pointer-events:none}
 .pcard::after{content:"";position:absolute;left:50%;bottom:-1px;width:120%;height:60%;transform:translateX(-50%);pointer-events:none;
   background:repeating-conic-gradient(from 270deg at 50% 100%,rgba(184,155,94,.22) 0deg 1.2deg,transparent 1.2deg 9deg)}
-.pcard:active{background:#2A2620}
+.pcard:active{background:#45403A}
+.pick h1 .pk-mark{display:block;width:min(170px,46vw);height:auto;margin:0 auto 16px}
+.pick h1 .pk-name{display:block;width:min(330px,82vw);height:auto;margin:0 auto}
 .pcard .pmark{display:block;width:min(96px,24vw);height:auto;margin:0 auto 10px}
 .pcard span{position:relative;z-index:2;font-weight:900;font-size:clamp(18px,5.4vw,23px);letter-spacing:.06em}
 .pcard span small{display:block;font-family:"Josefin Sans",sans-serif;font-weight:600;font-size:11px;letter-spacing:.3em;color:#E9D9AF;margin-bottom:8px;padding-left:.3em}
 .pcard span small::after{content:"";display:block;width:34px;height:1px;background:#B89B5E;margin:8px auto 0}
 .pcard.cur{box-shadow:0 0 0 3px #E9D9AF}
+.pcard.wide{grid-column:1/-1;aspect-ratio:auto;padding:22px 0 20px}
+.pcard.wide .pmark{width:min(70px,18vw);margin-bottom:8px}
 .pick .note{font-size:12.5px;color:#BDB5A6;margin-top:16px}
 .pick .close{margin-top:14px;background:transparent;color:#E9D9AF;border:1px solid #B89B5E;border-radius:2px;padding:9px 18px;font:inherit;font-weight:700;cursor:pointer}
 </style>
@@ -192,10 +196,10 @@ h2{border-left:5px solid #B89B5E;padding-left:10px}
 </header>
 <div class="pick" id="pick" hidden>
   <div class="pick-in">
-    <h1><img src="logo_cr.png" alt="アイルモータースクール" style="width:min(340px,86vw);height:auto;display:block;margin:0 auto"></h1>
+    <h1><img class="pk-mark" src="logo_mark.png" alt="I'LL MOTOR SCHOOL"><img class="pk-name" src="logo_kana.svg" alt="アイルモータースクール"></h1>
     <p class="sub">INSTAGRAM</p>
     <div class="orn"><i></i><i></i><i></i></div>
-    <p class="q">どの学校の投稿をつくりますか？</p>
+    <p class="q">どこの投稿をつくりますか？</p>
     <div class="pgrid" id="pgrid"></div>
     <p class="note">学校ごとに、文章・電話番号・写真・カレンダーが切りかわります。<br>えらんだ学校は、このスマホに覚えておきます。</p>
     <button class="close" type="button" id="pickClose" onclick="closePick()" hidden>閉じる</button>
@@ -564,6 +568,8 @@ shimonoseki:{key:"shimonoseki",name:"アイルモータースクール下関",sh
   has:{big:false,tokushu:true,nishu:true,fork:false,six:true,paper:true}},
 };
 const SCHOOL_ORDER=["buzen","moji","hakatanomori","shimonoseki"];
+/* 学校えらびの画面の5つ目：交通教育センター（会社向け。別のページ center.html。中身は ail_center.js） */
+const PICK_EXTRA=[{key:"center",en:"TRAINING CENTER",short:"交通教育センター",href:"center.html",wide:true}];
 
 /* ================= 投稿のネタ（4校共通） =================
    {S}＝学校の短い名前（アイル豊前）、{N}＝正式名、{BUS}＝スクールバス、{ENTRY}＝入校日、{AREA}＝通う地域、{TEL}＝電話
@@ -2958,6 +2964,8 @@ ${"アイル門司"}では、二輪教習に入校する前に「事前審査」
 ];
 
 /* ================= いまの学校 ================= */
+/* 前回「交通教育センター」をえらんだスマホは、センターのページへ */
+(function(){try{if(!/s=\w+/.test(location.hash)&&localStorage.getItem("ail:school")==="center")location.replace("center.html")}catch(e){}})();
 function _getSch(){let k=null;const m=(location.hash||"").match(/s=(\w+)/);if(m&&SCHOOLS[m[1]])k=m[1];
   if(!k){try{const v=localStorage.getItem("ail:school");if(v&&SCHOOLS[v])k=v}catch(e){}}return k}
 const SCH_CHOSEN=_getSch();
@@ -3520,7 +3528,7 @@ async function drawNews(){newsWarn();const tok=++newsTok;let img=null,stock=fals
   if(tok!==newsTok)return;$("newsImg").src=drawCard({h:$("nHead").value.replace(/／/g,"\n"),s:$("nSub").value,cat:"お知らせ"},img,stock)}
 
 /* 押せるリンクをコピー（プロフィール・ストーリーズのリンクスタンプ用） */
-const LINKS=[["app","📋 仮入校のお申し込み",SHOP.url+"application/"],["req","📋 資料請求",SHOP.url+"request/"],["contact","📋 ご相談・お問い合わせ",SHOP.url+"contact/"],["top","📋 ホームページ",SHOP.url],...(SHOP.line?[["line","📋 LINE",SHOP.line]]:[])];
+const LINKS=SHOP.links||[["app","📋 仮入校のお申し込み",SHOP.url+"application/"],["req","📋 資料請求",SHOP.url+"request/"],["contact","📋 ご相談・お問い合わせ",SHOP.url+"contact/"],["top","📋 ホームページ",SHOP.url],...(SHOP.line?[["line","📋 LINE",SHOP.line]]:[])];
 function copyLink(k,btn){const L=LINKS.find(x=>x[0]===k);if(!L)return;const u=L[2],ok=()=>{mark(btn);toast("リンクをコピーしました。インスタで「ペースト」してください")};
   const fb=()=>{const t=document.createElement("textarea");t.value=u;document.body.appendChild(t);t.select();let r=false;try{r=document.execCommand("copy")}catch(e){}t.remove();r?ok():toast(u)};
   try{navigator.clipboard.writeText(u).then(ok,fb)}catch(e){fb()}}
@@ -3554,11 +3562,16 @@ function copyTxt(t,btn){const ok=()=>{mark(btn);toast("コピーしました。�
   $("opsBody").querySelectorAll("[data-re]").forEach(b=>b.onclick=()=>copyTxt(RE[+b.dataset.re][1],b));
   $("bioCopy").onclick=e=>copyTxt(BIO,e.currentTarget)})();
 /* 学校をえらぶ */
-function openPick(){const g=$("pgrid");g.innerHTML="";SCHOOL_ORDER.forEach(k=>{const S=SCHOOLS[k],P=PHOTO_SETS[k],bi=(P.groups.build||[0])[0],b=document.createElement("button");b.type="button";b.className="pcard"+(SCH_CHOSEN===k?" cur":"");
-    b.innerHTML=`<span><img class="pmark" src="logo_mark.png" alt=""><small>${S.en}</small>${S.short}</span>`;b.onclick=()=>choosePick(k);g.appendChild(b)});
+/* PAGE_KEYS＝このページで開けるところ（ほかは、別のページへ移る） */
+const PAGE_KEYS=SCHOOL_ORDER;
+function openPick(){const g=$("pgrid");g.innerHTML="";
+  const A=SCHOOL_ORDER.map(k=>({key:k,en:SCHOOLS[k].en,short:SCHOOLS[k].short,href:"index.html#s="+k})).concat(PICK_EXTRA);
+  A.forEach(x=>{const b=document.createElement("button");b.type="button";b.className="pcard"+(x.wide?" wide":"")+(SCH_CHOSEN===x.key?" cur":"");
+    b.innerHTML=`<span><img class="pmark" src="logo_mark.png" alt=""><small>${x.en}</small>${x.short}</span>`;b.onclick=()=>choosePick(x.key,x.href);g.appendChild(b)});
   $("pickClose").hidden=!SCH_CHOSEN;$("pick").hidden=false;document.body.style.overflow="hidden"}
 function closePick(){$("pick").hidden=true;document.body.style.overflow=""}
-function choosePick(k){try{localStorage.setItem("ail:school",k)}catch(e){}if(k===SCH_CHOSEN&&location.hash.includes("s="+k)){closePick();return}location.hash="s="+k;location.reload()}
+function choosePick(k,href){try{localStorage.setItem("ail:school",k)}catch(e){}if(k===SCH_CHOSEN&&(PAGE_KEYS.length===1||location.hash.includes("s="+k))){closePick();return}
+  if(!PAGE_KEYS.includes(k)){location.href=href;return}location.hash="s="+k;location.reload()}
 $("schName").textContent="📍 "+SHOP.short;document.title=SHOP.short+" 投稿アプリ";
 if(!SCH_CHOSEN)openPick();else{try{localStorage.setItem("ail:school",SCH_CHOSEN)}catch(e){}}
 /* ================= はじめに ================= */

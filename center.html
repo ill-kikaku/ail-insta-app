@@ -1,0 +1,1888 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-title" content="アイル投稿">
+<meta name="theme-color" content="#151515">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>アイル交通教育センター 投稿アプリ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink-on:#fff;
+  --bg:#F8F8F8; --card:#FFFFFF; --ink:#323232; --sub:#6C6A65; --line:#E3E6E8;
+  --tomato:#151515; --tomato-d:#000; --mustard:#B89B5E; --olive:#4F6B4A; --navy:#2E4A66; --soft:#EEF1F3; --awn:#151515; --brass:#B89B5E; --red:#CC2728;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121416; --card:#1E2326; --ink:#EEEAE2; --sub:#A8A39A; --line:#31353A;
+  --tomato:#5AAEF0; --tomato-d:#3D97E0; --mustard:#5AAEF0; --olive:#7FA077; --navy:#8FAAD0; --soft:#272B2F; --brass:#5AAEF0; --red:#F0605E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121416; --card:#1E2326; --ink:#EEEAE2; --sub:#A8A39A; --line:#31353A;
+  --tomato:#5AAEF0; --tomato-d:#3D97E0; --mustard:#5AAEF0; --olive:#7FA077; --navy:#8FAAD0; --soft:#272B2F; --brass:#5AAEF0; --red:#F0605E; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-size:16px;line-height:1.7;margin:0;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 24px}
+header.top{padding-block:0 10px;text-align:center}
+.x-old-band{height:26px;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))) 14px;background-color:#ECB466;background-image:repeating-linear-gradient(176deg,rgba(150,90,30,.16) 0 2px,transparent 2px 9px),linear-gradient(#F4C77E,#E3A34E);border-bottom:4px dotted #2B2420}
+.x-old-sign{display:inline-block;background:repeating-linear-gradient(176deg,rgba(150,90,30,.13) 0 2px,transparent 2px 11px),radial-gradient(ellipse at 30% 30%,#F8D597,#EDB062 70%,#E29F4C);border-radius:18px;padding:10px 26px 8px;box-shadow:0 4px 14px rgba(120,70,20,.25);line-height:1.1;margin:6px 0 4px;position:relative;text-align:left}
+.x-old .top{display:flex;align-items:center;gap:8px}
+.x-old .b{display:inline-block;background:#1E1A17;color:#fff;font-weight:900;font-size:13px;letter-spacing:.12em;padding:7px 12px 7px 14px;border-radius:8px;outline:2px dotted rgba(255,255,255,.85);outline-offset:-4px}
+.x-old .k{font-weight:900;font-size:13px;color:#1E1A17}
+.x-old .c{display:block;font-family:"Noto Sans JP",serif;font-weight:400;font-size:52px;color:#1E1A17;letter-spacing:.35em;margin-top:2px;padding-left:.05em}
+.flw{color:#D65A86;letter-spacing:.3em;font-size:13px}
+.shopgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+.shopgrid div{position:relative}.shopgrid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;display:block}
+.shopgrid button{position:absolute;top:2px;right:2px;border:0;border-radius:50%;width:24px;height:24px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;cursor:pointer;padding:0}
+.logo-s{font-size:13px;color:var(--sub);letter-spacing:.2em}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 2px 10px rgba(80,50,30,.06)}
+h2{font-size:20px;margin:4px 0 8px;text-wrap:balance}
+h3{font-size:17px;margin:0 0 8px}
+.hint{font-size:13px;color:var(--sub);margin:6px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.chip.on{background:var(--tomato);border-color:var(--tomato);color:#fff}
+.chip:disabled{opacity:.35}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:14px;padding:13px 14px;font:inherit;font-weight:900;font-size:16px;cursor:pointer;text-decoration:none;background:var(--soft);color:var(--ink);margin:6px 0}
+.btn.main{background:var(--tomato);color:#fff}
+.btn.sub{background:transparent;border:1.5px solid var(--line);font-weight:700;font-size:14px;padding:9px}
+.btn .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);font-size:15px}
+.btn.done{background:var(--olive);color:#fff}
+.btn.done::after{content:"✓";margin-left:4px}
+.flow3{margin-top:10px}
+.wrow{display:grid;grid-template-columns:1fr auto 1fr auto;gap:6px;align-items:center;margin:6px 0}.wrow input{margin:0}.wrow .x{border:0;background:none;font-size:20px;padding:4px 6px;color:#9a8a80}
+.half{display:grid;grid-template-columns:1fr 1fr;gap:8px}.half .btn{margin:0}
+img.preview{width:100%;border-radius:12px;display:block;background:var(--soft);border:1px solid var(--line)}
+img.preview.story{max-width:300px;margin:0 auto}
+textarea,input[type=text],input[type=date],input[type=time],select{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:10px;min-width:0}
+textarea{min-height:200px;line-height:1.6}
+label.f{display:block;font-size:13px;font-weight:700;color:var(--sub);margin:10px 0 4px}
+.guide{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--soft);font-size:14.5px}
+.guide ol,.guide ul{margin:6px 0 0;padding-left:22px}.guide li{margin:3px 0}
+details summary{cursor:pointer;font-weight:700}
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.datebar b{font-size:17px;white-space:nowrap}
+.datebar button{flex:0 0 auto;width:auto;margin:0;padding:8px 12px}
+.cat{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--olive);border-radius:999px;padding:2px 10px}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px max(6px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px))}
+.tabs button{border:0;background:none;font:inherit;font-size:11px;letter-spacing:-.02em;font-weight:700;color:var(--sub);padding:6px 2px;border-radius:12px;cursor:pointer;line-height:1.3}
+.tabs button .i{display:block;font-size:22px}
+.tabs button.on{background:var(--soft);color:var(--tomato)}
+/* カレンダー */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:8px 0}
+.cal .wd{text-align:center;font-size:12px;font-weight:900;color:var(--sub)}
+.cal .wd.su{color:var(--tomato)}.cal .wd.sa{color:var(--navy)}
+.cal button{aspect-ratio:1;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:inherit;font-weight:900;font-size:15px;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;min-width:0}
+.cal button small{font-size:9.5px;font-weight:700}
+.cal button.hol{color:var(--tomato)}
+.cal button.st-off{background:var(--tomato);border-color:var(--tomato);color:#fff}
+.cal button.st-tmp{background:var(--mustard);border-color:var(--mustard);color:#3A2A22}
+.cal button.st-kashi{background:var(--navy);border-color:var(--navy);color:#fff}
+.cal button.st-early{background:var(--olive);border-color:var(--olive);color:#fff}
+.cal button.st-xopen{border:3px solid #2E9A47;color:#2E9A47}
+.cal .blank{visibility:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;color:var(--sub)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px}
+.menuRow{display:grid;grid-template-columns:1fr 92px 34px;gap:6px;margin:6px 0}
+.menuRow button{border:0;background:var(--soft);border-radius:10px;font-size:16px;cursor:pointer;color:var(--ink)}
+/* 写真一覧 */
+.gal{position:fixed;inset:0;z-index:40;background:rgba(20,14,10,.6);display:flex;align-items:flex-end;justify-content:center}
+.gal-in{background:var(--card);width:100%;max-width:640px;max-height:88vh;overflow:auto;border-radius:20px 20px 0 0;padding:14px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.galgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.galgrid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:pointer;display:block}
+.saveov{position:fixed;inset:0;z-index:50;background:rgba(20,14,10,.85);overflow:auto;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 30px max(16px,env(safe-area-inset-left,0px))}
+.saveov-in{max-width:520px;margin:0 auto;color:#fff;text-align:center}
+.saveov img{width:100%;border-radius:10px;margin:8px 0}
+.saveov textarea{min-height:140px;background:#fff;color:#3A2A22}
+.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:#3A2A22;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:60;max-width:90vw;text-align:center}
+.toast.on{opacity:.95}
+.warn{background:#FFF1C9;color:#5C4300;border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
+/* ===== アイル：アール・デコ（黒・金・白・モノトーン） ===== */
+:root{--gold:#B89B5E;--gold-d:#8C7341;--black:#151515;--tomato:#151515;--tomato-d:#000;--mustard:#B89B5E;--brass:#B89B5E;--red:#A8322D;--bg:#F4F2ED;--soft:#ECE8DF;--line:#DDD7CB;--olive:#5E7A57}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--tomato:#D9C08A;--mustard:#D9C08A;--brass:#D9C08A;--bg:#121212;--card:#1C1C1C;--soft:#262421;--line:#36332E;--red:#E07A70}}
+:root[data-theme="dark"]{--tomato:#D9C08A;--mustard:#D9C08A;--brass:#D9C08A;--bg:#121212;--card:#1C1C1C;--soft:#262421;--line:#36332E;--red:#E07A70}
+body{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif}
+header.top{position:relative;padding:22px 16px 18px;text-align:center;color:#fff;overflow:hidden;
+  background:repeating-conic-gradient(from 270deg at 50% 118%,rgba(184,155,94,.20) 0deg 2deg,transparent 2deg 9deg) ,#151515;border-bottom:3px solid #B89B5E}
+header.top::before,header.top::after{content:"";position:absolute;left:12px;right:12px;height:0;border-top:1px solid #B89B5E;border-bottom:1px solid #B89B5E;padding-top:3px}
+header.top::before{top:8px}header.top::after{bottom:8px}
+.ttl-en{font-family:"Josefin Sans",sans-serif;font-weight:700;letter-spacing:.32em;font-size:clamp(20px,6vw,28px);color:#E9D9AF;padding-left:.32em;line-height:1.1}
+.ttl-en small{display:block;font-weight:400;font-size:12px;letter-spacing:.5em;color:#B89B5E;margin-top:6px}
+.ttl-ja{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:900;font-size:15px;letter-spacing:.14em;margin-top:8px}
+.ttl-ja::before,.ttl-ja::after{content:"";width:28px;height:1px;background:#B89B5E}
+.schbtn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:transparent;color:#fff;border:1.5px solid #B89B5E;border-radius:2px;padding:7px 14px;font:inherit;font-weight:900;font-size:15px;cursor:pointer}
+.schbtn small{font-weight:700;font-size:11.5px;color:#E9D9AF;border-left:1px solid #B89B5E;padding-left:8px}
+h2,h3{letter-spacing:.04em}
+h2{border-left:5px solid #B89B5E;padding-left:10px}
+.card{border-radius:4px;box-shadow:0 1px 0 rgba(0,0,0,.03),0 6px 18px rgba(20,20,20,.06);border-top:3px solid #151515}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .card{border-top-color:#B89B5E}}
+:root[data-theme="dark"] .card{border-top-color:#B89B5E}
+.chip{border-radius:2px;font-weight:700}
+.chip.on{background:#151515;border-color:#151515;color:#fff;box-shadow:inset 0 -3px 0 #B89B5E}
+.btn{border-radius:3px}
+.btn.main{background:#151515;color:#fff;box-shadow:inset 0 0 0 1px #B89B5E}
+.btn.main .n{background:#B89B5E;color:#151515;font-weight:900}
+.btn.done{background:var(--olive);box-shadow:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.on{background:#D9C08A;border-color:#D9C08A;color:#151515;box-shadow:none}
+  :root:not([data-theme="light"]) .btn.main{background:#2A2722}}
+:root[data-theme="dark"] .chip.on{background:#D9C08A;border-color:#D9C08A;color:#151515;box-shadow:none}
+:root[data-theme="dark"] .btn.main{background:#2A2722}
+.cat{background:#151515;color:#E9D9AF;border-radius:0;letter-spacing:.08em}
+.tabs{background:#151515;border-top:2px solid #B89B5E}
+.tabs button{color:#BDB5A6}
+.tabs button.on{background:rgba(184,155,94,.18);color:#E9D9AF}
+.guide{border-left:4px solid #B89B5E;border-radius:3px}
+.cal .wd.su,.cal button.hol{color:var(--red)}
+.cal button.st-off{background:#5B5B5B;border-color:#5B5B5B;color:#fff}
+.cal button.st-tmp{background:#A8322D;border-color:#A8322D;color:#fff}
+.cal button.st-kashi{background:#B89B5E;border-color:#B89B5E;color:#151515}
+/* 学校をえらぶ画面 */
+.pick{position:fixed;inset:0;z-index:70;overflow-y:auto;overflow-x:hidden;color:#fff;padding:max(58px,env(safe-area-inset-top,0px)) 16px 120px;
+  background:
+    radial-gradient(ellipse 85% 50% at 50% 0%,rgba(233,217,175,.30),rgba(0,0,0,0) 75%),
+    radial-gradient(ellipse 120% 95% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 100%),
+    repeating-conic-gradient(from 90deg at 50% -2%,rgba(184,155,94,.13) 0deg 1deg,transparent 1deg 6deg),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-opacity='.16'%3E%3Cpath d='M0 36 L36 0 L72 36 L36 72 Z'/%3E%3Cpath d='M8 36 L36 8 L64 36 L36 64 Z' stroke-opacity='.09'/%3E%3C/g%3E%3Cg fill='%23B89B5E' fill-opacity='.35'%3E%3Cpath d='M36 -3l3 3-3 3-3-3z'/%3E%3Cpath d='M36 69l3 3-3 3-3-3z'/%3E%3Cpath d='M-3 36l3-3 3 3-3 3z'/%3E%3Cpath d='M69 36l3-3 3 3-3 3z'/%3E%3C/g%3E%3C/svg%3E"),
+    #2B2824}
+.pick::before{content:"";position:fixed;inset:10px;border:1px solid rgba(184,155,94,.75);outline:1px solid rgba(184,155,94,.4);outline-offset:-6px;pointer-events:none;z-index:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%280 0%29 scale%281 1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") left 4px top 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%2864 0%29 scale%28-1 1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") right 4px top 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%280 64%29 scale%281 -1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") left 4px bottom 4px/64px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate%2864 64%29 scale%28-1 -1%29'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-width='1.5'%3E%3Cpath d='M2 46 H14 V34 H26 V22 H38 V10 H50 V2'/%3E%3Cpath d='M2 58 H22 V46 H34 V34 H46 V22 H58 V2' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M10 10l5 5-5 5-5-5z' fill='%23B89B5E'/%3E%3C/g%3E%3C/svg%3E") right 4px bottom 4px/64px no-repeat}
+.pick::after{content:"";position:fixed;left:50%;bottom:10px;width:min(560px,calc(100vw - 20px));aspect-ratio:2/1;transform:translateX(-50%);pointer-events:none;z-index:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Cg fill='none' stroke='%23B89B5E'%3E%3Cg stroke-opacity='.45'%3E%3Cpath d='M200 200 L389.0 180.1'/%3E%3Cpath d='M200 200 L384.4 154.0'/%3E%3Cpath d='M200 200 L376.2 128.8'/%3E%3Cpath d='M200 200 L364.5 105.0'/%3E%3Cpath d='M200 200 L349.7 83.0'/%3E%3Cpath d='M200 200 L332.0 63.3'/%3E%3Cpath d='M200 200 L311.7 46.3'/%3E%3Cpath d='M200 200 L289.2 32.2'/%3E%3Cpath d='M200 200 L265.0 21.5'/%3E%3Cpath d='M200 200 L239.5 14.2'/%3E%3Cpath d='M200 200 L213.3 10.5'/%3E%3Cpath d='M200 200 L186.7 10.5'/%3E%3Cpath d='M200 200 L160.5 14.2'/%3E%3Cpath d='M200 200 L135.0 21.5'/%3E%3Cpath d='M200 200 L110.8 32.2'/%3E%3Cpath d='M200 200 L88.3 46.3'/%3E%3Cpath d='M200 200 L68.0 63.3'/%3E%3Cpath d='M200 200 L50.3 83.0'/%3E%3Cpath d='M200 200 L35.5 105.0'/%3E%3Cpath d='M200 200 L23.8 128.8'/%3E%3Cpath d='M200 200 L15.6 154.0'/%3E%3Cpath d='M200 200 L11.0 180.1'/%3E%3C/g%3E%3Cpath d='M10 200 A190 190 0 0 1 390 200' stroke-width='2'/%3E%3Cpath d='M30 200 A170 170 0 0 1 370 200' stroke-opacity='.6'/%3E%3Cpath d='M110 200 A90 90 0 0 1 290 200' stroke-width='2'/%3E%3Cpath d='M150 200 A50 50 0 0 1 250 200' stroke-opacity='.8'/%3E%3C/g%3E%3Cpath d='M170 200 A30 30 0 0 1 230 200 Z' fill='%23B89B5E' fill-opacity='.5'/%3E%3C/svg%3E") center bottom/100% auto no-repeat;opacity:.55}
+.pick-in{position:relative;z-index:1;max-width:560px;margin:0 auto;text-align:center}
+.pick-in::before{content:"";position:absolute;left:50%;top:-40px;width:min(520px,calc(100vw - 24px));height:260px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:repeating-conic-gradient(from 270deg at 50% 100%,rgba(184,155,94,.28) 0deg 1.2deg,transparent 1.2deg 7.5deg);
+  -webkit-mask:radial-gradient(ellipse 50% 100% at 50% 100%,#000 30%,transparent 75%);mask:radial-gradient(ellipse 50% 100% at 50% 100%,#000 30%,transparent 75%)}
+.pick .orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 0;color:#B89B5E}
+.pick .orn::before,.pick .orn::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,#B89B5E)}
+.pick .orn::after{background:linear-gradient(270deg,transparent,#B89B5E)}
+.pick .orn i{width:9px;height:9px;transform:rotate(45deg);border:1px solid #B89B5E;display:block}
+.pick .orn i:nth-child(2){background:#B89B5E}
+.pick h1{font-family:"Josefin Sans",sans-serif;font-weight:700;letter-spacing:.3em;color:#E9D9AF;font-size:clamp(22px,7vw,30px);margin:14px 0 2px;padding-left:.3em}
+.pick .sub{color:#D9C08A;letter-spacing:.45em;font-size:15px;font-weight:600;font-family:"Josefin Sans",sans-serif;margin:10px 0 6px;padding-left:.45em}
+.pick p.q{font-weight:900;font-size:18px;margin:18px 0 12px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pcard{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;border:1.5px solid #B89B5E;padding:0;overflow:hidden;cursor:pointer;color:#fff;font:inherit;text-align:center;
+  background:radial-gradient(ellipse 90% 70% at 50% 100%,rgba(184,155,94,.26),rgba(0,0,0,0) 70%),linear-gradient(#3A3630,#2A2723)}
+.pcard::before{content:"";position:absolute;inset:6px;border:1px solid rgba(233,217,175,.6);z-index:1;pointer-events:none}
+.pcard::after{content:"";position:absolute;left:50%;bottom:-1px;width:120%;height:60%;transform:translateX(-50%);pointer-events:none;
+  background:repeating-conic-gradient(from 270deg at 50% 100%,rgba(184,155,94,.22) 0deg 1.2deg,transparent 1.2deg 9deg)}
+.pcard:active{background:#45403A}
+.pick h1 .pk-mark{display:block;width:min(170px,46vw);height:auto;margin:0 auto 16px}
+.pick h1 .pk-name{display:block;width:min(330px,82vw);height:auto;margin:0 auto}
+.pcard .pmark{display:block;width:min(96px,24vw);height:auto;margin:0 auto 10px}
+.pcard span{position:relative;z-index:2;font-weight:900;font-size:clamp(18px,5.4vw,23px);letter-spacing:.06em}
+.pcard span small{display:block;font-family:"Josefin Sans",sans-serif;font-weight:600;font-size:11px;letter-spacing:.3em;color:#E9D9AF;margin-bottom:8px;padding-left:.3em}
+.pcard span small::after{content:"";display:block;width:34px;height:1px;background:#B89B5E;margin:8px auto 0}
+.pcard.cur{box-shadow:0 0 0 3px #E9D9AF}
+.pcard.wide{grid-column:1/-1;aspect-ratio:auto;padding:22px 0 20px}
+.pcard.wide .pmark{width:min(70px,18vw);margin-bottom:8px}
+.pick .note{font-size:12.5px;color:#BDB5A6;margin-top:16px}
+.pick .close{margin-top:14px;background:transparent;color:#E9D9AF;border:1px solid #B89B5E;border-radius:2px;padding:9px 18px;font:inherit;font-weight:700;cursor:pointer}
+</style>
+
+<header class="top">
+  <div class="ttl-en"><img src="logo_cr.png" alt="アイルモータースクール" style="width:min(320px,82vw);height:auto;display:block;margin:4px auto 0"><small>INSTAGRAM</small></div>
+  <div class="ttl-ja">インスタ投稿アプリ</div>
+  <button class="schbtn" type="button" onclick="openPick()"><span id="schName">学校</span><small>えらびなおす</small></button>
+</header>
+<div class="pick" id="pick" hidden>
+  <div class="pick-in">
+    <h1><img class="pk-mark" src="logo_mark.png" alt="I'LL MOTOR SCHOOL"><img class="pk-name" src="logo_kana.svg" alt="アイルモータースクール"></h1>
+    <p class="sub">INSTAGRAM</p>
+    <div class="orn"><i></i><i></i><i></i></div>
+    <p class="q">どこの投稿をつくりますか？</p>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="note">学校ごとに、文章・電話番号・写真・カレンダーが切りかわります。<br>えらんだ学校は、このスマホに覚えておきます。</p>
+    <button class="close" type="button" id="pickClose" onclick="closePick()" hidden>閉じる</button>
+  </div>
+</div>
+
+<main class="wrap">
+<!-- ===== 今日の投稿 ===== -->
+<section class="panel on" id="p-post">
+  <div class="card">
+    <div class="datebar">
+      <button class="btn sub" type="button" onclick="moveDay(-1)">◀ 前の日</button>
+      <b id="postDate"></b>
+      <button class="btn sub" type="button" onclick="moveDay(1)">次の日 ▶</button>
+    </div>
+    <p class="hint" style="text-align:center;margin-top:8px">ネタは毎日かわります。投稿は<b>週に2〜3回</b>でも大丈夫。つづけることがいちばん大切です。<span class="cat" id="postCat"></span></p>
+    <img class="preview" id="postImg" alt="投稿の画像">
+    <div class="chips" id="pmode"></div>
+    <div class="half">
+      <button class="btn sub" type="button" onclick="prevPhoto()">◀ 前の写真</button>
+      <button class="btn sub" type="button" onclick="otherPhoto()">次の写真 ▶</button>
+    </div>
+    <button class="btn sub" type="button" onclick="openGallery('post')">🖼 写真を一覧から選ぶ</button>
+    <button class="btn sub" type="button" onclick="nextIdea()">💡 別のネタにする</button>
+    <details style="margin-top:8px"><summary>✏️ 画像の文字を書きかえる</summary>
+      <label class="f">大きい文字（1行目）</label><input type="text" id="eH1" oninput="editPostImg()">
+      <label class="f">大きい文字（2行目）</label><input type="text" id="eH2" oninput="editPostImg()">
+      <label class="f">小さい文字</label><input type="text" id="eS" oninput="editPostImg()">
+    </details>
+    <label class="f">✏️ 本文（押すと、そのまま直せます）</label>
+    <textarea id="postText" oninput="saveEdit()"></textarea>
+    <p class="hint" id="editState"></p>
+    <div class="half">
+      <button class="btn sub" type="button" onclick="keepEdit()">📌 次からもこの文章にする</button>
+      <button class="btn sub" type="button" onclick="resetEdit()">↩ 元の文章にもどす</button>
+    </div>
+    <p class="hint">直した文章は、この日の分に自動で保存されます。同じネタが次に出てきたときも使いたいときは「📌」を押してください。</p>
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('postImg','post');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <button class="btn main" type="button" onclick="copyFrom('postText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+    </div>
+    <div class="guide">
+      <b>インスタでの操作</b>
+      <ol>
+        <li>下の「＋」→「投稿」</li>
+        <li>①で保存した画像を選んで「次へ」</li>
+        <li>「キャプションを入力」を指で長押し →「ペースト」</li>
+        <li>「シェア」で完成！</li>
+      </ol>
+    </div>
+    <p class="hint">💡 「🖼 おすすめ写真」は、センターの写真集（ホームページの写真）から内容に合うものが自動で出ます。今日の講習・研修のようすは「📱 自分の写真」から。<b>受講者・スタッフの顔や、会社の名前が写る写真は、ご本人・会社の許可があるときだけ</b>使ってください。</p>
+  </div>
+  <div class="card">
+    <h3>🔗 押せるリンク（お申し込み・WEB予約・お問い合わせ）</h3>
+    <p class="hint">インスタの投稿の本文に書いたURLは、押しても開きません。押せるのは<b>プロフィールのリンク</b>と、<b>ストーリーズの「リンク」スタンプ</b>だけです。本文には「プロフィールのリンクから」と書いてあるので、最初に1回だけ、プロフィールにリンクを入れておいてください。</p>
+    <div class="linkbtns"></div>
+    <details style="margin-top:8px"><summary>プロフィールにリンクを入れる方法（最初の1回だけ）</summary>
+      <ol style="margin:6px 0 0;padding-left:22px">
+        <li>インスタの右下の、自分のアイコンを押す</li>
+        <li>「プロフィールを編集」→「リンク」→「外部リンクを追加」</li>
+        <li>上の「📋 各種お申し込み」を押してから、URLのところに貼りつける。タイトルは「講習・研修のお申し込み」</li>
+        <li>同じように「運行管理者講習のWEB予約」「適性診断のWEB予約」「お問い合わせフォーム」も入れる（全部で5つまで入れられます）</li>
+        <li>右上の「完了」（✓）を押す</li>
+      </ol>
+    </details>
+  </div>
+  <div class="card" id="opsCard">
+    <h3>📖 運営のお手本</h3>
+    <p class="hint">困ったときに開いてください。返事のお手本は、ボタンを押すとコピーできます。</p>
+    <div id="opsBody"></div>
+  </div>
+  <div class="card">
+    <h3>📅 この先のネタ</h3>
+    <div id="upcoming" class="hint" style="font-size:14px;color:var(--ink)"></div>
+  </div>
+  <div class="card">
+    <h3>📁 センターの写真</h3>
+    <p class="hint">講習・研修のようす、センターの建物、季節の写真を入れておくと、毎日の投稿に使われるほか、どのページでも「写真を選ぶ」のいちばん上に出ます。入れた写真は、このスマホの中だけに残ります（学校・センターごとに分かれます）。</p>
+    <div class="shopgrid" id="shopGrid"></div>
+    <button class="btn main" type="button" onclick="$('shopFile').value='';$('shopFile').click()">＋ 写真を入れる（何枚でも）</button>
+    <input type="file" id="shopFile" accept="image/*" multiple hidden>
+  </div>
+  <div class="card">
+    <details><summary>✏️ いつも本文の最後に入る文を書きかえる</summary>
+      <p class="hint">受付時間・電話などが変わったら、ここを書きかえてください。すべての本文に入ります（センターだけ）。</p>
+      <textarea id="footEdit" style="min-height:170px" oninput="saveFoot()"></textarea>
+      <label class="f">いつも付けるハッシュタグ（空白で区切る）</label>
+      <input type="text" id="tagsEdit" oninput="saveFoot()">
+      <button class="btn sub" type="button" onclick="resetFoot()">↩ 最初の文にもどす</button>
+    </details>
+  </div>
+  <div class="card">
+    <details id="wfixBox"><summary>🔁 言葉をまとめて書きかえる</summary>
+      <p class="hint">センターの決まりが変わったときに。左に「今の言葉」、右に「新しい言葉」を書くと、<b>すべての投稿・お知らせ・講習紹介・講習日の文章</b>がいっぺんに変わります。</p>
+      <p class="hint">例：「9:00〜19:00」→「9:00〜18:00」</p>
+      <div id="wfixList"></div>
+      <button class="btn sub" type="button" onclick="addWfix()">＋ 書きかえる言葉を足す</button>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 空き枠のご案内 ===== -->
+<section class="panel" id="p-seat">
+  <div class="card">
+    <h2>📋 講習日のご案内</h2>
+    <p class="hint">「○日にフォークリフト講習があります」「適性診断に空きがあります」などを知らせたいときに。選ぶだけで、ストーリーズと投稿の画像ができます。</p>
+    <label class="f">講習の日（左：1日目／右：2日目・最後の日）</label>
+    <div class="half"><input type="date" id="sD1" oninput="seatEdited=false;drawSeat()"><input type="date" id="sD2" oninput="seatEdited=false;drawSeat()" aria-label="2つ目の講習日"></div>
+    <p class="hint" style="margin:4px 0 0">1日だけなら右は空のまま。どちらも空なら「日にちはお問い合わせください」になります。</p>
+    <label class="f">ひとこと（画像の大きい文字）</label>
+    <div class="chips" id="sTone"></div>
+    <input type="text" id="sHead" placeholder="✏️ 自分の言葉で書くときはここに（「／」で改行）" oninput="seatEdited=false;drawSeat()">
+    <label class="f">時間・クラス（いくつでも）</label>
+    <div class="chips" id="sTimes"></div>
+    <label class="f">会場（いくつでも）</label>
+    <div class="chips" id="sSeats"></div>
+    <label class="f">ひとこと（画像の小さい文字）</label>
+    <div class="chips" id="sPeople"></div>
+    <label class="f">画像に大きく出す講習</label>
+    <div class="chips" id="sMenu"></div>
+    <label class="f">ひとこと（なくてもOK）</label>
+    <input type="text" id="sNote" placeholder="例：定員になりしだい、しめきります" oninput="drawSeat()">
+    <details style="margin-top:10px"><summary>📋 講習の一覧を書きかえる</summary>
+      <p class="hint">講習の名前を書きかえられます（値段の欄は空のままがおすすめです）。このスマホに保存されます。</p>
+      <div id="menuList"></div>
+      <button class="btn sub" type="button" onclick="addMenu()">＋ プランを足す</button>
+    </details>
+    <div class="chips" id="sPhoto" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>ストーリーズに出す（いちばんおすすめ）</h3>
+    <img class="preview story" id="storyImg" alt="ストーリーズ用の画像">
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('storyImg','story');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">②</span>📷 インスタを開く</a>
+    </div>
+    <div class="guide">
+      <b>インスタでの操作</b>
+      <ol>
+        <li>左上の「＋」（または指で画面を左から右へなぞる）→ 下の「ストーリーズ」</li>
+        <li>左下の写真マークから、①で保存した画像を選ぶ</li>
+        <li>上の<b>「スタンプ」（四角い顔のマーク）</b>→<b>「位置情報」</b>→ 学校の場所を選ぶ（近くの人に見つけてもらいやすくなります）</li>
+        <li>スタンプを指で動かして、<b>電話番号の上か下のあいている所</b>に置く</li>
+        <li>左下の<b>「ストーリーズ」</b>を押して完成！</li>
+      </ol>
+      <p class="hint" style="margin:6px 0 0">💡 スタンプの<b>「リンク」</b>を選んで「お申し込みのお申し込み」のリンクを貼りつけると、見た人がそのまま申し込めます（下のボタンでコピーできます）。上と下のはしは、インスタの表示で隠れるので文字を入れていません。</p>
+      <div class="linkbtns"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>投稿にも出す</h3>
+    <img class="preview" id="seatFeed" alt="投稿用の画像">
+    <label class="f">本文</label>
+    <textarea id="seatText" oninput="seatEdited=true"></textarea>
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('seatFeed','seat');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <button class="btn main" type="button" onclick="copyFrom('seatText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+    </div>
+    <p class="hint">💡 講習日のご案内は、講習の<b>2〜3週間前から週に1回</b>くらいがおすすめです。年度末（2〜3月）は混み合うので、早めに出すと効果的です。</p>
+  </div>
+</section>
+
+<!-- ===== 講習カレンダー ===== -->
+<section class="panel" id="p-cal">
+  <div class="card">
+    <h2>🗓 お休み・講習日カレンダー</h2>
+    <div class="datebar">
+      <button class="btn sub" type="button" onclick="calMove(-1)">◀</button>
+      <b id="calTitle"></b>
+      <button class="btn sub" type="button" onclick="calMove(1)">▶</button>
+    </div>
+    <p class="hint">日にちを<b>押すたびに</b>「お休み → 臨時休業 → 講習日 → もとにもどる」と変わります。<br>火曜日（定休日）は、最初から「休」になっています。下のボタンで、豊前の適性診断の日（水・金・土）をまとめて入れられます。</p>
+    <div class="cal" id="calGrid"></div>
+    <div class="legend">
+      <span><i style="background:#5B5B5B"></i>お休み</span>
+      <span><i style="background:#A8322D"></i>臨時お休み</span>
+      <span><i style="background:#B89B5E"></i>講習日</span>
+      <span style="color:var(--tomato)">赤い数字＝祝日</span>
+    </div>
+    <label class="f">ひとこと（画像の下に入ります）</label>
+    <input type="text" id="calMsg" oninput="calSave();drawCal()">
+    <label class="f">デザイン</label>
+    <div class="chips" id="calStyle"></div>
+    <div id="calPhotoBox" hidden>
+      <div class="half"><button class="btn sub" type="button" onclick="openGallery('cal')">🖼 写真を選ぶ</button><button class="btn sub" type="button" onclick="pickOwn('cal')">📱 自分の写真</button></div>
+    </div>
+    <button class="btn sub" type="button" onclick="calEntry()">🧠 この月の適性診断の日（豊前）をまとめて入れる</button>
+    <button class="btn sub" type="button" onclick="calReset()">↩ この月を最初にもどす</button>
+  </div>
+  <div class="card">
+    <img class="preview" id="calImg" alt="カレンダーの画像">
+    <label class="f">本文</label>
+    <textarea id="calText"></textarea>
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('calImg','calendar');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <button class="btn main" type="button" onclick="copyFrom('calText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+    </div>
+    <p class="hint">💡 月のはじめ（1日ごろ）に投稿して、プロフィールの「ハイライト」にも入れておくと、いつでも見てもらえます。</p>
+  </div>
+</section>
+
+<!-- ===== コース紹介 ===== -->
+<section class="panel" id="p-party">
+  <div class="card">
+    <h2>🎓 講習紹介</h2>
+    <p class="hint">講習・研修・適性診断を、目立つ画像と文章にできます。</p>
+    <label class="f">① なにを紹介する？</label>
+    <div class="chips" id="bGroup"></div>
+    <label class="f">② えらんでください</label>
+    <div class="chips" id="bKind" style="background:var(--soft);border-radius:4px;padding:8px;margin-top:0"></div>
+    <label class="f">画像の大きい文字</label>
+    <div class="chips" id="bTone"></div>
+    <input type="text" id="bHead" placeholder="✏️ 自分の言葉で書くときはここに（「／」で改行）" oninput="bEdited=false;drawParty()">
+    <label class="f">センターのいいところ（いくつでも・3つくらいがおすすめ）</label>
+    <div class="chips" id="bPoints"></div>
+    <label class="f">だれに向けて？</label>
+    <div class="chips" id="bPeople"></div>
+    <label class="f">日にち・場所・期間など（なければ空でOK）</label>
+    <input type="text" id="bCourse" placeholder="例：年度内の受講はお早めに" oninput="bEdited=false;drawParty()">
+    <label class="f">ひとこと（なくてもOK）</label>
+    <input type="text" id="bNote" placeholder="例：見学・ご相談だけでもお気軽に" oninput="bEdited=false;drawParty()">
+    <div class="chips" id="bPhoto" style="margin-top:12px"></div>
+    <button class="btn sub" type="button" onclick="bPrev()">◀ 前の写真にもどる</button>
+  </div>
+  <div class="card">
+    <h3>投稿に出す</h3>
+    <img class="preview" id="partyImg" alt="講習紹介の画像">
+    <label class="f">本文</label>
+    <textarea id="partyText" oninput="bEdited=true"></textarea>
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('partyImg','pickup');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <button class="btn main" type="button" onclick="copyFrom('partyText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>ストーリーズにも出す</h3>
+    <img class="preview story" id="partyStory" alt="講習紹介のストーリーズ画像">
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="saveImg('partyStory','pickup_story');mark(this)"><span class="n">①</span>📥 画像を保存する</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">②</span>📷 インスタを開く</a>
+    </div>
+    <p class="hint">ストーリーズの出し方は「講習日」と同じです。講習紹介は、プロフィールのハイライト「講習」にも入れておくと、いつでも見てもらえます。「リンク」スタンプでお申し込みのリンクを貼るのもおすすめです。</p>
+    <div class="linkbtns"></div>
+  </div>
+</section>
+
+<!-- ===== お知らせ ===== -->
+<section class="panel" id="p-news">
+  <div class="card">
+    <h2>📣 お知らせ</h2>
+    <label class="f">① どんなお知らせ？</label>
+    <div class="chips" id="nGroups"></div>
+    <label class="f" id="nKindsL">② えらんでください</label>
+    <div class="chips" id="nKinds" style="background:var(--soft);border-radius:14px;padding:8px;margin-top:0"></div>
+    <div id="nLaw" class="guide" style="margin:4px 0 8px" hidden><b>⚠️ 出す前に、かならず確かめてください</b><ol style="margin:6px 0 0;padding-left:1.3em"><li>警察庁・県警のホームページで、変わる内容と日にちを確かめる</li><li>【　】の中を、自分の言葉で短く書く（むずかしい言葉は使わない）</li><li>学校の責任者に、一度読んでもらう</li></ol><p class="hint" style="margin:6px 0 0">文の最後に「○月○日時点の情報です」が自動で入ります。<a href="https://www.npa.go.jp/bureau/traffic/index.html" target="_blank" rel="noopener">🌐 警察庁の交通のページを開く</a></p></div>
+    <div id="nBanq" class="guide" style="margin:4px 0 8px" hidden>📋 講習の紹介画像を作るなら、<button class="btn sub" type="button" style="display:inline-flex;width:auto;margin:4px 0 0;padding:6px 12px" onclick="tab(document.querySelector('[data-p=p-party]'))">「講習紹介」のページへ ▶</button></div>
+    <div class="row" style="gap:8px">
+      <div style="flex:1 1 140px;min-width:0"><label class="f" id="nL1">日にち</label><input type="date" id="nD1" oninput="newsFill()"></div>
+      <div style="flex:1 1 140px;min-width:0" id="nD2box"><label class="f" id="nL2">日にち（2つ目）</label><input type="date" id="nD2" oninput="newsFill()"></div>
+      <div style="flex:1 1 110px;min-width:0" id="nTbox"><label class="f" id="nTL">時間</label><input type="text" id="nT" placeholder="例：21:00" oninput="newsFill()"></div>
+    </div>
+    <label class="f">画像の大きい文字（「／」で改行）</label>
+    <input type="text" id="nHead" oninput="drawNews()">
+    <label class="f">画像の小さい文字</label>
+    <input type="text" id="nSub" oninput="drawNews()">
+    <div class="chips" id="nPhoto" style="margin-top:10px"></div>
+    <button class="btn sub" type="button" onclick="nPrev()">◀ 前の写真にもどる</button>
+  </div>
+  <div class="card">
+    <img class="preview" id="newsImg" alt="お知らせの画像">
+    <div class="warn" id="nWarn" hidden>【　】のところを書きかえてから投稿してください。</div>
+    <label class="f">本文</label>
+    <textarea id="nText" oninput="newsWarn()"></textarea>
+    <div class="flow3">
+      <button class="btn main" type="button" onclick="if(newsOK()){saveImg('newsImg','news');mark(this)}"><span class="n">①</span>📥 画像を保存する</button>
+      <button class="btn main" type="button" onclick="if(newsOK())copyFrom('nText',this)"><span class="n">②</span>📋 本文をコピーする</button>
+      <a class="btn main" href="https://www.instagram.com/" target="_blank" rel="noopener" onclick="mark(this)"><span class="n">③</span>📷 インスタを開く</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="tabs">
+  <button class="on" data-p="p-post" onclick="tab(this)"><span class="i">📸</span>今日の投稿</button>
+  <button data-p="p-seat" onclick="tab(this)"><span class="i">📋</span>講習日</button>
+  <button data-p="p-party" onclick="tab(this)"><span class="i">🎓</span>講習紹介</button>
+  <button data-p="p-cal" onclick="tab(this)"><span class="i">🗓</span>カレンダー</button>
+  <button data-p="p-news" onclick="tab(this)"><span class="i">📣</span>お知らせ</button>
+</nav>
+
+<div class="gal" id="gal" hidden onclick="if(event.target===this)closeGallery()">
+  <div class="gal-in">
+    <div class="datebar"><b>🖼 写真を選ぶ</b><button class="btn sub" type="button" onclick="closeGallery()">閉じる</button></div>
+    <div class="chips" id="galGrp"></div>
+    <div class="galgrid" id="galGrid"></div>
+  </div>
+</div>
+
+<div class="saveov" id="saveOv" hidden>
+  <div class="saveov-in">
+    <p style="font-weight:900;font-size:18px;margin:6px 0">画像を<b>指で長押し</b>して保存</p>
+    <p style="font-size:13px;opacity:.9;margin:0">「"写真"に追加」（または「画像を保存」）を選ぶと、スマホの写真に入ります。</p>
+    <img id="saveOvImg" alt="保存する画像">
+    <button class="btn" type="button" onclick="closeSaveOv()">閉じる</button>
+  </div>
+</div>
+<input type="file" id="file" accept="image/*" hidden>
+<div class="toast" id="toast"></div>
+
+<script>
+/* 4校の写真（site/photos の中）。ail_pack.py が作る */
+const PHOTO_SETS={"buzen": {"files": ["photos/buzen/01.jpg", "photos/buzen/02.jpg", "photos/buzen/03.jpg", "photos/buzen/04.jpg", "photos/buzen/05.jpg", "photos/buzen/06.jpg", "photos/buzen/07.jpg", "photos/buzen/08.jpg", "photos/buzen/09.jpg", "photos/buzen/10.jpg", "photos/buzen/11.jpg", "photos/buzen/12.jpg", "photos/buzen/13.jpg", "photos/buzen/14.jpg", "photos/buzen/15.jpg", "photos/buzen/16.jpg", "photos/buzen/17.jpg", "photos/buzen/18.jpg", "photos/buzen/19.jpg", "photos/buzen/20.jpg", "photos/buzen/21.jpg", "photos/buzen/22.jpg", "photos/buzen/23.jpg", "photos/buzen/24.jpg", "photos/buzen/25.jpg", "photos/buzen/26.jpg", "photos/buzen/27.jpg", "photos/buzen/28.jpg", "photos/buzen/29.jpg", "photos/buzen/30.jpg", "photos/buzen/31.jpg", "photos/buzen/32.jpg", "photos/buzen/33.jpg", "photos/buzen/34.jpg", "photos/buzen/35.jpg", "photos/buzen/36.jpg", "photos/buzen/37.jpg", "photos/buzen/38.jpg", "photos/buzen/39.jpg", "photos/buzen/40.jpg", "photos/buzen/41.jpg", "photos/buzen/42.jpg", "photos/buzen/43.jpg", "photos/buzen/44.jpg", "photos/buzen/45.jpg", "photos/buzen/46.jpg", "photos/buzen/47.jpg", "photos/buzen/48.jpg", "photos/buzen/49.jpg", "photos/buzen/50.jpg", "photos/buzen/51.jpg"], "groups": {"staff": [0, 1, 2, 5, 9, 10], "bus": [3], "class": [4, 7, 14, 36, 37, 38, 39], "car": [6, 11, 15, 40, 41, 42], "lobby": [8, 13, 16, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], "build": [12, 17, 18, 19, 20], "night": [17], "spring": [20, 43, 44], "course": [43, 44, 45], "drive": [46], "bike": [47, 48, 49], "kids": [50]}}, "moji": {"files": ["photos/moji/01.jpg", "photos/moji/02.jpg", "photos/moji/03.jpg", "photos/moji/04.jpg", "photos/moji/05.jpg", "photos/moji/06.jpg", "photos/moji/07.jpg", "photos/moji/08.jpg", "photos/moji/09.jpg", "photos/moji/10.jpg", "photos/moji/11.jpg", "photos/moji/12.jpg", "photos/moji/13.jpg", "photos/moji/14.jpg", "photos/moji/15.jpg", "photos/moji/16.jpg", "photos/moji/17.jpg", "photos/moji/18.jpg", "photos/moji/19.jpg", "photos/moji/20.jpg", "photos/moji/21.jpg", "photos/moji/22.jpg", "photos/moji/23.jpg", "photos/moji/24.jpg", "photos/moji/25.jpg", "photos/moji/26.jpg", "photos/moji/27.jpg", "photos/moji/28.jpg", "photos/moji/29.jpg", "photos/moji/30.jpg", "photos/moji/31.jpg", "photos/moji/32.jpg", "photos/moji/33.jpg", "photos/moji/34.jpg", "photos/moji/35.jpg", "photos/moji/36.jpg", "photos/moji/37.jpg", "photos/moji/38.jpg", "photos/moji/39.jpg", "photos/moji/40.jpg", "photos/moji/41.jpg", "photos/moji/42.jpg", "photos/moji/43.jpg", "photos/moji/44.jpg", "photos/moji/45.jpg", "photos/moji/46.jpg", "photos/moji/47.jpg", "photos/moji/48.jpg", "photos/moji/49.jpg", "photos/moji/50.jpg", "photos/moji/51.jpg", "photos/moji/52.jpg", "photos/moji/53.jpg", "photos/moji/54.jpg", "photos/moji/55.jpg", "photos/moji/56.jpg", "photos/moji/57.jpg", "photos/moji/58.jpg", "photos/moji/59.jpg", "photos/moji/60.jpg", "photos/moji/61.jpg"], "groups": {"car": [0, 10, 16, 17, 18, 19], "staff": [1, 5, 47, 48], "class": [2, 13], "lobby": [3, 8, 42, 43, 44, 45, 46], "bus": [4, 53], "drive": [6, 9, 20, 21, 22, 23, 24, 25], "course": [7, 26, 27, 28, 29, 30, 31], "build": [11, 12, 14, 15, 50, 51, 52], "night": [12], "spring": [19, 32], "bike": [32, 33, 34, 35, 36, 37, 38, 39, 40, 41], "kids": [49], "big": [54, 55, 56, 57, 58, 59], "food": [60]}}, "hakatanomori": {"files": ["photos/hakatanomori/01.jpg", "photos/hakatanomori/02.jpg", "photos/hakatanomori/03.jpg", "photos/hakatanomori/04.jpg", "photos/hakatanomori/05.jpg", "photos/hakatanomori/06.jpg", "photos/hakatanomori/07.jpg", "photos/hakatanomori/08.jpg", "photos/hakatanomori/09.jpg", "photos/hakatanomori/10.jpg", "photos/hakatanomori/11.jpg", "photos/hakatanomori/12.jpg", "photos/hakatanomori/13.jpg", "photos/hakatanomori/14.jpg", "photos/hakatanomori/15.jpg", "photos/hakatanomori/16.jpg", "photos/hakatanomori/17.jpg", "photos/hakatanomori/18.jpg", "photos/hakatanomori/19.jpg", "photos/hakatanomori/20.jpg", "photos/hakatanomori/21.jpg", "photos/hakatanomori/22.jpg", "photos/hakatanomori/23.jpg", "photos/hakatanomori/24.jpg", "photos/hakatanomori/25.jpg", "photos/hakatanomori/26.jpg", "photos/hakatanomori/27.jpg", "photos/hakatanomori/28.jpg", "photos/hakatanomori/29.jpg", "photos/hakatanomori/30.jpg", "photos/hakatanomori/31.jpg", "photos/hakatanomori/32.jpg", "photos/hakatanomori/33.jpg", "photos/hakatanomori/34.jpg", "photos/hakatanomori/35.jpg", "photos/hakatanomori/36.jpg", "photos/hakatanomori/37.jpg", "photos/hakatanomori/38.jpg", "photos/hakatanomori/39.jpg", "photos/hakatanomori/40.jpg", "photos/hakatanomori/41.jpg", "photos/hakatanomori/42.jpg", "photos/hakatanomori/43.jpg", "photos/hakatanomori/44.jpg", "photos/hakatanomori/45.jpg", "photos/hakatanomori/46.jpg", "photos/hakatanomori/47.jpg", "photos/hakatanomori/48.jpg", "photos/hakatanomori/49.jpg", "photos/hakatanomori/50.jpg", "photos/hakatanomori/51.jpg", "photos/hakatanomori/52.jpg", "photos/hakatanomori/53.jpg", "photos/hakatanomori/54.jpg", "photos/hakatanomori/55.jpg", "photos/hakatanomori/56.jpg", "photos/hakatanomori/57.jpg", "photos/hakatanomori/58.jpg", "photos/hakatanomori/59.jpg", "photos/hakatanomori/60.jpg", "photos/hakatanomori/61.jpg", "photos/hakatanomori/62.jpg", "photos/hakatanomori/63.jpg", "photos/hakatanomori/64.jpg", "photos/hakatanomori/65.jpg", "photos/hakatanomori/66.jpg", "photos/hakatanomori/67.jpg", "photos/hakatanomori/68.jpg", "photos/hakatanomori/69.jpg", "photos/hakatanomori/70.jpg", "photos/hakatanomori/71.jpg", "photos/hakatanomori/72.jpg", "photos/hakatanomori/73.jpg", "photos/hakatanomori/74.jpg"], "groups": {"build": [0, 6, 9, 14, 18, 65, 66, 67, 68, 69], "staff": [1, 7, 12, 17, 47, 48, 49, 50, 51, 52], "class": [2, 5, 16, 26, 27, 28, 29, 30, 31, 32], "course": [3, 59, 60, 61, 62, 63, 64], "bus": [4, 70, 71, 72], "night": [6, 9, 69], "drive": [8, 11, 42, 43, 44, 45, 46], "lobby": [10, 19, 20, 21, 22, 23, 24, 25], "car": [13, 53, 54, 55, 56, 57, 58], "food": [15, 41], "bike": [33, 34, 35, 36, 37, 38, 39, 40], "spring": [68], "kids": [73]}}, "shimonoseki": {"files": ["photos/shimonoseki/01.jpg", "photos/shimonoseki/02.jpg", "photos/shimonoseki/03.jpg", "photos/shimonoseki/04.jpg", "photos/shimonoseki/05.jpg", "photos/shimonoseki/06.jpg", "photos/shimonoseki/07.jpg", "photos/shimonoseki/08.jpg", "photos/shimonoseki/09.jpg", "photos/shimonoseki/10.jpg", "photos/shimonoseki/11.jpg", "photos/shimonoseki/12.jpg", "photos/shimonoseki/13.jpg", "photos/shimonoseki/14.jpg", "photos/shimonoseki/15.jpg", "photos/shimonoseki/16.jpg", "photos/shimonoseki/17.jpg", "photos/shimonoseki/18.jpg", "photos/shimonoseki/19.jpg", "photos/shimonoseki/20.jpg", "photos/shimonoseki/21.jpg", "photos/shimonoseki/22.jpg", "photos/shimonoseki/23.jpg", "photos/shimonoseki/24.jpg", "photos/shimonoseki/25.jpg", "photos/shimonoseki/26.jpg", "photos/shimonoseki/27.jpg", "photos/shimonoseki/28.jpg", "photos/shimonoseki/29.jpg", "photos/shimonoseki/30.jpg", "photos/shimonoseki/31.jpg", "photos/shimonoseki/32.jpg", "photos/shimonoseki/33.jpg", "photos/shimonoseki/34.jpg", "photos/shimonoseki/35.jpg", "photos/shimonoseki/36.jpg", "photos/shimonoseki/37.jpg", "photos/shimonoseki/38.jpg", "photos/shimonoseki/39.jpg", "photos/shimonoseki/40.jpg", "photos/shimonoseki/41.jpg", "photos/shimonoseki/42.jpg", "photos/shimonoseki/43.jpg", "photos/shimonoseki/44.jpg", "photos/shimonoseki/45.jpg", "photos/shimonoseki/46.jpg", "photos/shimonoseki/47.jpg", "photos/shimonoseki/48.jpg", "photos/shimonoseki/49.jpg", "photos/shimonoseki/50.jpg", "photos/shimonoseki/51.jpg", "photos/shimonoseki/52.jpg", "photos/shimonoseki/53.jpg", "photos/shimonoseki/54.jpg", "photos/shimonoseki/55.jpg", "photos/shimonoseki/56.jpg", "photos/shimonoseki/57.jpg", "photos/shimonoseki/58.jpg", "photos/shimonoseki/59.jpg", "photos/shimonoseki/60.jpg", "photos/shimonoseki/61.jpg"], "groups": {"car": [0, 12, 32, 33, 34, 35, 36, 37, 38, 39], "staff": [1, 6, 10, 11, 29], "class": [2, 3, 15, 25, 26, 27, 28], "bus": [4, 57, 58, 59], "build": [5, 13, 16, 17, 54, 55, 56], "night": [5, 56], "drive": [7, 30, 31], "lobby": [8, 9, 14, 18, 19, 20, 21, 22, 23, 24], "bike": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "course": [51, 52, 53], "big": [60]}}};
+
+/* ================= 4校の情報（公式サイト www.ill-ms.com より。2026年11月16日・22日に確認。senior＝高齢者講習のご予約電話（各校の /senior/ ページより）） =================
+   ここを直すと、アプリの文章が全部かわります。電話・時間・講習日などが変わったら、ここを直して作り直してください。 */
+const SCHOOLS={
+buzen:{key:"buzen",name:"アイルモータースクール豊前",short:"アイル豊前",place:"豊前",en:"BUZEN",
+  tel:"0979-82-2044",senior:{tel:"0120-00-2044",hours:"平日 9:00〜20:00／日曜 9:00〜18:00",note:""},addr:"福岡県豊前市松江1381-1",
+  hours:"受付 9:00〜19:00（月・水〜土）／9:00〜17:00（日）",closed:"火曜・年末年始・ゴールデンウィーク",offDow:[2],
+  entry:[[3,"14:00"],[6,"13:00"]],entryText:"毎週 水曜14:00／土曜13:00（二輪は土曜のみ）",
+  bus:"無料スクールバス 全8路線（行橋駅・中津駅・犀川駅 発着）",busN:"全8路線",busFrom:"行橋駅・中津駅・犀川駅",
+  area:"豊前市・行橋市・中津市・築上町・みやこ町",near:"トライアル豊前店のとなり、道の駅「豊前おこしかけ」から約500m",
+  insta:"illmotorschool_buzen",url:"https://www.ill-ms.com/buzen/",
+  tags:["#アイル豊前","#豊前市"],
+  cars:["普通車AT","普通車MT","準中型","中型","大型","普通二輪","小型二輪","大型二輪","大型特殊","けん引","普通二種","大型二種"],
+  merits:[["🚗","トヨタ カローラで教習"],["📅","土日祝も教習・検定OK"],["🙋","好きな指導員を指名できる"],["📱","ネットで24時間予約"],["💻","学科はオンラインでも受けられる"],["🎓","学校・お仕事と両立できるプラン"],["⏱","最短18日で卒業できるプラン"],["🚌","無料スクールバス 全8路線"],["🛋","アンティーク家具の校舎"],["👶","提携の託児施設あり"]],
+  has:{big:true,tokushu:true,nishu:true,fork:true,six:false,paper:true}},
+moji:{key:"moji",name:"アイルモータースクール門司",short:"アイル門司",place:"門司",en:"MOJI",
+  tel:"093-481-1111",senior:{tel:"050-5799-9111",hours:"平日 10:00〜17:00／日曜 10:00〜16:00",note:"（高齢者講習の専用ダイヤルです。音声の案内にしたがってお申し込みください。講習の日は、後日学校からお電話します）"},addr:"福岡県北九州市門司区畑120",
+  hours:"受付 10:00〜19:00（月〜土）／10:00〜16:00（日）",closed:"年末年始・ゴールデンウィーク",offDow:[],
+  entry:[[2,"13:50"],[4,"17:00"],[6,"13:50"]],entryText:"毎週 火曜・土曜13:50／木曜17:00（二輪・ほかの車種は木曜・土曜）",
+  bus:"無料スクールバス（小倉駅・門司駅・小森江駅・門司港駅・下曽根駅 発着）",busN:"無料",busFrom:"小倉駅・門司駅・小森江駅・門司港駅・下曽根駅",
+  area:"門司区・小倉北区・小倉南区・戸畑区・苅田町",near:"新門司IC・都市高速の大里出入口から通いやすい場所",
+  insta:"ill_ms_moji",url:"https://www.ill-ms.com/moji/",line:"https://lin.ee/8UHujLr",
+  tags:["#アイル門司","#北九州"],
+  cars:["普通車AT","普通車MT","準中型","中型","大型","普通二輪","小型二輪","大型二輪","大型特殊","けん引","普通二種","大型二種","6輪コース"],
+  merits:[["🌙","平日は20時まで教習OK"],["📅","土日祝も教習・検定OK"],["🛋","女性専用の休憩室あり"],["🙋","好きな指導員を指名できる"],["👩","女性の指導員も活躍中"],["🎉","毎月お楽しみイベントあり"],["⏱","通学で合宿なみのスケジュールも"],["📹","スカイカメラ＋iPad教習（門司だけ）"],["🍛","食堂・駄菓子・軽食あり"],["🚌","無料スクールバス"]],
+  has:{big:true,tokushu:true,nishu:true,fork:true,six:true,paper:true}},
+hakatanomori:{key:"hakatanomori",name:"アイルモータースクール博多の森",short:"アイル博多の森",place:"博多の森",en:"HAKATANOMORI",
+  tel:"092-935-6500",senior:{tel:"092-935-6500",hours:"平日 10:30〜20:30／土日 10:30〜18:30",note:""},addr:"福岡県糟屋郡志免町王子1-28-16",
+  hours:"受付 10:30〜20:00（月〜金）／10:30〜18:00（土日）",closed:"毎週火曜・学校指定日・年末年始",offDow:[2],
+  entry:[[3,"17:10"],[6,"14:00"],[0,"14:00"]],entryText:"毎週 水曜17:10／土曜14:00／日曜14:00",
+  bus:"無料スクールバス 全15路線（博多駅・吉塚駅・宇美駅・大橋駅など。博多駅シャトル便は毎時・約20分）",busN:"全15路線",busFrom:"博多駅・吉塚駅・宇美駅・大橋駅など",
+  area:"福岡市・志免町・宇美町・粕屋町・須恵町",near:"博多の森・東平尾公園の中。博多駅から約25分",
+  insta:"ill_ms_hakatanomori",url:"https://www.ill-ms.com/hakatanomori/",
+  tags:["#アイル博多の森","#志免町"],
+  cars:["普通車AT","普通車MT","普通二輪","小型二輪","大型二輪","6輪コース"],
+  merits:[["🚃","博多駅から約25分"],["🏬","博多マルイで申し込み・相談できる"],["🚌","無料スクールバス 全15路線"],["📋","4つの教習プランから選べる"],["🙋","指導員の指名OK・女性指導員も"],["⚡","電柱・電線のない見通しのいいコース"],["📶","WiFi・USB・漫画のフリースペース"],["🍛","食堂・レストランあり"],["📱","スマホで予約・キャンセル"],["🚏","スマホでバスの到着を確認"]],
+  has:{big:false,tokushu:false,nishu:false,fork:false,six:true,paper:false}},
+shimonoseki:{key:"shimonoseki",name:"アイルモータースクール下関",short:"アイル下関",place:"下関",en:"SHIMONOSEKI",
+  tel:"0120-888-762",senior:{tel:"083-287-0018",hours:"平日 10:00〜20:00／日曜 10:00〜18:00",note:""},addr:"山口県下関市菊川町吉賀1588",
+  hours:"受付 9:00〜20:00（月・水〜土）／9:00〜18:00（日）",closed:"火曜・年末年始・ゴールデンウィーク",offDow:[2],
+  entry:[[3,"17:15"],[6,"10:05"]],entryText:"毎週 水曜17:15／土曜10:05（二輪・大型特殊・限定解除は 水曜18:15／土曜11:05）",
+  bus:"無料スクールバス 全8路線（小月・長府・新下関・埴生・厚狭・川棚温泉・黒井村・小串・美祢 など）",busN:"全8路線",busFrom:"小月駅・長府駅・新下関駅・厚狭駅・川棚温泉駅・美祢駅など",
+  area:"下関市・菊川町・豊田町・豊浦町・豊北町・山陽小野田市・美祢市",near:"小月ICから約15分、道の駅きくがわの近く",
+  insta:"ill_ms_shimonoseki",url:"https://www.ill-ms.com/shimonoseki/",
+  tags:["#アイル下関","#下関市"],
+  cars:["普通車AT","普通車MT","普通二輪","小型二輪","大型二輪","大型特殊","普通二種","6輪コース"],
+  merits:[["💰","割引がたくさんあってお得"],["📅","土日祝も教習・検定OK"],["🙋","好きな指導員を指名できる"],["🚌","無料スクールバス 全8路線"],["⏱","短期で卒業できるプランあり"],["📋","都合に合わせた教習プラン"],["🏛","おしゃれな校舎と教習車"],["🏍","二輪の車種がそろっている"],["📱","ネット予約で便利"],["🛋","吹き抜けのロビー・アンティーク小物"]],
+  has:{big:false,tokushu:true,nishu:true,fork:false,six:true,paper:true}},
+};
+const SCHOOL_ORDER=["buzen","moji","hakatanomori","shimonoseki"];
+/* 学校えらびの画面の5つ目：交通教育センター（会社向け。別のページ center.html。中身は ail_center.js） */
+const PICK_EXTRA=[{key:"center",en:"TRAINING CENTER",short:"交通教育センター",href:"center.html",wide:true}];
+
+/* ================= 交通教育センター（会社向けの講習・研修）のデータと投稿ネタ =================
+   center.html だけで使います（4校の index.html では使いません）。
+   事実は、ホームページ https://www.ill-ms.com/training/ （2026年11月22日に確認）に書いてあることと、
+   法律で決まっている一般的なことだけ。料金は書かない。
+   {S}＝アイル交通教育センター、{N}＝正式名、{TEL}＝電話 */
+SCHOOLS.center={key:"center",name:"アイルモータースクール交通教育センター",short:"アイル交通教育センター",place:"交通教育センター",en:"TRAINING CENTER",
+  tel:"0979-82-2044",tel2:"0120-00-2044",fax:"0979-83-3395",addr:"福岡県豊前市松江1381-1（アイルモータースクール豊前）",
+  hours:"受付 9:00〜19:00（日曜 9:00〜17:00）",closed:"火曜",offDow:[2],
+  entry:[[3,"10:00"],[5,"10:00"],[6,"10:00"]],entryText:"適性診断：豊前は水・金・土／門司は月・木・土（10時・12時・15時・17時から）",
+  bus:"",busN:"",busFrom:"",area:"福岡県・山口県・大分県の会社のみなさま",near:"アイルモータースクール豊前の中",
+  insta:"",url:"https://www.ill-ms.com/training/",tags:["#アイル交通教育センター","#企業研修"],
+  cars:["豊前会場","門司会場","出張研修もOK"],
+  slots:["10:00から","12:00から","15:00から","17:00から","平日クラス","土日クラス"],
+  merits:[["🏅","運行管理者講習は国土交通大臣認定"],["🧠","国土交通省認定の適性診断"],["🎓","交通心理士が指導"],["📊","Objetで運転のくせを数字に"],["🚌","普通車から大型バス・トラックまで"],["🏢","出張研修・講演もご相談OK"],["🛠","会社に合わせて内容をつくる"],["📝","研修のあとに報告書をお渡し"],["🌐","運行管理者講習・適性診断はWEB予約24時間"],["🏗","フォークリフト・テールゲートリフターも"]],
+  has:{big:false,tokushu:false,nishu:false,fork:true,six:false,paper:false},
+  links:[["entry","📋 各種お申し込み","https://www.ill-ms.com/training/services_entry/"],["unkou","📋 運行管理者講習のWEB予約","https://www.ill-ms.com/training2/entry/"],["tekisei","📋 適性診断のWEB予約","https://www.ill-ms.com/training2/entry_profiling/"],["contact","📋 お問い合わせフォーム","https://www.ill-ms.com/training/contact/"],["top","📋 ホームページ","https://www.ill-ms.com/training/"]]};
+
+/* 写真（site/photos/center。ホームページの交通教育センターのページから。ail_center_photos.py） */
+(function(){const F=["corporate_safe_driving01","corporate_safe_driving02","corporate_safe_driving03","demo01_1","demo01_2","demo01_3","demo01_4","demo01_5","driving_skill_profiling01","forklift01","forklift03_1","forklift03_2","logistics_operations_seminar01","mv_pc11","mv_pc12","mv_pc13","mv_pc14","mv_pc15","objet02","objet03","objet04","objet05","objet06","tailgatelifter01","top02_1","top02_2","top02_3","top05_1","top05_2","top05_3","top05_4","top05_5","top05_6","top05_7","top05_8","top07","transit_gap_logistics01"];
+  const G={build:["forklift03_1","forklift03_2"],class:["corporate_safe_driving02","demo01_3","logistics_operations_seminar01","mv_pc11","top02_1","top05_4","top05_5","top07"],
+    diag:["demo01_1","driving_skill_profiling01","mv_pc12"],fork:["demo01_2","forklift01","mv_pc15","top02_2"],bus:["corporate_safe_driving03","mv_pc13","top05_2"],
+    truck:["mv_pc14","top05_1","tailgatelifter01","demo01_4"],car:["corporate_safe_driving01","objet02","top05_8","transit_gap_logistics01"],
+    objet:["objet02","objet03","objet04","objet05","objet06","top05_3"],kids:["top02_3","top05_6","top05_7","demo01_5"],staff:["top07","top05_4","mv_pc11","top05_7"]};
+  const groups={};for(const k in G)groups[k]=G[k].map(n=>F.indexOf(n)).filter(i=>i>=0);
+  PHOTO_SETS.center={files:F.map(n=>"photos/center/"+n+".jpg"),groups}})();
+
+const CATJ={CENTER:"センターのこと",KOUSHU:"講習のご紹介",UNKOU:"運行管理者のみなさまへ",MANAGE:"安全運転管理者のみなさまへ",TEKISEI:"適性診断",SAFE:"安全運転のヒント",PSY:"交通心理のはなし",FORK:"フォークリフト・荷役",QUIZ:"交通安全クイズ",SEASON:"季節の話題",EVENT:"今日はこんな日",BANQUET:"講習紹介",SEAT:"講習日のご案内",NEWS:"お知らせ",CAL:"カレンダー"};
+const PJA={real:"📷 センターの写真",build:"建物",class:"講義・研修",diag:"適性診断",fork:"フォークリフト",bus:"バス",truck:"トラック・荷台",car:"乗用車",objet:"Objet（オブジェ）",kids:"交通安全教室",staff:"講師"};
+const PK_ALIAS={build:["build","class"],class:["class","staff"],diag:["diag","class"],fork:["fork","truck"],bus:["bus","truck","car"],truck:["truck","bus"],car:["car","objet"],objet:["objet","car"],kids:["kids","class"],staff:["staff","class"],
+  lobby:["build","class"],drive:["car","objet"],course:["car","truck"],bike:["car"],big:["truck","bus"],night:["car","build"],food:["class"],spring:["kids","car"],summer:["truck","car"],autumn:["car","class"],winter:["truck","car"],rainy:["car","class"],newyear:["build","class"],shop:["build","class"],outside:["build","car"],rain:["car"],lic:["truck","fork"]};
+
+function footDef(S){return `――――――――
+🏢 ${S.name}
+📍 ${S.addr}
+📞 ${S.tel}（企業研修）
+📞 ${S.tel2}（講習・適性診断のご予約）
+🕘 ${S.hours}　${S.closed}定休
+📝 お申し込み・お問い合わせ
+${S.url}services_entry/
+（リンクが押せないときは、プロフィールのリンクからどうぞ）`}
+function tagsDef(S){return ["#アイルモータースクール",...S.tags,"#安全運転"].join(" ")}
+
+const EVER=[
+/* ---- センターのこと ---- */
+{c:"CENTER",pk:"class",h:"交通教育センターって\nどんなところ？",s:"会社の安全運転を応援します",t:["#企業研修","#交通安全教育"],b:`{S}は、アイルモータースクールの「会社向け」の窓口です🏢
+
+🚚 運行管理者の講習・適性診断
+🚗 安全運転研修・新入社員研修
+🏗 フォークリフト・テールゲートリフター
+🚸 交通安全教室・講演
+
+交通心理士・産業カウンセラー・教習指導員などの専門のスタッフが、会社のお悩みに合わせて内容をつくります😊`},
+{c:"CENTER",pk:"staff",h:"講師は\n交通の専門家",s:"交通心理士・教習指導員など",t:["#交通心理士","#安全運転研修"],b:`{S}の講師をご紹介します🎓
+
+👤 交通心理士
+👤 産業カウンセラー
+👤 教習指導員
+
+「運転がうまくなる」だけでなく、
+「なぜ事故が起きるのか」を、心と体の両方から考えます。
+会社ごとのお悩みに合わせて、研修の内容をつくっています😊`},
+{c:"CENTER",pk:"bus",h:"普通車から\n大型バスまで",s:"いろいろな車で研修できます",t:["#企業研修","#職業ドライバー"],b:`{S}は、教習所の設備を使って研修ができるのが強みです🚌
+
+🚗 普通車
+🚚 トラック
+🚌 大型バス
+🏗 フォークリフト
+
+コースで安全に、実際の車を使って練習できます。
+会社の車を持ちこんでの研修も、ご相談ください😊`},
+{c:"CENTER",pk:"class",h:"出張研修・講演も\nできます",s:"会社・学校・地域の集まりに",t:["#出張研修","#交通安全講話"],b:`{S}の講師が、会社や地域にうかがうこともできます🚗💨
+
+🏢 会社の朝礼・安全大会での講話
+🏫 学校の交通安全教室
+👴 地域の集まりでの安全運転のお話
+
+「〇〇のテーマで話してほしい」など、お気軽にご相談ください📞 {TEL}`},
+{c:"CENTER",pk:"class",h:"研修のあとは\n報告書をお渡し",s:"会社で振り返りができます",t:["#安全運転研修","#企業研修"],b:`安全運転研修のあとは、担当の講師が「報告書」をお作りします📝
+
+✅ 運転のいいところ
+✅ 気をつけたいくせ
+✅ これからの目標
+
+メールか郵送でお届けします。
+会社での面談や、次の研修の計画にも使っていただけます😊`},
+
+/* ---- 講習のご紹介 ---- */
+{c:"KOUSHU",pk:"class",h:"運行管理者の\n講習があります",s:"国土交通大臣認定",t:["#運行管理者","#運行管理者講習"],b:`{S}では、運行管理者の講習をしています🚚
+
+🔹 基礎講習：16時間（3日間）
+　これから運行管理者・補助者になる方など
+🔹 一般講習：5時間（1日）
+　選任されている運行管理者の方（2年に1回の受講が必要です）
+
+2017年4月から、国土交通大臣の認定を受けて実施しています。
+WEB予約は24時間OK。プロフィールのリンクからどうぞ😊`},
+{c:"KOUSHU",pk:"fork",h:"フォークリフトの\n資格がとれます",s:"運転技能講習",t:["#フォークリフト","#技能講習"],b:`フォークリフトの「運転技能講習」をしています🏗
+
+持っている免許や経験によって、講習の時間がかわります。
+⏱ 11時間（2日間）〜35時間（5日間）
+（31時間のクラスは、平日と土日があります）
+
+📍 豊前会場（門司会場は出張講習）
+福岡労働局長の登録教習機関です（登録 第22号）。
+ご予約📞 0120-00-2044`},
+{c:"KOUSHU",pk:"truck",h:"テールゲートリフター\n特別教育",s:"2024年2月から義務になりました",t:["#テールゲートリフター","#特別教育"],b:`トラックの荷台の「テールゲートリフター」で荷物を積んだり降ろしたりするお仕事には、
+2024年2月1日から「特別教育」が必要になりました🚚
+
+📘 学科 4時間
+🔧 実技 2時間
+
+📍 豊前会場
+15名くらいからは、会社への出張講習もご相談ください（実技は会社の車で）。
+ご予約📞 0120-00-2044`},
+{c:"KOUSHU",pk:"car",h:"コミュニティバスの\n運転者さんへ",s:"交通空白地有償運送の講習",t:["#コミュニティバス","#有償運送"],b:`市町村やNPOなどが運行するコミュニティバスなどを、第一種免許で運転する方へ🚐
+
+国土交通大臣認定の「交通空白地有償運送等運転者講習」を受けて、修了することが必要です。
+（第二種免許をお持ちの方は、受講しなくても大丈夫です）
+
+⏱ 座学140分＋実技（1人20分）
+👥 1回6人まで
+
+出張講習もご相談ください📞 0120-00-2044`},
+{c:"KOUSHU",pk:"bus",h:"貸切バスの\n運転者研修",s:"国土交通省認定の7時間コース",t:["#バス運転士","#運転者研修"],b:`貸切バスの運転者さん向けの研修もあります🚌
+
+🔹 日常点検
+🔹 バスの車の特ちょう
+🔹 緊急のときのよけ方
+🔹 下り坂の走り方
+🔹 Objetでの運転の解析
+
+国土交通省認定の、7時間のコースです。
+くわしくはお問い合わせください📞 {TEL}`},
+{c:"KOUSHU",pk:"class",h:"新入社員研修に\nいかがですか？",s:"社会人の運転の第一歩",t:["#新入社員研修","#安全運転研修"],b:`会社の車を運転する、新入社員のみなさんに🔰
+
+✅ 社用車を運転するときの心がまえ
+✅ 自分の運転のくせを知る
+✅ 事故を起こさないための考え方
+
+「免許はあるけど、運転にまだ慣れていない」
+そんな社員さんにこそ、早めの研修がおすすめです😊
+ご相談📞 {TEL}`},
+{c:"KOUSHU",pk:"class",h:"事故のあとの\n再教育も",s:"もう一度、同じ事故を起こさないために",t:["#事故防止","#企業研修"],b:`事故を起こしてしまった社員さんの「再教育」もお手伝いしています🚗
+
+🔹 どうして事故が起きたのかを、一緒に考える
+🔹 運転のくせを、数字で見て確かめる
+🔹 これからの目標を決める
+
+責めるためではなく、次の事故をふせぐための研修です。
+ご相談はお気軽に📞 {TEL}`},
+{c:"KOUSHU",pk:"car",h:"エコドライブ\n研修",s:"燃料も事故も、へらす運転",t:["#エコドライブ","#企業研修"],b:`エコドライブは、燃料をへらすだけではありません🌱
+
+🚗 ふんわりアクセル
+🚗 車間距離にゆとり
+🚗 早めのアクセルオフ
+
+ゆとりのある運転は、事故をへらすことにもつながります。
+会社のみなさんで、エコドライブ研修はいかがですか？😊`},
+
+/* ---- 運行管理者・安全運転管理者のみなさまへ ---- */
+{c:"UNKOU",pk:"class",h:"一般講習は\n2年に1回",s:"受講の計画はお早めに",t:["#運行管理者","#一般講習"],b:`選任されている運行管理者の方へ🚚
+
+運行管理者の「一般講習」は、2年に1回の受講が必要です。
+（前の年度に、一般講習か基礎講習を受けていない方など）
+
+📅 年度末は混み合うことがあります
+🌐 WEB予約は24時間OK
+
+トラック協会・バス協会の会員の方は、受講費用の助成がある場合があります。くわしくは各協会にご確認ください😊`},
+{c:"UNKOU",pk:"truck",h:"トラックの\n2024年問題",s:"時間にゆとりがない今こそ",t:["#2024年問題","#物流"],b:`2024年4月から、トラックドライバーの時間外労働に「年960時間」の上限ができました🚚
+
+時間に追われると、運転もあせりがち。
+だからこそ、
+✅ 休けいをしっかりとる
+✅ 無理のない運行計画
+✅ ドライバーの体調のチェック
+が、ますます大切になっています。
+
+運行管理者の講習・適性診断は、{S}へどうぞ😊`},
+{c:"MANAGE",pk:"car",h:"アルコールチェック\nしていますか？",s:"安全運転管理者のみなさまへ",t:["#アルコールチェック","#安全運転管理者"],b:`安全運転管理者のいる会社のみなさまへ🍺🙅
+
+🗓 2022年4月から：運転の前と後に、目で見て酒気帯びを確認・記録（1年間保存）
+🗓 2023年12月から：アルコール検知器を使った確認も必要に
+
+検知器は、いつでも使えるように、こわれていないか確かめておきましょう。
+飲酒運転ゼロの会社に😊`},
+{c:"MANAGE",pk:"class",h:"安全運転管理者が\n必要な会社",s:"車の台数で決まります",t:["#安全運転管理者","#社用車"],b:`社用車を使う会社は「安全運転管理者」が必要なことがあります🚗
+
+📌 乗車定員11人以上の車を1台以上
+📌 またはそのほかの車を5台以上
+（バイクは1台を0.5台と数えます）
+
+使っている事業所ごとに、選ぶ必要があります。
+社員さんの安全運転の研修も、{S}にご相談ください😊`},
+
+/* ---- 適性診断 ---- */
+{c:"TEKISEI",pk:"diag",h:"適性診断って\nなに？",s:"運転のくせを知る検査",t:["#適性診断","#運転適性"],b:`適性診断は、ドライバーの「運転のくせ」や「性格の特ちょう」を知るための検査です🧠
+
+🔹 性格・安全運転の態度
+🔹 危険に気づく力
+🔹 とっさの判断
+🔹 2つのことを同時にする反応
+🔹 見る力（視力など）
+
+{S}は、国土交通大臣に認定された適性診断の実施機関です（NASVAパートナー）。`},
+{c:"TEKISEI",pk:"diag",h:"適性診断の\n種類",s:"一般・初任・適齢・特定",t:["#適性診断","#運送業"],b:`適性診断には、いくつか種類があります📋
+
+🔹 一般診断（約1時間20分）：すべてのドライバー
+🔹 初任診断（約1時間40分）：新しくやとったドライバー
+🔹 適齢診断（約1時間40分）：65歳以上のドライバー
+🔹 特定診断Ⅰ（約2時間20分）：重い事故などを起こしたドライバー（電話予約のみ）
+
+WEB予約は24時間OK。プロフィールのリンクからどうぞ😊`},
+{c:"TEKISEI",pk:"diag",h:"適性診断の\n日にち",s:"豊前と門司で受けられます",t:["#適性診断","#豊前市"],b:`適性診断を受けられる日です🗓
+
+📍 豊前会場：水・金・土
+📍 門司会場：月・木・土
+🕙 10時・12時・15時・17時から
+
+事前の予約制で、先着順です。
+視力の検査があるので、メガネを使う方は忘れずに👓
+始まる10分前までにお越しください😊`},
+{c:"TEKISEI",pk:"diag",h:"新しく入った\nドライバーさんに",s:"初任診断",t:["#初任診断","#運送業"],b:`新しくドライバーさんをやとったら📋
+
+事業用の車に乗る前に「初任診断」を受けてもらいましょう。
+（約1時間40分）
+
+自分の運転のくせを知ることが、
+事故をふせぐ第一歩になります😊
+WEB予約は24時間OK。プロフィールのリンクからどうぞ。`},
+{c:"TEKISEI",pk:"diag",h:"65歳以上の\nドライバーさんに",s:"適齢診断",t:["#適齢診断","#高齢ドライバー"],b:`65歳以上のドライバーさん向けの「適齢診断」があります🧓
+
+年齢とともに、
+👀 見る力
+⚡ とっさの反応
+は、少しずつ変わっていきます。
+
+それを知って、運転のしかたを工夫すれば、まだまだ安全に走れます😊
+（約1時間40分）`},
+
+/* ---- 安全運転のヒント ---- */
+{c:"SAFE",pk:"objet",h:"運転のくせを\n数字で見る",s:"Objet（オブジェ）",t:["#Objet","#安全運転研修"],b:`「Objet（オブジェ）」は、運転のくせを数字にする機械です📊
+
+🧢 頭にセンサー
+👞 右足にセンサー
+🛰 車にはGPS
+
+ふだんの道を走るだけで、
+👀 安全確認のタイミング・深さ・回数
+🦶 ブレーキのタイミング
+🚗 スピード
+がわかります。自分では気づかないくせが、見えてきます😊`},
+{c:"SAFE",pk:"car",h:"交差点の\n確認は2回",s:"「もう1回」が事故をふせぐ",t:["#安全確認","#交差点"],b:`交差点で曲がるとき、確認は何回していますか？🚗
+
+右・左・右…と見たあとに、
+曲がる直前に「もう1回」。
+
+歩行者や自転車は、ほんの数秒で近づいてきます。
+「見たつもり」をなくすのが、事故をへらすコツです😊`},
+{c:"SAFE",pk:"truck",h:"バックのときは\n一度おりて確認",s:"トラック・社用車の事故で多い場面",t:["#バック事故","#安全運転"],b:`車をうしろに下げるときの事故は、思ったより多いものです🚚
+
+✅ 下げる前に、一度おりて後ろを見る
+✅ ゆっくり、止まれるスピードで
+✅ 誘導してくれる人がいれば、お願いする
+
+「たぶん大丈夫」は、いちばんあぶない言葉です😊`},
+{c:"SAFE",pk:"car",h:"車間距離は\nゆとりを",s:"前の車との「すき間」は安全の時間",t:["#車間距離","#安全運転"],b:`前の車との距離、つめすぎていませんか？🚗
+
+車間距離は「止まるための時間」です。
+前の車が急ブレーキをかけても、止まれる距離をとりましょう。
+
+雨の日・夜・重い荷物を積んでいるときは、
+もっと長めがおすすめです😊`},
+{c:"SAFE",pk:"car",h:"夕方は\n早めのライト",s:"日がしずむ前に",t:["#早めのライト","#夕暮れ"],b:`夕方の時間帯は、事故が起きやすいといわれています🌇
+
+💡 暗くなる前に、早めにライトをつける
+👀 歩行者・自転車に気をつける
+
+ライトは「自分が見る」ためだけでなく、
+「まわりに見つけてもらう」ためでもあります😊`},
+{c:"SAFE",pk:"truck",h:"出発前の\n日常点検",s:"毎日の1分が事故をふせぐ",t:["#日常点検","#運送業"],b:`出発前の「日常点検」、できていますか？🔧
+
+🔹 タイヤ（空気・きず・ナット）
+🔹 ライト・ウインカー
+🔹 ブレーキ
+🔹 ミラー
+
+毎日続けていると、「いつもとちがう」に気づけるようになります😊`},
+{c:"SAFE",pk:"car",h:"ながら運転\nしていませんか？",s:"スマホは止まってから",t:["#ながら運転","#スマホ"],b:`運転中のスマホ、ついつい見ていませんか？📱
+
+ほんの2秒、画面を見ているあいだにも、車は進んでいます。
+
+📞 電話は、安全な場所に止めてから
+🔕 運転中は、通知をオフに
+
+会社のルールとして決めておくのもおすすめです😊`},
+
+/* ---- 交通心理のはなし ---- */
+{c:"PSY",pk:"staff",h:"交通心理士って\nなに？",s:"心のしくみから安全を考える",t:["#交通心理士","#交通心理学"],b:`「交通心理士」は、日本交通心理学会が認定する資格です🎓
+
+人はどんなときに、
+👀 見落とすのか
+😤 あせるのか
+🙆 「大丈夫」と思いこむのか
+
+心のしくみをもとに、事故をふせぐ方法を考えます。
+{S}では、交通心理士が研修を担当しています😊`},
+{c:"PSY",pk:"car",h:"「慣れた道」ほど\n注意",s:"油断は家の近くで起きやすい",t:["#交通心理","#安全運転"],b:`毎日通っている道ほど、注意がうすくなりがちです🚗
+
+「いつもだれもいないから」
+「この信号はいつも長いから」
+
+その「いつも」が、思いこみになることも。
+慣れた道こそ、ひと呼吸おいて確認しましょう😊`},
+{c:"PSY",pk:"truck",h:"あせりは\n事故のもと",s:"時間に追われたときこそ",t:["#交通心理","#安全運転"],b:`「時間に間に合わない！」と思うと、人は
+⚡ スピードを出しやすく
+👀 確認が少なく
+なりがちです。
+
+あせったときこそ、深呼吸🫁
+「5分おくれても、事故よりずっといい」
+会社みんなで、そう言える雰囲気をつくりましょう😊`},
+{c:"PSY",pk:"class",h:"自分の運転は\nうまいと思う？",s:"人は自分を高く見がち",t:["#交通心理","#運転のくせ"],b:`「自分の運転は、ふつうの人よりうまい」
+そう思う人は、意外と多いといわれています🤔
+
+自信はあっても大丈夫。
+でも、自分では気づかないくせもあります。
+
+適性診断やObjetの研修で、
+一度「数字」で見てみませんか？😊`},
+
+/* ---- フォークリフト・荷役 ---- */
+{c:"FORK",pk:"fork",h:"1トン以上の\nフォークリフトは",s:"技能講習の修了が必要です",t:["#フォークリフト","#技能講習"],b:`最大荷重1トン以上のフォークリフトを運転するには、
+「運転技能講習」の修了が必要です🏗
+
+（1トン未満は「特別教育」）
+
+{S}では、お持ちの免許や経験に合わせて、
+11時間〜35時間のクラスがあります。
+ご予約📞 0120-00-2044`},
+{c:"FORK",pk:"fork",h:"フォークリフトの\n安全のポイント",s:"人とぶつからないために",t:["#フォークリフト","#労働安全"],b:`フォークリフトを使う職場の安全ポイントです🏗
+
+✅ ツメ（フォーク）を上げたまま走らない
+✅ 荷物で前が見えないときは、バックで走る
+✅ 人が近くにいないか、つねに確認
+✅ 乗るのは運転する人だけ
+
+工場や倉庫でも、「確認」がいちばん大切です😊`},
+{c:"FORK",pk:"truck",h:"荷台からの\n転落に注意",s:"荷物の積み降ろし",t:["#荷役作業","#労働安全"],b:`トラックの荷台からの転落は、荷物の積み降ろしでよくある事故の一つです🚚
+
+✅ 荷台の上では、うしろ向きに歩かない
+✅ 乗り降りは、ステップや手すりを使う
+✅ テールゲートリフターは、決められた方法で
+
+テールゲートリフターの特別教育も、{S}で受けられます😊`},
+
+/* ---- 交通安全クイズ ---- */
+{c:"QUIZ",pk:"class",h:"運行管理者の\n一般講習は何年ごと？",s:"答えは本文に",t:["#交通安全クイズ","#運行管理者"],b:`交通安全クイズです🚚
+
+Q. 選任されている運行管理者の「一般講習」は、5年に1回受ければよい。
+
+○か×か、コメントで教えてください👇
+.
+.
+.
+✅ 答えは「×」
+2年に1回の受講が必要です。受講の計画は、お早めにどうぞ😊`},
+{c:"QUIZ",pk:"truck",h:"テールゲートリフター\n特別教育は必要？",s:"答えは本文に",t:["#交通安全クイズ","#テールゲートリフター"],b:`交通安全クイズです🚚
+
+Q. トラックのテールゲートリフターを使う作業には、特別教育が必要である。
+
+○か×か、コメントで教えてください👇
+.
+.
+.
+✅ 答えは「○」
+2024年2月1日から、特別教育が必要になりました。`},
+{c:"QUIZ",pk:"car",h:"アルコール検知器\n使っていますか？",s:"答えは本文に",t:["#交通安全クイズ","#アルコールチェック"],b:`交通安全クイズです🍺
+
+Q. 安全運転管理者のいる会社では、運転の前と後に、アルコール検知器を使って酒気帯びを確認する必要がある。
+
+○か×か、コメントで教えてください👇
+.
+.
+.
+✅ 答えは「○」
+2023年12月1日から、検知器を使った確認が必要になりました。`},
+{c:"QUIZ",pk:"diag",h:"65歳以上の方の\n適性診断は？",s:"答えは本文に",t:["#交通安全クイズ","#適性診断"],b:`交通安全クイズです🧠
+
+Q. 65歳以上のドライバー向けの適性診断は「初任診断」という。
+
+○か×か、コメントで教えてください👇
+.
+.
+.
+✅ 答えは「×」
+65歳以上の方向けは「適齢診断」です。初任診断は、新しくやとったドライバーさん向けです。`},
+{c:"QUIZ",pk:"fork",h:"フォークリフト\n1トン以上は？",s:"答えは本文に",t:["#交通安全クイズ","#フォークリフト"],b:`交通安全クイズです🏗
+
+Q. 最大荷重1トン以上のフォークリフトは、特別教育を受ければ運転できる。
+
+○か×か、コメントで教えてください👇
+.
+.
+.
+✅ 答えは「×」
+1トン以上は「運転技能講習」の修了が必要です（1トン未満は特別教育）。`},
+];
+
+/* 季節の話題（1日・15日） */
+const SEASON={
+1:[{pk:"build",h:"あけまして\nおめでとうございます",s:"今年も事故ゼロの1年に",t:["#あけましておめでとう","#安全運転"],b:`あけましておめでとうございます🎍
+
+今年も、会社のみなさまの安全運転を応援します。
+研修・講習の計画は、お早めにご相談ください😊
+
+今年も{S}をよろしくお願いいたします。`},
+ {pk:"truck",h:"冬の朝は\n路面の凍結に注意",s:"橋の上・日かげは特に",t:["#凍結注意","#冬の運転"],b:`冬の朝は、路面の凍結に注意しましょう❄️
+
+🌉 橋の上・トンネルの出口
+🌲 日かげの道
+
+は、ほかの道がかわいていても凍っていることがあります。
+「急」のつく運転（急ブレーキ・急ハンドル）はさけて、ゆっくりと😊`}],
+2:[{pk:"class",h:"来年度の\n研修計画を",s:"新年度の前に",t:["#研修計画","#企業研修"],b:`来年度の社員研修の計画は、もうお決まりですか？📋
+
+🔰 新入社員研修
+🚚 運行管理者の講習
+🧠 適性診断
+
+4月は混み合うことがあります。
+日にちのご相談は、お早めにどうぞ📞 {TEL}`},
+ {pk:"car",h:"花粉の季節の\n運転",s:"くしゃみの一瞬も",t:["#花粉症","#安全運転"],b:`花粉の季節がやってきました🤧
+
+くしゃみをする一瞬、目をつぶってしまうことがあります。
+そのあいだにも、車は進んでいます。
+
+🚗 車間距離を長めに
+💊 薬を飲むときは、眠くならないか確かめて
+
+体調に合わせた運転を😊`}],
+3:[{pk:"class",h:"年度末は\nあせりに注意",s:"いそがしい時期こそ",t:["#年度末","#安全運転"],b:`年度末は、お仕事がいそがしくなる時期です📦
+
+いそいでいるときほど、
+⚡ スピードが出やすく
+👀 確認が少なく
+なりがちです。
+
+時間にゆとりをもった計画で、事故ゼロの年度末に😊`},
+ {pk:"class",h:"新入社員研修の\nご相談受付中",s:"4月の前に",t:["#新入社員研修","#企業研修"],b:`4月から入る新入社員さんの、安全運転研修はいかがですか？🔰
+
+社用車を運転する前に、
+✅ 会社の車のルール
+✅ 自分の運転のくせ
+を知っておくと安心です。
+
+ご相談📞 {TEL}`}],
+4:[{pk:"kids",h:"春の全国\n交通安全運動",s:"みんなで事故ゼロに",t:["#春の交通安全運動","#交通安全"],b:`春の全国交通安全運動の時期です🌸
+
+新しく通学する子どもたち、
+新しく運転を始める社会人。
+春は、道路に「はじめて」の人がふえる季節です。
+
+🚸 通学路はゆっくり
+👀 横断歩道の手前では、止まれるスピードで
+
+会社みんなで、安全運転を😊`},
+ {pk:"class",h:"新入社員の\nみなさんへ",s:"社用車を運転するときは",t:["#新入社員","#安全運転"],b:`新入社員のみなさん、ご入社おめでとうございます🌸
+
+社用車を運転するときは、
+「会社の名前を背負って走っている」ことを思い出してください🚗
+
+あせらず、ゆずりあって、安全に。
+これからの社会人生活を応援しています😊`}],
+5:[{pk:"car",h:"連休明けの\n運転に注意",s:"体を運転モードにもどす",t:["#連休明け","#安全運転"],b:`長いお休みのあとは、運転の感覚がもどりきっていないことがあります🚗
+
+✅ 出発前に、ゆっくり深呼吸
+✅ いつもより車間距離を長めに
+✅ 眠気を感じたら、無理せず休けい
+
+お休み明けも、安全運転で😊`},
+ {pk:"diag",h:"適性診断で\n自分を知る",s:"運転のくせ、知っていますか？",t:["#適性診断","#運転適性"],b:`自分の運転のくせ、知っていますか？🧠
+
+適性診断では、
+👀 危険に気づく力
+⚡ とっさの判断
+などを、検査でたしかめます。
+
+国土交通大臣認定の適性診断を、豊前と門司で受けられます😊`}],
+6:[{pk:"car",h:"雨の日の\n運転",s:"スピードは控えめに",t:["#梅雨","#雨の日の運転"],b:`梅雨の季節がやってきました☔
+
+🚗 雨の日は、止まるまでの距離が長くなります
+💡 昼でもライトをつけて、見つけてもらう
+👀 かさをさした歩行者は、まわりが見えにくい
+
+スピード控えめ、車間距離は長めに😊`},
+ {pk:"truck",h:"梅雨どきの\n荷物の積み降ろし",s:"すべりやすい足もとに注意",t:["#荷役作業","#梅雨"],b:`雨の日の荷物の積み降ろしは、足もとがすべりやすくなります☔
+
+✅ 荷台・ステップの水をふく
+✅ すべりにくい靴をはく
+✅ 荷物を持ったまま、いそいで動かない
+
+ころんでケガをしないように、ゆっくりと😊`}],
+7:[{pk:"truck",h:"夏の車内は\n高温に",s:"熱中症に注意",t:["#熱中症","#夏の運転"],b:`夏の車の中は、とても暑くなります☀️
+
+🚗 乗る前に、窓をあけて熱い空気を出す
+💧 こまめに水分をとる
+😵 頭がぼーっとしたら、すぐに休けい
+
+暑さで集中力が落ちると、事故にもつながります。
+体を大切に😊`},
+ {pk:"kids",h:"夏休みは\n子どもに注意",s:"道路に子どもがふえます",t:["#夏休み","#交通安全"],b:`夏休みは、昼間の道路に子どもたちがふえます🏊
+
+🚸 住宅地・公園の近くはゆっくり
+🚲 自転車の子どもは、急に向きを変えることも
+👀 止まっている車のかげにも注意
+
+子どもたちの楽しい夏休みを、守りましょう😊`}],
+8:[{pk:"car",h:"お盆の帰省は\n休けいをしっかり",s:"2時間に1回が目安",t:["#お盆","#帰省"],b:`お盆の帰省で、長い時間運転する方へ🚗
+
+☕ 2時間に1回くらいは休けい
+😴 眠気を感じたら、無理をしない
+👨‍👩‍👧 運転を交代できるなら交代
+
+社員のみなさんにも、ひと声かけてあげてください😊`},
+ {pk:"objet",h:"お盆明けの\n安全運転",s:"もう一度、確認を",t:["#お盆明け","#安全運転"],b:`お盆休み、ゆっくりできましたか？😊
+
+お休み明けは、ついぼんやりしがちです。
+朝礼で「確認は2回」をみんなで言い合うのもおすすめです🚗
+
+社員研修のご相談も、お気軽に📞 {TEL}`}],
+9:[{pk:"kids",h:"秋の全国\n交通安全運動",s:"夕暮れどきに注意",t:["#秋の交通安全運動","#交通安全"],b:`秋の全国交通安全運動の時期です🍂
+
+秋は、日がしずむのが早くなります。
+🌇 夕方は、早めのライト
+🚶 歩行者・自転車に注意
+
+会社みんなで、事故ゼロをめざしましょう😊`},
+ {pk:"class",h:"防災の日に\n考えたいこと",s:"運転中に地震がきたら",t:["#防災","#地震"],b:`運転中に大きな地震がきたら🚗
+
+🔹 ハザードをつけて、ゆっくり道の左に止める
+🔹 カーラジオなどで情報を確かめる
+🔹 車をはなれるときは、キーをつけたまま・ドアのロックはしない
+
+いざというときのために、会社でも話し合っておきましょう😊`}],
+10:[{pk:"car",h:"日がしずむのが\n早くなりました",s:"仕事帰りの時間に注意",t:["#夕暮れ","#早めのライト"],b:`秋になると、日がしずむのが早くなります🌇
+
+仕事帰りの時間帯は、
+👀 歩行者が見えにくい
+😮‍💨 つかれて注意がうすくなる
+
+早めのライトで、見つけてもらいましょう😊`},
+ {pk:"fork",h:"秋は\n講習の計画を",s:"年度内の受講はお早めに",t:["#フォークリフト","#講習"],b:`年度内に資格をとりたい社員さんはいませんか？🏗
+
+🏗 フォークリフト運転技能講習
+🚚 テールゲートリフター特別教育
+🚚 運行管理者講習
+
+年度末は混み合うことがあります。
+秋のうちに、ご予約をどうぞ📞 0120-00-2044`}],
+11:[{pk:"truck",h:"冬タイヤの\n準備を",s:"雪の前に",t:["#冬タイヤ","#冬の運転"],b:`寒くなってきました❄️
+
+🚚 冬タイヤ・チェーンの準備
+🔧 タイヤのみぞ・空気の確認
+🌡 バッテリーのチェック
+
+雪がふってからではおそくなります。
+社用車の冬じたくは、早めに😊`},
+ {pk:"class",h:"年末に向けて\n安全運転を",s:"いそがしい時期こそ",t:["#年末","#安全運転"],b:`年末に向けて、お仕事もいそがしくなる時期です📦
+
+いそいでいるときほど、事故は起こりやすくなります。
+⏰ 時間にゆとりをもった計画を
+🚗 「急」のつく運転はしない
+
+会社みんなで、事故ゼロの年末を😊`}],
+12:[{pk:"car",h:"飲んだら\n乗らない",s:"忘年会シーズン",t:["#飲酒運転ゼロ","#忘年会"],b:`忘年会のシーズンです🍻
+
+🙅 飲んだら、ぜったいに運転しない
+🌅 次の日の朝も、お酒が残っていることがあります
+🔑 運転する人に、お酒をすすめない
+
+アルコールチェックも、いつも以上にていねいに。
+飲酒運転ゼロの年末を😊`},
+ {pk:"build",h:"今年も1年\nありがとうございました",s:"来年もよろしくお願いします",t:["#年末","#ありがとう"],b:`今年も、{S}の講習・研修をご利用いただき、ありがとうございました🙇
+
+来年も、会社のみなさまの安全運転を応援します。
+研修の計画は、年明けからお気軽にご相談ください😊
+
+よいお年をおむかえください🎍`}],
+};
+
+/* 今日はこんな日 */
+const EVENTS=[
+{d:[4,10],pk:"kids",h:"交通事故死ゼロを\n目指す日",s:"今日は4月10日",t:["#交通事故死ゼロを目指す日","#交通安全"],b:`今日は「交通事故死ゼロを目指す日」です🚦
+
+一人ひとりが、今日一日、事故を起こさない。
+それが、事故ゼロへの一歩です。
+
+👀 確認は2回
+🚗 ゆとりのある運転
+
+会社のみなさんで、声をかけ合いましょう😊`},
+{d:[9,30],pk:"kids",h:"交通事故死ゼロを\n目指す日",s:"今日は9月30日",t:["#交通事故死ゼロを目指す日","#交通安全"],b:`今日は「交通事故死ゼロを目指す日」です🚦
+
+秋は夕暮れが早くなり、歩行者の事故がふえやすい季節。
+🌇 早めのライト
+🚶 横断歩道の手前では、止まれるスピードで
+
+今日も一日、安全運転で😊`},
+];
+
+const SCHOOL_EVER={center:[]};
+
+/* 講習紹介（「プラン紹介」のかわり） */
+function planList(S){const L=[];
+  const P=(g,k2,hd,pk,tones,lead,tags)=>L.push({g,k:k2,hd,pk,tones,lead,tail:"くわしい内容・日にち・料金は、ホームページかお電話でご確認ください😊",tags});
+  P("🚚 運送の会社向け","運行管理者 基礎講習","運行管理者 基礎講習🚚",["class","truck"],["これから\n運行管理者に","基礎講習\n3日間"],"運行管理者・補助者になる方などのための講習です（16時間・3日間）。\n2017年4月から、国土交通大臣の認定を受けて実施しています。\nWEB予約は24時間OKです。",["#運行管理者","#基礎講習"]);
+  P("🚚 運送の会社向け","運行管理者 一般講習","運行管理者 一般講習🚚",["class","bus"],["2年に1回の\n一般講習","選任中の\n運行管理者の方へ"],"選任されている運行管理者の方のための講習です（5時間・1日）。2年に1回の受講が必要です。\nトラック協会・バス協会の会員の方は、助成がある場合があります（各協会にご確認ください）。",["#運行管理者","#一般講習"]);
+  P("🚚 運送の会社向け","適性診断","適性診断🧠",["diag","class"],["運転のくせを\n知る","国土交通省\n認定"],"一般・初任・適齢（65歳以上）・特定の診断があります。\n📍 豊前：水・金・土／門司：月・木・土\n🕙 10時・12時・15時・17時から（予約制・先着順）\nNASVAパートナーとして、国土交通大臣の認定を受けています。",["#適性診断","#運送業"]);
+  P("🚗 安全運転研修","普通車の安全運転研修","安全運転研修🚗",["objet","car"],["社員の\n安全運転に","運転のくせを\n数字で"],"Objet（オブジェ）で運転のくせを数字にして、講師がアドバイスします。\n⏱ 2時間・3時間・6時間のコース\n研修のあとは、報告書をお渡しします。会社の車の持ちこみもご相談ください。",["#安全運転研修","#企業研修"]);
+  P("🚗 安全運転研修","貸切バス運転者研修","貸切バス運転者研修🚌",["bus","class"],["バスの\n運転者さんへ","国土交通省認定\n7時間"],"日常点検・バスの特ちょう・緊急のときのよけ方・下り坂の走り方・Objetでの解析など。\n国土交通省認定の7時間のコースです。",["#バス運転士","#運転者研修"]);
+  P("🚗 安全運転研修","新入社員研修","新入社員研修🔰",["class","car"],["新入社員の\nみなさんに","社用車の\n運転の前に"],"社用車を運転する前に、会社の車のルールや、自分の運転のくせを知る研修です。\n会社に合わせて内容をつくります。",["#新入社員研修","#企業研修"]);
+  P("🚗 安全運転研修","事故を起こした方の再教育","再教育の研修🚗",["objet","class"],["同じ事故を\nくり返さない","もう一度\n基本から"],"事故を起こしてしまった社員さんの再教育です。\nどうして事故が起きたのかを一緒に考え、運転のくせを数字で確かめ、これからの目標を決めます。",["#事故防止","#企業研修"]);
+  P("🚗 安全運転研修","交通安全教室・講演","交通安全教室・講演🚸",["kids","staff"],["交通安全の\nお話をします","出張も\nOK"],"会社の安全大会・学校・地域の集まりなどで、交通安全のお話をします。\n交通心理士などの講師がうかがいます。",["#交通安全教室","#交通安全講話"]);
+  P("🏗 作業の資格","フォークリフト運転技能講習","フォークリフト運転技能講習🏗",["fork","truck"],["フォークリフトの\n資格","1トン以上の\n運転に"],"お持ちの免許・経験に合わせて、11時間〜35時間のクラスがあります（31時間は平日・土日のクラス）。\n📍 豊前会場（門司会場は出張講習）\n福岡労働局長登録 第22号の教習機関です。",["#フォークリフト","#技能講習"]);
+  P("🏗 作業の資格","テールゲートリフター特別教育","テールゲートリフター特別教育🚚",["truck","class"],["2024年2月から\n義務に","荷台の\nリフター"],"学科4時間・実技2時間の特別教育です（2024年2月1日から義務になりました）。\n📍 豊前会場。15名くらいからは出張講習もご相談ください。",["#テールゲートリフター","#特別教育"]);
+  P("🚐 地域の運転者さん","交通空白地有償運送の講習","交通空白地有償運送等運転者講習🚐",["car","class"],["コミュニティバスの\n運転者さんへ","国土交通大臣\n認定"],"市町村やNPOのコミュニティバスなどを、第一種免許で運転する方のための講習です。\n座学140分＋実技。1回6人まで。出張講習もご相談ください。",["#有償運送","#コミュニティバス"]);
+  return L}
+
+/* ================= 自動で入ったお知らせ =================
+   毎週の自動の作業（ホームページの4校のお知らせ・警察庁の道路交通法の改正を確認）で、Claude が書き足します。
+   kind: "hp"＝ホームページのお知らせ ／ "law"＝道路交通法などの改正
+   schools: どの学校に出すか（"all" で4校すべて）。until: この日をすぎたら出さない（なければずっと出す）
+   金額は書かない。日にち・時間・内容は、もとのページに書いてあるとおりに。 */
+const AUTO_NEWS=[
+{id:"hp:https://www.ill-ms.com/2832/",kind:"hp",schools:["moji"],cat:"教習",date:"2026-10-30",
+ name:"二輪の受講は事前審査があります",pk:"bike",h:"二輪の受講は\n事前審査があります",s:"足つき・引き起こしなど",
+ b:`二輪（バイク）の教習に受講を考えている方へ🏍
+
+${"アイル門司"}では、二輪教習に受講する前に「事前審査」をしています。
+安全に教習を受けていただくために、バイクのあつかいに必要な体の力などを、前もって確かめるものです。
+
+✅ 内容：足つき・引き起こし・取り回し など
+✅ 予約制です（前もってご予約ください）
+
+お申し込み・お問い合わせは、フロントかお電話で📞 093-481-1111
+みなさんが安全に、安心して教習を受けられるように、ご理解とご協力をお願いします😊`,
+ src:"https://www.ill-ms.com/2832/"},
+{id:"hp:https://www.ill-ms.com/2842/",kind:"hp",schools:["hakatanomori"],cat:"お休み日",date:"2026-11-15",until:"2027-01-04",
+ name:"12月・1月のお休み日",pk:"newyear",h:"12月・1月の\nお休み日のお知らせ",s:"年末年始の営業時間も",
+ b:`12月・1月のお休み日のお知らせです🗓
+
+●12月　1日・8日・15日・22日・29日・30日・31日
+●1月　1日・2日・3日
+
+【年末年始の営業】
+●12月28日は 9:30〜15:20
+　スクールバスは土・日ダイヤ（最終 15:30発の送りまで）
+●1月4日は 10:30〜18:30
+　スクールバスは平日ダイヤ（最終 18:40発の送りまで）
+
+ご予約の前に、カレンダーをご確認ください😊`,
+ src:"https://www.ill-ms.com/2842/"},
+];
+
+/* ================= いまの学校 ================= */
+/* 前回「交通教育センター」をえらんだスマホは、センターのページへ */
+try{localStorage.setItem("ail:school","center")}catch(e){}
+function _getSch(){let k=null;const m=(location.hash||"").match(/s=(\w+)/);if(m&&SCHOOLS[m[1]])k=m[1];
+  if(!k){try{const v=localStorage.getItem("ail:school");if(v&&SCHOOLS[v])k=v}catch(e){}}return k}
+const SCH_CHOSEN="center";
+const SHOP=SCHOOLS[SCH_CHOSEN||"buzen"];
+const PIMG=PHOTO_SETS[SHOP.key].files.slice();
+const PHOTOS=Object.assign({},PHOTO_SETS[SHOP.key].groups);PHOTOS.real=PIMG.map((_,i)=>i);
+const ALL_EVER=EVER.concat(SCHOOL_EVER[SHOP.key]||[]);
+const FOOT_DEF=footDef(SHOP),TAGS_DEF=tagsDef(SHOP);
+/* 講習紹介を「今日の投稿」用にしたもの */
+const PLAN_POSTS=planList(SHOP).map(K=>({c:"BANQUET",pk:K.pk[0],h:K.tones[0],s:K.k,t:K.tags,b:`【{S}の${K.hd}】\n\n${K.lead}\n\n${K.tail}`}));
+let FOOT=store("myFoot")??FOOT_DEF;
+let BASE_TAGS=(store("myTags")??TAGS_DEF).split(/[\s　]+/).filter(Boolean).map(t=>t.startsWith("#")?t:"#"+t);
+/* ================= 共通の道具 ================= */
+const $=id=>document.getElementById(id);
+const WD="日月火水木金土";
+function store(k,v){k="ail:"+((typeof SHOP!=="undefined"&&SHOP)?SHOP.key:(_getSch()||"buzen"))+":"+k;try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){return null}}
+function ymd(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function md(d){return (d.getMonth()+1)+"/"+d.getDate()+"（"+WD[d.getDay()]+"）"}
+function dayNo(d){return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2000)}
+function chips(el,items,isOn,onTap){el.innerHTML="";items.forEach((label,i)=>{const b=document.createElement("button");b.type="button";b.className="chip"+(isOn(i)?" on":"");b.textContent=label;b.onclick=()=>onTap(i);el.appendChild(b)})}
+function mark(b){b.classList.add("done")}
+function ent(){return SHOP.entryText}
+/* 🔁 言葉をまとめて書きかえる（このスマホに保存） */
+let WFIX=[];try{WFIX=JSON.parse(store("wfix")||"[]")||[]}catch(e){WFIX=[]}
+function wfix(s){if(typeof s!=="string")return s;for(const [a,b] of WFIX){if(a)s=s.split(a).join(b||"")}return s}
+function renderWfix(){const L=$("wfixList");L.innerHTML="";if(!WFIX.length)WFIX.push(["",""]);
+  WFIX.forEach((w,i)=>{const d=document.createElement("div");d.className="wrow";
+    const a=document.createElement("input");a.type="text";a.placeholder="今の言葉";a.value=w[0];
+    const b=document.createElement("input");b.type="text";b.placeholder="新しい言葉";b.value=w[1];
+    const ar=document.createElement("span");ar.textContent="→";
+    const x=document.createElement("button");x.type="button";x.className="x";x.textContent="✕";x.title="消す";
+    a.oninput=()=>{WFIX[i][0]=a.value;saveWfix()};b.oninput=()=>{WFIX[i][1]=b.value;saveWfix()};
+    x.onclick=()=>{WFIX.splice(i,1);saveWfix(true);renderWfix()};
+    d.append(a,ar,b,x);L.append(d)})}
+function addWfix(){WFIX.push(["",""]);renderWfix();const I=$("wfixList").querySelectorAll("input");I[I.length-2].focus()}
+let wfT=null;function saveWfix(now){clearTimeout(wfT);wfT=setTimeout(()=>{const k=WFIX.filter(w=>w[0]);store("wfix",k.length?JSON.stringify(k):null);
+  if(READY){cur=postFor(curDate,shuffle);showPost();refreshTexts();refreshAll()}},now?0:600)}
+function fillT(s){return String(s).replaceAll("{S}",SHOP.short).replaceAll("{N}",SHOP.name).replaceAll("{BUS}",SHOP.bus).replaceAll("{ENTRY}",SHOP.entryText).replaceAll("{AREA}",SHOP.area).replaceAll("{TEL}",SHOP.tel).replaceAll("{SENIOR}",seniorTxt())}
+function seniorTxt(){const o=SHOP.senior||{tel:SHOP.tel,hours:"",note:""};return "📞 高齢者講習のご予約："+o.tel+(o.hours?"\n（受付 "+o.hours+"）":"")+(o.note?"\n"+o.note:"")+"\n📄 くわしくは："+SHOP.url+"senior/"}
+function fillP(p,d){const f=s=>wfix(fillT(s||""));return {...p,h0:p.h,h:f(p.h),s:f(p.s),b:f(p.b)}}
+function tagsOf(t){return [...new Set([...BASE_TAGS,...(t||[])])].slice(0,5).join(" ")}
+
+/* ---- 祝日（2026〜2028） ---- */
+const HOL=new Set(["2026-01-01","2026-01-12","2026-02-11","2026-02-23","2026-03-20","2026-04-29","2026-05-03","2026-05-04","2026-05-05","2026-05-06","2026-07-20","2026-08-11","2026-09-21","2026-09-22","2026-09-23","2026-10-12","2026-11-03","2026-11-23",
+"2027-01-01","2027-01-11","2027-02-11","2027-02-23","2027-03-21","2027-03-22","2027-04-29","2027-05-03","2027-05-04","2027-05-05","2027-07-19","2027-08-11","2027-09-20","2027-09-23","2027-10-11","2027-11-03","2027-11-23",
+"2028-01-01","2028-01-10","2028-02-11","2028-02-23","2028-03-20","2028-04-29","2028-05-03","2028-05-04","2028-05-05","2028-07-17","2028-08-11","2028-09-18","2028-09-22","2028-10-09","2028-11-03","2028-11-23"]);
+function isHol(d){return HOL.has(ymd(d))}
+
+/* ---- 文字（キャンバス）---- */
+const FONT='"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif';
+const SCRIPT='"Josefin Sans","Noto Sans JP",Arial,sans-serif';
+let READY=false;
+const _fs=new Set();let _fq="",_ft=null;
+function fontNeed(s){for(const c of s){if(c.charCodeAt(0)>127&&!_fs.has(c)){_fs.add(c);_fq+=c}}
+  if(_fq&&!_ft&&document.fonts)_ft=setTimeout(async()=>{const t=_fq;_fq="";_ft=null;
+    try{await Promise.all(["500","700","900"].map(w=>document.fonts.load(`${w} 40px "Noto Sans JP"`,t)));refreshAll()}catch(e){}},30)}
+(()=>{const P=CanvasRenderingContext2D.prototype,f=P.fillText,m=P.measureText;
+  P.fillText=function(t,...a){fontNeed(String(t));return f.call(this,t,...a)};
+  P.measureText=function(t){fontNeed(String(t));return m.call(this,t)}})();
+try{Promise.all([document.fonts.load('700 40px "Josefin Sans"',"I'LL MOTOR SCHOOL January"),document.fonts.load('400 40px "Josefin Sans"',"INSTAGRAM BUZEN MOJI HAKATANOMORI SHIMONOSEKI")]).then(()=>refreshAll())}catch(e){}
+function newCanvas(W,H){const c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");x.textAlign="center";x.textBaseline="alphabetic";return [c,x]}
+function cover(ctx,img,x,y,w,h){const r=Math.max(w/img.width,h/img.height),iw=img.width*r,ih=img.height*r;ctx.drawImage(img,x+(w-iw)/2,y+(h-ih)/2,iw,ih)}
+function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+function fitSize(ctx,lines,max,size,weight,fam){let s=size;for(;s>24;s-=2){ctx.font=`${weight} ${s}px ${fam||FONT}`;if(lines.every(l=>ctx.measureText(l).width<=max))break}return s}
+function wrap(ctx,text,max){const out=[];let line="";for(const ch of text){if(ctx.measureText(line+ch).width>max&&line){out.push(line);line=ch}else line+=ch}if(line)out.push(line);return out}
+/* アイルの色：モノトーン＋アール・デコの金 */
+const GOLD="#B89B5E",GOLD_L="#E9D9AF",BLK="#151515";
+const C={cream:"#F6F3EC",ink:"#1A1A1A",tomato:"#A8322D",mustard:"#E9D9AF",olive:"#5E7A57",navy:"#3A4250",green:"#5E7A57",deep:"#1A1A1A",paper:"#FFFFFF",rose:BLK,blush:"#EFE6D6",wine:"#151515",leaf:"#7E9A72",brass:GOLD,char:BLK};
+/* 小さな花（今は使っていない飾り） */
+function blossom(ctx,x,y,r,col,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot||0);ctx.fillStyle=col;
+  for(let i=0;i<5;i++){ctx.rotate(Math.PI*2/5);ctx.beginPath();ctx.ellipse(0,-r*.62,r*.42,r*.6,0,0,7);ctx.fill()}
+  ctx.fillStyle="#F6C21C";ctx.beginPath();ctx.arc(0,0,r*.24,0,7);ctx.fill();ctx.restore()}
+function leaf(ctx,x,y,l,rot,col){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.fillStyle=col||C.leaf;ctx.beginPath();ctx.moveTo(0,0);ctx.quadraticCurveTo(l*.5,-l*.32,l,0);ctx.quadraticCurveTo(l*.5,l*.32,0,0);ctx.fill();ctx.restore()}
+/* 花の小さな飾り（3輪＋葉） */
+function posy(ctx,x,y,s,flip){const f=flip?-1:1;ctx.save();ctx.globalAlpha=.92;
+  leaf(ctx,x,y,46*s,f>0?-.5:Math.PI+.5);leaf(ctx,x,y,40*s,f>0?.6:Math.PI-.6);
+  blossom(ctx,x+f*6*s,y-8*s,26*s,C.rose,.2);blossom(ctx,x+f*42*s,y+12*s,19*s,"#F4A9C0",.9);blossom(ctx,x-f*26*s,y+20*s,15*s,"#F9D3DF",.5);ctx.restore()}
+/* テント（今は使っていない飾り） */
+function awning(ctx,W,h){const r=24;ctx.save();const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,"#3A7E59");g.addColorStop(1,C.olive);ctx.fillStyle=g;ctx.fillRect(0,0,W,h);
+  ctx.beginPath();for(let x=0;x<W+r*2;x+=r*2){ctx.moveTo(x,h);ctx.arc(x+r,h,r,0,Math.PI)}ctx.fillStyle=C.olive;ctx.fill();
+  ctx.globalAlpha=.10;ctx.fillStyle="#fff";for(let x=0;x<W;x+=r*2)ctx.fillRect(x+r-3,0,6,h);ctx.restore()}
+/* 看板：黒い板に金の二重線、「I'LL MOTOR SCHOOL」と学校名（アール・デコ） */
+const SIGNF='"Josefin Sans","Noto Sans JP",Arial,sans-serif';
+/* アイルの公式ロゴ（金色にしたもの） */
+const LOGO=new Image();LOGO.onload=()=>{try{refreshAll()}catch(e){}};LOGO.src="logo_cr.png";
+/* 社名の字体（ホームページのロゴの「アイル モータースクール」） */
+const KANA=new Image();KANA.onload=()=>{try{refreshAll()}catch(e){}};KANA.src="logo_kana.svg";
+/* 背景（写真なし）：黒に金の放射線（アール・デコの扇）。関数名は前のまま wood */
+function wood(ctx,x,y,w,h,r,s){ctx.save();rr(ctx,x,y,w,h,r);ctx.clip();ctx.fillStyle=BLK;ctx.fillRect(x,y,w,h);
+  const cx=x+w/2,cy=y+h*1.02,R=Math.hypot(w,h);ctx.strokeStyle="rgba(184,155,94,.22)";ctx.lineWidth=Math.max(1.5,s*.9);
+  for(let a=-180;a<=0;a+=6){const t=a*Math.PI/180;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(t)*R,cy+Math.sin(t)*R);ctx.stroke()}
+  ctx.strokeStyle="rgba(184,155,94,.35)";[.22,.3,.38].forEach(k=>{ctx.beginPath();ctx.arc(cx,cy,h*k,Math.PI,0);ctx.stroke()});
+  ctx.restore()}
+/* 看板 */
+function signBoard(ctx,cx,top,s){const w=470*s,h=96*s,x=cx-w/2;ctx.save();
+  ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=18*s;ctx.shadowOffsetY=5*s;ctx.fillStyle=BLK;ctx.fillRect(x,top,w,h);ctx.shadowColor="transparent";
+  ctx.strokeStyle=GOLD;ctx.lineWidth=2.2*s;ctx.strokeRect(x+7*s,top+7*s,w-14*s,h-14*s);ctx.lineWidth=1*s;ctx.strokeRect(x+12*s,top+12*s,w-24*s,h-24*s);
+  // 角の段々（アール・デコ）
+  [[x+12*s,top+12*s,1,1],[x+w-12*s,top+12*s,-1,1],[x+12*s,top+h-12*s,1,-1],[x+w-12*s,top+h-12*s,-1,-1]].forEach(([px,py,dx,dy])=>{ctx.fillStyle=GOLD;ctx.fillRect(px,py,dx*14*s,dy*3*s);ctx.fillRect(px,py,dx*3*s,dy*14*s)});
+  ctx.textAlign="center";ctx.fillStyle=GOLD_L;
+  // 社名の文字だけ。ホームページのロゴと同じ字体（logo_kana.svg）。読めないときだけふつうの文字
+  if(KANA.complete&&KANA.naturalWidth){const lw=w-90*s,lh=lw*64/534;ctx.drawImage(KANA,cx-lw/2,top+(h-lh)/2,lw,lh)}
+  else{const T="アイルモータースクール";let fz=40*s;ctx.letterSpacing=Math.round(4*s)+"px";ctx.textBaseline="middle";
+  do{ctx.font=`900 ${Math.round(fz)}px ${FONT}`;fz-=1}while(ctx.measureText(T).width>w-80*s&&fz>8);ctx.fillText(T,cx+2*s,top+h/2+2*s)}
+  ctx.restore();return top+h}
+/* ハンドルの絵（写真なしの投稿のまん中） */
+function droneIcon(ctx,cx,cy,w,mono){const col=mono?"#fff":BLK,r=w*.42;ctx.save();ctx.strokeStyle=col;ctx.lineCap="round";
+  ctx.lineWidth=w*.085;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.stroke();
+  ctx.lineWidth=w*.07;ctx.beginPath();ctx.moveTo(cx-r*.95,cy+r*.05);ctx.lineTo(cx-r*.3,cy+r*.12);ctx.moveTo(cx+r*.95,cy+r*.05);ctx.lineTo(cx+r*.3,cy+r*.12);ctx.moveTo(cx,cy+r*.36);ctx.lineTo(cx,cy+r*.95);ctx.stroke();
+  ctx.fillStyle=col;ctx.beginPath();ctx.arc(cx,cy+r*.14,r*.3,0,7);ctx.fill();ctx.fillStyle=GOLD;ctx.beginPath();ctx.arc(cx,cy+r*.14,r*.12,0,7);ctx.fill();
+  ctx.restore()}
+/* 上と下の帯：黒に金の線（関数名は前のまま） */
+function gingham(ctx,x,y,w,h,s,col){ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.fillStyle=BLK;ctx.fillRect(x,y,w,h);
+  ctx.strokeStyle="rgba(184,155,94,.25)";ctx.lineWidth=2;for(let i=-h;i<w+h;i+=26){ctx.beginPath();ctx.moveTo(x+i,y+h);ctx.lineTo(x+i+h*.6,y);ctx.stroke()}
+  const top=y<=0;ctx.fillStyle=GOLD;if(top){ctx.fillRect(x,y+h-7,w,3);ctx.fillRect(x,y+h-2,w,2)}else{ctx.fillRect(x,y,w,2);ctx.fillRect(x,y+5,w,3)}
+  ctx.restore()}
+function imgNote(ctx,W,y){ctx.save();ctx.textAlign="right";ctx.font=`500 22px ${FONT}`;ctx.fillStyle="rgba(255,255,255,.95)";ctx.shadowColor="rgba(0,0,0,.6)";ctx.shadowBlur=6;ctx.fillText("※写真はイメージです",W-40,y);ctx.restore()}
+function shadowText(ctx,on){if(on){ctx.shadowColor="rgba(0,0,0,.45)";ctx.shadowBlur=16}else{ctx.shadowColor="transparent";ctx.shadowBlur=0}}
+function pill(ctx,text,cx,y,font,bg,fg,padX,h){ctx.font=font;const w=ctx.measureText(text).width+padX*2;ctx.fillStyle=bg;rr(ctx,cx-w/2,y,w,h,h/2);ctx.fill();ctx.fillStyle=fg;ctx.fillText(text,cx,y+h*.7);return w}
+function brand(ctx,cx,y,col,size,sub){ctx.save();ctx.textAlign="center";ctx.fillStyle=col;ctx.font=`700 ${size}px ${SCRIPT}`;ctx.letterSpacing="4px";ctx.fillText("I'LL MOTOR SCHOOL",cx,y);ctx.letterSpacing="0px";ctx.restore()}
+
+/* ---- 写真 ---- */
+const imgCache={};
+/* i が数字＝イメージ写真、"u:…"＝学校の写真 */
+let _real=null;function isStock(i){if(!_real)_real=new Set(PHOTOS.real||[]);return typeof i==="number"&&!_real.has(i)}
+function srcOf(i){if(typeof i==="number")return PIMG[i];const o=SHOPPH.find(x=>"u:"+x.id===i);return o?o.src:PIMG[0]}
+function loadImg(i){if(i==null)return Promise.resolve(null);if(!imgCache[i])imgCache[i]=new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=srcOf(i)});return imgCache[i]}
+/* ---- 学校の写真（このスマホの中に保存） ---- */
+let SHOPPH=[];
+function idb(){return new Promise((res,rej)=>{try{const r=indexedDB.open("ail-shop-"+SHOP.key,1);r.onupgradeneeded=()=>r.result.createObjectStore("p",{keyPath:"id"});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}})}
+async function shopLoad(){try{const db=await idb();SHOPPH=await new Promise(r=>{const q=db.transaction("p").objectStore("p").getAll();q.onsuccess=()=>r(q.result||[]);q.onerror=()=>r([])})}catch(e){SHOPPH=[]}
+  SHOPPH.sort((a,b)=>a.id<b.id?-1:1);renderShop();buildPMode();if(SHOPPH.length)drawPost()}
+async function shopTx(fn){try{const db=await idb();await new Promise(r=>{const t=db.transaction("p","readwrite");fn(t.objectStore("p"));t.oncomplete=r;t.onerror=r})}catch(e){}}
+function shrink(im){const r=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);c.getContext("2d").drawImage(im,0,0,c.width,c.height);return c.toDataURL("image/jpeg",.85)}
+$("shopFile").addEventListener("change",async e=>{let n=0;for(const f of [...e.target.files]){const im=await fileToImg(f);if(!im)continue;const o={id:Date.now()+"_"+String(n).padStart(3,"0"),src:shrink(im)};n++;SHOPPH.push(o);await shopTx(s=>s.put(o))}
+  renderShop();if(n){toast(n+"枚 入れました");setPMode("shop")}});
+function renderShop(){const g=$("shopGrid");g.innerHTML="";if(!SHOPPH.length){g.innerHTML='<p class="hint" style="grid-column:1/-1;margin:0">まだ写真はありません。</p>';return}
+  SHOPPH.forEach(o=>{const d=document.createElement("div"),im=document.createElement("img"),b=document.createElement("button");im.src=o.src;im.alt="";b.type="button";b.textContent="✕";b.setAttribute("aria-label","この写真を消す");
+    b.onclick=async()=>{if(!b.dataset.c){b.dataset.c=1;b.textContent="消す";b.style.width="auto";b.style.borderRadius="8px";b.style.padding="0 8px";b.style.background="#C8332B";toast("もう一度押すと消えます");return}
+      await shopTx(s=>s.delete(o.id));SHOPPH=SHOPPH.filter(x=>x!==o);delete imgCache["u:"+o.id];renderShop();buildPMode();refreshAll()};d.append(im,b);g.appendChild(d)})}
+/* ---- いつも本文の最後に入る文 ---- */
+function parseTags(s){return s.split(/[\s　]+/).filter(Boolean).map(t=>t.startsWith("#")?t:"#"+t)}
+let footT=null;function saveFoot(){clearTimeout(footT);footT=setTimeout(()=>{FOOT=$("footEdit").value;store("myFoot",FOOT===FOOT_DEF?null:FOOT);const tg=$("tagsEdit").value;store("myTags",tg===TAGS_DEF?null:tg);BASE_TAGS=parseTags(tg);refreshTexts()},400)}
+function resetFoot(){store("myFoot",null);store("myTags",null);FOOT=FOOT_DEF;BASE_TAGS=parseTags(TAGS_DEF);$("footEdit").value=FOOT;$("tagsEdit").value=TAGS_DEF;refreshTexts();toast("最初の文にもどしました")}
+function refreshTexts(){if(cur&&store("etxt-"+key())==null){const pv=store("ptxt-"+pid());$("postText").value=pv!=null?wfix(unpackTxt(pv)):captionOf(cur)}if(!seatEdited)$("seatText").value=wfix(seatCaption(seatInfo()));$("calText").value=wfix(calCaption());if(!bEdited)$("partyText").value=wfix(partyCaption(partyInfo()));newsFill()}
+function fileToImg(f){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=fr.result};fr.readAsDataURL(f)})}
+const own={post:null,seat:null,cal:null,news:null,party:null};
+let pickFor=null;
+function pickOwn(k){pickFor=k;$("file").value="";$("file").click()}
+$("file").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;const im=await fileToImg(f);if(!im){toast("写真を読みこめませんでした");return}
+  own[pickFor]=im;if(pickFor==="post"){setPMode("own",true)}else if(pickFor==="seat"){S.photo="own";buildSeat()}else if(pickFor==="cal"){CAL.photo={own:true};calStyleSet("photo")}else if(pickFor==="party"){B.photo="own";buildParty()}else{N.photo="own";buildNewsPhoto();drawNews()}});
+/* 一覧 */
+let galFor="post",galGrp="all";
+function galKeys(){return (SHOPPH.length?["shop"]:[]).concat(Object.keys(PHOTOS))}
+function openGallery(f){galFor=f;galGrp=SHOPPH.length?"shop":(PHOTOS.real?"real":"all");renderGal();$("gal").hidden=false;document.body.style.overflow="hidden"}
+function closeGallery(){$("gal").hidden=true;document.body.style.overflow=""}
+function renderGal(){const ks=["all",...galKeys()];chips($("galGrp"),ks.map(k=>k==="all"?"すべて":k==="shop"?"📁 センターの写真":PJA[k]||k),i=>ks[i]===galGrp,i=>{galGrp=ks[i];renderGal()});
+  const g=$("galGrid");g.innerHTML="";const SH=SHOPPH.map(o=>"u:"+o.id),L=galGrp==="all"?[...SH,...new Set(Object.values(PHOTOS).flat())]:galGrp==="shop"?SH:PHOTOS[galGrp];
+  L.forEach(i=>{const im=document.createElement("img");im.loading="lazy";im.src=srcOf(i);im.alt="";im.onclick=()=>{choose(i)};g.appendChild(im)})}
+function choose(i){closeGallery();if(galFor==="post"){pick.post=i;setPMode("rec",true)}else if(galFor==="seat"){S.photo="rec";S.pi=i;buildSeat()}else if(galFor==="cal"){CAL.photo={i};calStyleSet("photo")}else if(galFor==="party"){B.photo="rec";B.pi=i;buildParty()}else{N.photo="rec";N.pi=i;buildNewsPhoto();drawNews()}}
+
+/* ---- 保存・コピー ---- */
+function dataFile(src,name){const b=src.split(",")[1],bin=atob(b),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new File([u],`ail_${SHOP.key}_${name}_${ymd(new Date())}.jpg`,{type:"image/jpeg"})}
+async function saveImg(id,name){const file=dataFile($(id).src,name);
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file]});return}}catch(e){if(e.name==="AbortError")return}
+  $("saveOvImg").src=$(id).src;$("saveOv").hidden=false;$("saveOv").scrollTop=0}
+function closeSaveOv(){$("saveOv").hidden=true}
+function copyFrom(id,btn){const s=$(id).value;const ok=()=>{if(btn)mark(btn);toast("コピーしました。インスタで「ペースト」してください")};
+  const sel=()=>{const t=$(id);t.focus();t.setSelectionRange(0,s.length);let r=false;try{r=document.execCommand("copy")}catch(e){}if(r)ok();else toast("文章を長押し →「コピー」を選んでください")};
+  try{navigator.clipboard.writeText(s).then(ok,sel)}catch(e){sel()}}
+function tab(b){document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p));
+  document.querySelectorAll(".btn.done").forEach(x=>x.classList.remove("done"));window.scrollTo(0,0)}
+
+/* ================= 今日の投稿 ================= */
+const EVER_MIX=(()=>{const g={};ALL_EVER.forEach(p=>(g[p.c]=g[p.c]||[]).push(p));const ks=Object.keys(g),out=[];let i=0;
+  while(out.length<ALL_EVER.length){ks.forEach(k=>{if(g[k][i])out.push(g[k][i])});i++}return out})();
+function eventDate(e,y){const d=e.d;if(d.length===2)return new Date(y,d[0]-1,d[1]);
+  const first=new Date(y,d[0]-1,1),off=(d[2]-first.getDay()+7)%7;return new Date(y,d[0]-1,1+off+(d[1]-1)*7)}
+function eventFor(day){for(const e of EVENTS){if(dayNo(eventDate(e,day.getFullYear()))===dayNo(day))return e}return null}
+function postFor(d,extra){extra=extra||0;
+  if(!extra){const e=eventFor(d);if(e)return fillP({...e,c:"EVENT"},d);
+    const dd=d.getDate(),S=SEASON[d.getMonth()+1];if(S){const si={1:0,15:1,8:2,22:3}[dd];if(si!=null&&S[si])return fillP({...S[si],c:"SEASON"},d)}}
+  const half=dayNo(d)+extra,bw=banqFor(d);
+  if(PLAN_POSTS.length&&((half%7)+7)%7===3)return fillP(PLAN_POSTS[Math.floor(half/7)%PLAN_POSTS.length],d);
+  const L=EVER_MIX.length,n=(half%L+L)%L;return fillP(EVER_MIX[n],d)}
+let curDate=new Date(),shuffle=0,cur=null,pmode=store("pmode")||"rec",shift=0;const pick={post:null};
+function key(){return ymd(curDate)+"-"+shuffle}
+function moveDay(n){curDate=new Date(curDate);curDate.setDate(curDate.getDate()+n);shuffle=0;shift=0;pick.post=null;showPost()}
+function nextIdea(){shuffle++;shift=0;pick.post=null;showPost();toast("別のネタにしました")}
+function prevPhoto(){if(pmode==="own"){pickOwn("post");return}if(pmode==="none"){pmode="rec";store("pmode",pmode);buildPMode();drawPost();return}
+  if(pick.post!=null){pick.post=null;drawPost();return}if(shift<=0){toast("いちばん最初の写真です");return}shift--;drawPost();
+  toast(pmode==="shop"?"学校の写真をもどしました":`前の写真にもどしました（${(shift%allPhotos().length)+1}枚目／全${allPhotos().length}枚）`)}
+function otherPhoto(){if(pmode==="own"){pickOwn("post");return}pick.post=null;if(pmode==="none")pmode="rec";else shift++;store("pmode",pmode);buildPMode();drawPost();
+  toast(pmode==="shop"?"学校の写真をかえました":`写真をかえました（${(shift%allPhotos().length)+1}枚目／全${allPhotos().length}枚）`)}
+function setPMode(m,keep){pmode=m;store("pmode",m);if(m==="own"&&!own.post&&!keep){pickOwn("post")}buildPMode();drawPost()}
+function buildPMode(){const M=[...(SHOPPH.length?[["shop","📁 センターの写真"]]:[]),["rec","🖼 おすすめ写真"],["own","📱 自分の写真"],["none","🎨 写真なし"]];chips($("pmode"),M.map(x=>x[1]),i=>M[i][0]===pmode,i=>setPMode(M[i][0]))}
+function photoList(pk,d,c){let ks=PK_ALIAS[pk]||[pk];if(c==="SEASON"&&["spring","rainy","summer","winter","autumn","night"].includes(pk))ks=["m"+(d.getMonth()+1),...ks];
+  if(c==="SEASON"||c==="EVENT")ks=[...ks,"m"+(d.getMonth()+1)];const L=[];ks.forEach(k=>(PHOTOS[k]||[]).forEach(i=>{if(!L.includes(i))L.push(i)}));return L.length?L:(PHOTOS.build||allPhotos())}
+/* 「写真をかえる」：まず内容に合う写真 → そのあと全部の写真へ順番に進む */
+let _allP=null;function allPhotos(){return _allP||(_allP=[...new Set(Object.values(PHOTOS).flat())])}
+function fullList(L,start){L=L||[];start=start||0;return [...L.slice(start),...L.slice(0,start),...allPhotos().filter(i=>!L.includes(i))]}
+function cyc(A,s){if(!A||!A.length)return null;return A[((s%A.length)+A.length)%A.length]}
+/* いちばん合う写真のなかまを先に、日ごとに順番で */
+function photoIdx(pk,d,s,c){const L=photoList(pk,d,c),P0=PHOTOS[(PK_ALIAS[pk]||[pk])[0]]||[],P=c==="SEASON"||c==="EVENT"||!P0.length?L:P0,b=((Math.floor(dayNo(d)/2))%P.length+P.length)%P.length;
+  const RL=P.filter(i=>!isStock(i)),Q=RL.length?RL:P,q=((Math.floor(dayNo(d)/2))%Q.length+Q.length)%Q.length;
+  const A=[...Q.slice(q),...Q.slice(0,q),...P.filter(i=>!Q.includes(i)),...L.filter(i=>!P.includes(i))];return cyc(fullList(A),s)}
+function showPost(){cur=postFor(curDate,shuffle);
+  const t=new Date();$("postDate").textContent=(ymd(curDate)===ymd(t)?"今日 ":"")+md(curDate);
+  $("postCat").textContent=CATJ[cur.c]||"";
+  const e=JSON.parse(store("eimg-"+key())||store("pimg-"+pid())||"null")||{};const L=cur.h.split("\n");
+  $("eH1").value=e.h1!=null?e.h1:L[0]||"";$("eH2").value=e.h2!=null?e.h2:L[1]||"";$("eS").value=e.s!=null?e.s:cur.s;
+  const sv=store("etxt-"+key()),pv=store("ptxt-"+pid());$("postText").value=sv!=null?sv:pv!=null?wfix(unpackTxt(pv)):captionOf(cur);$("editState").textContent=sv!=null?"✓ 書きかえた文章です":pv!=null?"📌 前に直した文章を使っています":"";
+  buildPMode();drawPost();renderUpcoming()}
+function captionOf(p){return wfix(p.b+"\n\n"+FOOT+"\n\n"+tagsOf(p.t))}
+/* 📌 同じネタ用の保存：いつもの最後の文・ハッシュタグは印にして、あとで変わっても新しいものが入る */
+function pid(){return "p-"+(cur.c||"")+"-"+(cur.h0||cur.h)}
+function packTxt(s){const T=tagsOf(cur.t);if(FOOT&&s.includes(FOOT))s=s.replace(FOOT,"{いつもの文}");if(T&&s.includes(T))s=s.replace(T,"{タグ}");return s}
+function unpackTxt(s){return s.replace("{いつもの文}",FOOT).replace("{タグ}",tagsOf(cur.t))}
+function keepEdit(){if(!cur)return;store("ptxt-"+pid(),packTxt($("postText").value));store("pimg-"+pid(),JSON.stringify({h1:$("eH1").value,h2:$("eH2").value,s:$("eS").value}));
+  $("editState").textContent="📌 次からも、この文章を使います";toast("次からもこの文章にします")}
+let saveT=null;function saveEdit(){clearTimeout(saveT);saveT=setTimeout(()=>{store("etxt-"+key(),$("postText").value);$("editState").textContent="✓ 書きかえた文章を保存しました"},400)}
+function editPostImg(){store("eimg-"+key(),JSON.stringify({h1:$("eH1").value,h2:$("eH2").value,s:$("eS").value}));drawPost()}
+function resetEdit(){store("etxt-"+key(),null);store("eimg-"+key(),null);store("ptxt-"+pid(),null);store("pimg-"+pid(),null);showPost();toast("元の文章にもどしました")}
+let drawTok=0;
+async function drawPost(){if(!cur)return;const tok=++drawTok;let img=null,stock=false;
+  const n=SHOPPH.length,sp=pmode==="shop"&&n?"u:"+SHOPPH[((Math.floor(dayNo(curDate)/2)+shift+shuffle)%n+n)%n].id:null;
+  if(pmode==="own"&&own.post)img=own.post;else if(pmode!=="none"){const i=pick.post!=null?pick.post:sp||photoIdx(cur.pk,curDate,shift,cur.c);img=await loadImg(i);stock=isStock(i)}
+  if(tok!==drawTok)return;
+  const h=[$("eH1").value,$("eH2").value].filter(x=>x.trim()).join("\n")||" ";
+  $("postImg").src=drawCard({h,s:$("eS").value,cat:CATJ[cur.c]},img,stock)}
+/* 白いカード（黒と金の二重線＋角の段々：アール・デコ） */
+function paper(ctx,x,y,w,h,r){ctx.save();ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=30;ctx.shadowOffsetY=10;ctx.fillStyle="#FBF9F4";ctx.fillRect(x,y,w,h);ctx.restore();
+  ctx.save();ctx.strokeStyle=BLK;ctx.lineWidth=3;ctx.strokeRect(x+20,y+20,w-40,h-40);ctx.strokeStyle=GOLD;ctx.lineWidth=1.5;ctx.strokeRect(x+29,y+29,w-58,h-58);
+  ctx.fillStyle=GOLD;[[x+29,y+29,1,1],[x+w-29,y+29,-1,1],[x+29,y+h-29,1,-1],[x+w-29,y+h-29,-1,-1]].forEach(([px,py,dx,dy])=>{ctx.fillRect(px,py,dx*34,dy*4);ctx.fillRect(px,py,dx*4,dy*34);ctx.fillRect(px+dx*10,py+dy*10,dx*16,dy*3);ctx.fillRect(px+dx*10,py+dy*10,dx*3,dy*16)});ctx.restore()}
+/* 黒いラベル（ホームページと同じ） */
+function badge(ctx,text,cx,y,size){ctx.save();ctx.font=`700 ${size}px ${FONT}`;ctx.letterSpacing=Math.round(size*.1)+"px";const w=ctx.measureText(text).width+size*1.6,h=size*1.8,x=cx-w/2;
+  ctx.fillStyle=BLK;ctx.fillRect(x,y,w,h);ctx.strokeStyle=GOLD;ctx.lineWidth=2;ctx.strokeRect(x+4,y+4,w-8,h-8);ctx.fillStyle=GOLD_L;ctx.textAlign="center";ctx.fillText(text,cx+size*.05,y+h*.67);ctx.letterSpacing="0px";ctx.restore();return h}
+/* 青の飾り線（— ◆ —）。◆は赤 */
+function dots3(ctx,cx,y){ctx.save();ctx.strokeStyle=GOLD;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx-130,y);ctx.lineTo(cx-24,y);ctx.moveTo(cx+24,y);ctx.lineTo(cx+130,y);ctx.stroke();
+  ctx.fillStyle=BLK;ctx.beginPath();ctx.moveTo(cx,y-13);ctx.lineTo(cx+13,y);ctx.lineTo(cx,y+13);ctx.lineTo(cx-13,y);ctx.closePath();ctx.fill();ctx.restore()}
+/* 投稿の画像（1080×1350） */
+function drawCard(p,img,stock){const W=1080,H=1350,[cv,ctx]=newCanvas(W,H);const lines=p.h.split("\n");
+  if(img){cover(ctx,img,0,0,W,H);const g=ctx.createLinearGradient(0,H*.3,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.55,"rgba(25,15,10,.62)");g.addColorStop(1,"rgba(25,15,10,.86)");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    const tg=ctx.createLinearGradient(0,0,0,220);tg.addColorStop(0,"rgba(25,15,10,.45)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,220);
+    signBoard(ctx,W/2,62,.95);
+    let y=H-96;ctx.fillStyle="rgba(255,255,255,.92)";ctx.font=`700 28px ${FONT}`;ctx.fillText(SHOP.name+" ｜ ☎ "+SHOP.tel,W/2,y);
+    if(p.s){y-=78;ctx.font=`700 ${fitSize(ctx,[p.s],W-160,42,700)}px ${FONT}`;ctx.fillStyle=GOLD_L;shadowText(ctx,true);ctx.fillText(p.s,W/2,y);shadowText(ctx,false)}
+    const hs=fitSize(ctx,lines,W-140,108,900);y-=p.s?74:40;ctx.fillStyle="#fff";shadowText(ctx,true);
+    for(let i=lines.length-1;i>=0;i--){ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(lines[i],W/2,y);y-=hs*1.24}shadowText(ctx,false);
+    if(p.cat)badge(ctx,p.cat,W/2,y-hs*.2-6,28);
+    if(stock)imgNote(ctx,W,H-30);
+  }else{wood(ctx,0,0,W,H,0,3.2);
+    paper(ctx,64,56,W-128,H-196,30);
+    signBoard(ctx,W/2,120,.8);
+    if(p.cat)badge(ctx,p.cat,W/2,322,30);droneIcon(ctx,W/2,p.cat?476:440,170,false);
+    const hs=fitSize(ctx,lines,W-220,112,900),blockH=lines.length*hs*1.26;let y=735-blockH/2+hs*.85;ctx.fillStyle=C.ink;
+    lines.forEach(l=>{ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(l,W/2,y);y+=hs*1.26});
+    dots3(ctx,W/2,y-hs*.42);
+    if(p.s){const fs=fitSize(ctx,[p.s],W-260,46,900);ctx.font=`900 ${fs}px ${FONT}`;const sw=ctx.measureText(p.s).width;ctx.fillStyle=BLK;ctx.fillRect(W/2-sw/2-24,y+46-fs*.95,sw+48,fs*1.36);ctx.fillStyle=GOLD_L;ctx.fillText(p.s,W/2,y+46)}
+    ctx.fillStyle=C.ink;ctx.font=`900 32px ${FONT}`;ctx.fillText(SHOP.name+" ｜ ☎ "+SHOP.tel,W/2,H-62)}
+  return cv.toDataURL("image/jpeg",.9)}
+function renderUpcoming(){const el=$("upcoming");el.innerHTML="";const t=new Date();
+  for(let k=0;k<10;k+=1){const d=new Date(t);d.setDate(t.getDate()+k);const p=postFor(d,0);
+    const div=document.createElement("div");div.style.cssText="padding:4px 0;border-bottom:1px dashed var(--line)";div.textContent=`${md(d)}　${p.h.replace("\n"," ")}`+(p.c==="EVENT"?"　🎉":p.c==="SEASON"?"　🍂":"　（"+(CATJ[p.c]||"")+"）");el.appendChild(div)}}
+
+/* ================= 受講生募集のご案内 ================= */
+const SDAYS=["講習日"];
+const TONES=[["講習日の\nご案内","受講者\n募集中","まだ\n空きがあります","ご予約\n受付中","適性診断の\nご案内","研修の\nご相談受付中"]];
+const SEATS=SHOP.cars;
+const PEOPLE=["書かない","WEB予約は24時間OK","出張研修もご相談ください","はじめての方も大歓迎","会社単位のお申し込みもOK","協会の助成の対象になる場合があります"];
+const MENU_DEF=planList(SHOP).map(p=>({n:p.k,p:""}));
+/* 講習名から、合う写真のなかまを探す */
+function menuKey(n){const R=[[/フォーク/,"fork"],[/テール|トラック/,"truck"],[/バス/,"bus"],[/適性/,"diag"],[/空白|有償/,"car"],[/安全運転|再教育|Objet/,"objet"],[/教室|講演/,"kids"]];
+  for(const [re,k] of R)if(re.test(n||""))return k;return "class"}
+let MENUS;try{MENUS=JSON.parse(store("menus")||"null")||MENU_DEF}catch(e){MENUS=MENU_DEF}if(!MENUS.length)MENUS=[{n:"受講のご相談",p:""}];
+const S={day:0,tone:0,times:new Set(),seats:new Set([0]),people:0,menu:0,photo:"menu",pi:null,mShift:0};
+let seatEdited=false;
+function timeSlots(){return SHOP.slots}
+function buildSeat(){
+  const T=TONES[S.day];chips($("sTone"),T.map(x=>x.replace("\n","")),i=>S.tone===i,i=>{S.tone=i;seatEdited=false;buildSeat()});
+  const TS=timeSlots();chips($("sTimes"),TS,i=>S.times.has(TS[i]),i=>{const t=TS[i];S.times.has(t)?S.times.delete(t):S.times.add(t);seatEdited=false;buildSeat()});
+  chips($("sSeats"),SEATS,i=>S.seats.has(i),i=>{S.seats.has(i)?S.seats.delete(i):S.seats.add(i);seatEdited=false;buildSeat()});
+  chips($("sPeople"),PEOPLE,i=>S.people===i,i=>{S.people=i;seatEdited=false;buildSeat()});
+  const ML=["🚫 書かない",...MENUS.map(m=>m.n)];if(S.menu>MENUS.length)S.menu=0;chips($("sMenu"),ML,i=>S.menu===i,i=>{S.menu=i;seatEdited=false;buildSeat()});
+  const PM=[["menu","🖼 おすすめ写真"],["none","🎨 写真なし"],["rec","🔍 一覧から選ぶ"],["own","📱 自分の写真"]];
+  chips($("sPhoto"),PM.map(x=>x[1]),i=>S.photo===PM[i][0],i=>{const m=PM[i][0];if(m==="rec"){openGallery("seat");return}if(m==="own"){pickOwn("seat");return}
+    if(m==="menu"){if(S.photo==="menu"){S.mShift++;toast("写真をかえました（押すたびに次の写真）")}}S.photo=m;buildSeat()});
+  renderMenus();drawSeat()}
+function sortTimes(){const order=timeSlots();return [...S.times].sort((a,b)=>order.indexOf(a)-order.indexOf(b))}
+function seatDate(){const v=x=>{const e=$(x);return e&&e.value?new Date(e.value+"T00:00"):null};const a=v("sD1"),b=v("sD2");if(!a&&!b)return "";if(!a||!b||+a===+b)return md(a||b);return md(a)+"・"+md(b)}
+function seatInfo(){const m=S.menu?MENUS[S.menu-1]:null;return {day:SDAYS[S.day],date:seatDate(),tone:$("sHead").value.trim()?$("sHead").value.trim().replace(/／|\//g,"\n"):TONES[S.day][S.tone],times:sortTimes(),
+  seats:[...S.seats].sort().map(i=>SEATS[i]),people:S.people?PEOPLE[S.people]:"",menu:m,note:$("sNote").value.trim()}}
+let seatTok=0;
+async function drawSeat(){const tok=++seatTok;let img=null,stock=false;
+  if(S.photo==="menu"){const i=cyc(fullList(photoList(S.menu&&MENUS[S.menu-1]?menuKey(MENUS[S.menu-1].n):"car",new Date(),"")),S.mShift);img=await loadImg(i);stock=isStock(i)}
+  else if(S.photo==="own"&&own.seat)img=own.seat;else if(S.photo==="rec"&&S.pi!=null){img=await loadImg(S.pi);stock=isStock(S.pi)}
+  if(tok!==seatTok)return;const o=seatInfo();
+  $("storyImg").src=drawSeatImg(1080,1920,o,img,stock,0);$("seatFeed").src=drawSeatImg(1080,1350,o,img,stock,0);
+  if(!seatEdited)$("seatText").value=wfix(seatCaption(o))}
+function seatCaption(o){const L=[`【${o.tone.replace(/\n/g,"")}📋】`,""];
+  if(o.menu)L.push("📋 "+o.menu.n+(o.menu.p?` ${o.menu.p}`:""));
+  L.push("🗓 "+(o.date?"日にち　"+o.date:"日にちは、お問い合わせください"));
+  if(o.times.length)L.push("🕐 "+o.times.join("／"));
+  if(o.seats.length)L.push("📍 "+o.seats.join("・"));L.push("");
+  if(o.people)L.push("✅ "+o.people,"");
+  if(o.note)L.push(o.note,"");
+  L.push("お申し込み・お問い合わせは、プロフィールのリンクから📝","お電話でもどうぞ📞 "+SHOP.tel2+"（講習・適性診断）","",FOOT,"",tagsOf(["#講習","#企業研修"]));return L.join("\n")}
+/* もとの文（使わない） */function _seatCaptionOld(o){
+  if(o.date)L.push("🗓 講習日　"+o.date);else L.push("🗓 講習日　"+SHOP.entryText);
+  if(o.times.length)L.push("🕐 "+o.times.join("／"));L.push("");
+  if(o.seats.length)L.push("🚗 "+o.seats.join("・"),"");
+  if(o.people)L.push("✅ "+o.people);
+  if(o.menu)L.push("📋 おすすめ："+o.menu.n+(o.menu.p?` ${o.menu.p}`:""));if(o.people||o.menu)L.push("");
+  if(o.note)L.push(o.note,"");
+  L.push("お申し込み・お問い合わせは、プロフィールのリンクから📝","お電話でもどうぞ📞 "+SHOP.tel,"",FOOT,"",tagsOf(["#受講受付中","#免許取りたい"]));return L.join("\n")}
+/* 空き枠の画像（ストーリーズ 1080×1920 ／ 投稿 1080×1350） */
+function drawSeatImg(W,H,o,img,stock,k){const story=H>1500,[cv,ctx]=newCanvas(W,H),Z=v=>Math.round(v*(1-k*.12));
+  if(img){cover(ctx,img,0,0,W,H);ctx.fillStyle="rgba(12,12,12,.6)";ctx.fillRect(0,0,W,H)}
+  else{wood(ctx,0,0,W,H,0,3.4);
+    gingham(ctx,0,0,W,story?150:70,24);gingham(ctx,0,H-(story?150:56),W,story?150:56,24)}
+  let y=signBoard(ctx,W/2,story?262:(img?44:96),story?.86*(1-k*.1):.62);
+  y+=story?Z(34):22;
+  ctx.font=`900 ${story?Z(42):36}px ${FONT}`;const dt=o.date?"講習日 ｜ "+o.date:"日にちはお問い合わせください",dh=story?Z(80):66;pill(ctx,dt,W/2,y,`900 ${story?Z(42):36}px ${FONT}`,GOLD,BLK,36,dh);
+  y+=dh+(story?Z(30):18);
+  const lines=o.tone.split("\n"),hs=fitSize(ctx,lines,W-140,story?Z(112):92,900);ctx.fillStyle="#fff";shadowText(ctx,true);
+  lines.forEach(l=>{ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(l,W/2,y+hs*.86);y+=hs*1.22});shadowText(ctx,false);
+  y+=story?Z(30):14;
+  const ts=o.times;const cols=ts.length>4?3:Math.min(ts.length,2),bw=cols===3?286:(cols===1?560:400),bh=story?Z(96):74,gap=story?Z(18):14,rows=ts.length?Math.ceil(ts.length/cols):0;
+  ts.forEach((t,i)=>{const r=Math.floor(i/cols),c=i%cols,n=Math.min(cols,ts.length-r*cols);const x0=(W-(n*bw+(n-1)*gap))/2+c*(bw+gap),y0=y+r*(bh+gap);
+    ctx.fillStyle=C.paper;rr(ctx,x0,y0,bw,bh,bh/2);ctx.fill();ctx.fillStyle=C.ink;ctx.font=`900 ${fitSize(ctx,[t],bw-50,story?Z(54):44,900)}px ${FONT}`;ctx.fillText(t,x0+bw/2,y0+bh*.68)});
+  y+=rows*(bh+gap)+(story?Z(16):6);
+  const info=[o.seats.slice(0,5).join("・")+(o.seats.length>5?" ほか":""),o.people].filter(Boolean).join("　");
+  if(info){ctx.fillStyle="#fff";ctx.font=`700 ${fitSize(ctx,[info],W-140,story?Z(40):32,700)}px ${FONT}`;y+=story?Z(52):40;ctx.fillText(info,W/2,y);y+=story?Z(20):10}
+  if(o.menu){const mh=story?Z(170):132;y+=story?Z(18):10;ctx.fillStyle="rgba(255,253,248,.12)";rr(ctx,110,y,W-220,mh,28);ctx.fill();ctx.strokeStyle=C.mustard;ctx.lineWidth=3;ctx.stroke();
+    ctx.fillStyle=C.mustard;ctx.font=`700 ${story?Z(32):26}px ${FONT}`;ctx.fillText("ご案内する講習",W/2,y+(story?Z(50):40));
+    const mt=o.menu.n+(o.menu.p?"　"+o.menu.p:"");ctx.fillStyle="#fff";ctx.font=`900 ${fitSize(ctx,[mt],W-280,story?Z(50):40,900)}px ${FONT}`;ctx.fillText(mt,W/2,y+(story?Z(118):94));y+=mh}
+  if(o.note){ctx.fillStyle="#fff";ctx.font=`700 ${story?Z(38):30}px ${FONT}`;wrap(ctx,o.note,W-200).slice(0,k>=2?1:2).forEach(l=>{y+=story?Z(54):42;ctx.fillText(l,W/2,y)})}
+  // 電話
+  const limit=story?1430:H-150;
+  if(story&&y+170>limit&&k<3)return drawSeatImg(W,H,o,img,stock,k+1);
+  const py=story?Math.max(y+80,1290):Math.max(y+40,H-250);
+  ctx.fillStyle="rgba(255,255,255,.9)";ctx.font=`700 ${story?34:28}px ${FONT}`;ctx.fillText("ご相談・お問い合わせ",W/2,py);
+  ctx.fillStyle=C.mustard;ctx.font=`900 ${story?76:60}px ${FONT}`;shadowText(ctx,!!img);ctx.fillText("☎ "+SHOP.tel,W/2,py+(story?88:70));shadowText(ctx,false);
+  if(!story){ctx.fillStyle="rgba(255,255,255,.85)";ctx.font=`700 24px ${FONT}`;ctx.fillText(SHOP.name,W/2,py+112)}
+  else{ctx.fillStyle="rgba(255,255,255,.85)";ctx.font=`700 30px ${FONT}`;ctx.fillText(SHOP.name,W/2,py+142)}
+  if(stock)imgNote(ctx,W,story?1560:H-20);
+  return cv.toDataURL("image/jpeg",.9)}
+function renderMenus(){const el=$("menuList");el.innerHTML="";MENUS.forEach((m,i)=>{const r=document.createElement("div");r.className="menuRow";
+  r.innerHTML=`<input type="text" value="" aria-label="講習名"><input type="text" value="" placeholder="値段" aria-label="値段"><button type="button" aria-label="消す">✕</button>`;
+  const [a,b,x]=r.children;a.value=m.n;b.value=m.p;a.oninput=()=>{m.n=a.value;saveMenus(false)};b.oninput=()=>{m.p=b.value;saveMenus(false)};
+  x.onclick=()=>{MENUS.splice(i,1);if(S.menu>MENUS.length)S.menu=0;saveMenus(true)};el.appendChild(r)})}
+let mT=null;function saveMenus(rebuild){store("menus",JSON.stringify(MENUS));if(rebuild){buildSeat();return}clearTimeout(mT);mT=setTimeout(()=>{const ML=["🚫 書かない",...MENUS.map(m=>m.n)];chips($("sMenu"),ML,i=>S.menu===i,i=>{S.menu=i;seatEdited=false;buildSeat()});seatEdited=false;drawSeat()},300)}
+function addMenu(){MENUS.push({n:"新しい講習",p:""});saveMenus(true)}
+
+/* ================= 講習カレンダー ================= */
+/* カレンダーは「お休み」「臨時お休み」「無料体験会」（印のない日＝ふつうの日） */
+const ST=["open","off","tmp","kashi"],STJ={open:"",off:"休",tmp:"臨休",kashi:"講習"};
+const CAL={y:0,m:0,style:store("calStyle")||"cream",photo:null};
+function calInit(){const t=new Date();CAL.y=t.getFullYear();CAL.m=t.getMonth();if(t.getDate()>=20){CAL.m++;if(CAL.m>11){CAL.m=0;CAL.y++}}}
+function calKey(){return "cal-"+CAL.y+"-"+(CAL.m+1)}
+function calData(){try{return JSON.parse(store(calKey())||"null")||{}}catch(e){return {}}}
+function defSt(d){return SHOP.offDow.includes(d.getDay())?"off":"open"}
+function stOf(d,D){const v=D.s&&D.s[d.getDate()];return v?(ST.includes(v)?v:"open"):defSt(d)}
+function calSave(){const D=calData();D.msg=$("calMsg").value;store(calKey(),JSON.stringify(D))}
+function calMove(n){CAL.m+=n;if(CAL.m<0){CAL.m=11;CAL.y--}if(CAL.m>11){CAL.m=0;CAL.y++}renderCal()}
+function calReset(){store(calKey(),null);renderCal();toast("この月を最初にもどしました")}
+/* 日を押すたびに「お休み → 臨時お休み → 無料体験会 → もとにもどる」 */
+function calEntry(){const D=calData();D.s=D.s||{};const days=new Date(CAL.y,CAL.m+1,0).getDate();let n=0;
+  for(let d=1;d<=days;d++){const dt=new Date(CAL.y,CAL.m,d),st=stOf(dt,D);if(SHOP.entry.some(([w])=>w===dt.getDay())&&st==="open"){D.s[d]="kashi";n++}}
+  store(calKey(),JSON.stringify(D));renderCal();toast(n?`適性診断の日を${n}日入れました（お休みの日はのぞいています）`:"入れる日がありませんでした")}
+function calTap(day){const D=calData();D.s=D.s||{};const d=new Date(CAL.y,CAL.m,day),c=stOf(d,D),O=defSt(d)==="off"?["off","open","tmp","kashi"]:ST,n=O[(O.indexOf(c)+1)%O.length];
+  if(n===defSt(d))delete D.s[day];else D.s[day]=n;store(calKey(),JSON.stringify(D));renderCal()}
+function calStyleSet(s){CAL.style=s;store("calStyle",s);renderCal()}
+function renderCal(){const D=calData();$("calTitle").textContent=`${CAL.y}年 ${CAL.m+1}月`;
+  $("calMsg").value=D.msg!=null?D.msg:"講習・研修のご相談は、お気軽にお電話で";
+  const g=$("calGrid");g.innerHTML="";[..."日月火水木金土"].forEach((w,i)=>{const e=document.createElement("div");e.className="wd"+(i===0?" su":i===6?" sa":"");e.textContent=w;g.appendChild(e)});
+  const first=new Date(CAL.y,CAL.m,1),days=new Date(CAL.y,CAL.m+1,0).getDate();for(let i=0;i<first.getDay();i++){const e=document.createElement("div");e.className="blank";g.appendChild(e)}
+  for(let d=1;d<=days;d++){const dt=new Date(CAL.y,CAL.m,d),st=stOf(dt,D),b=document.createElement("button");b.type="button";
+    b.className="st-"+st+(isHol(dt)?" hol":"");b.innerHTML=`${d}<small>${STJ[st]}</small>`;b.onclick=()=>calTap(d);g.appendChild(b)}
+  const SS=[["cream","✨ アール・デコ"],["chalk","🖍 黒板"],["photo","🖼 写真"]];chips($("calStyle"),SS.map(x=>x[1]),i=>CAL.style===SS[i][0],i=>calStyleSet(SS[i][0]));
+  $("calPhotoBox").hidden=CAL.style!=="photo";drawCal()}
+function calLists(){const D=calData(),days=new Date(CAL.y,CAL.m+1,0).getDate(),R={off:[],tmp:[],kashi:[]};
+  for(let d=1;d<=days;d++){const dt=new Date(CAL.y,CAL.m,d),s=stOf(dt,D);if(R[s])R[s].push(`${d}日（${WD[dt.getDay()]}）`)}return R}
+let calTok=0;
+async function drawCal(){const tok=++calTok;let img=null,stock=false;
+  if(CAL.style==="photo"){if(CAL.photo&&CAL.photo.own&&own.cal)img=own.cal;else{const i=CAL.photo&&CAL.photo.i!=null?CAL.photo.i:(PHOTOS.build||PHOTOS.real||[])[CAL.m%((PHOTOS.build||PHOTOS.real||[1]).length)];img=await loadImg(i);stock=isStock(i)}}
+  if(tok!==calTok)return;$("calImg").src=drawCalImg(img,stock);$("calText").value=wfix(calCaption())}
+function calCaption(){const D=calData(),R=calLists(),M=CAL.m+1,L=[`🗓 ${M}月のお休み・講習日のお知らせ`,""];
+  if(R.off.length)L.push("【お休み】",R.off.join("・"),"");if(R.tmp.length)L.push("【臨時休業】",R.tmp.join("・"),"");if(R.kashi.length)L.push("【講習日】",R.kashi.join("・"),"");
+  L.push(`${M}月も、${SHOP.short}をよろしくお願いします🚗`,"",FOOT,"",tagsOf(["#講習","#企業研修"]));return L.join("\n")}
+function drawCalImg(img,stock){const W=1080,H=1350,[cv,ctx]=newCanvas(W,H),D=calData(),sty=CAL.style,M=CAL.m+1;
+  const EN=["January","February","March","April","May","June","July","August","September","October","November","December"][CAL.m];
+  let bg,ink,sub,box=null;
+  if(sty==="chalk"){ctx.fillStyle="#2F3B33";ctx.fillRect(0,0,W,H);const g=ctx.createRadialGradient(W/2,H/2,100,W/2,H/2,900);g.addColorStop(0,"rgba(255,255,255,.06)");g.addColorStop(1,"rgba(0,0,0,.25)");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle="#8B6A47";ctx.lineWidth=26;ctx.strokeRect(13,13,W-26,H-26);ink="#F6F1E6";sub="rgba(246,241,230,.75)"}
+  else if(sty==="photo"&&img){cover(ctx,img,0,0,W,H);ctx.fillStyle="rgba(25,15,10,.25)";ctx.fillRect(0,0,W,H);box=[60,60,W-120,H-120];ctx.fillStyle="rgba(255,253,248,.93)";rr(ctx,...box,34);ctx.fill();ink=C.ink;sub="#7A6658"}
+  else{wood(ctx,0,0,W,H,0,3.2);paper(ctx,40,40,W-80,H-80,30);ink=C.ink;sub="#7A6652"}
+  // 見出し
+  const red=sty==="chalk"?"#F08A72":C.tomato,yel=sty==="chalk"?"#F6B45E":C.mustard,grn=sty==="chalk"?"#8FD19E":C.green,nv=sty==="chalk"?"#9DB7E5":C.navy;
+  ctx.textAlign="left";ctx.fillStyle=sty==="chalk"?"#F6E3B0":BLK;ctx.font=`900 190px ${FONT}`;const mx=110;ctx.fillText(String(M),mx,sty==="cream"?320:300);
+  const mw=ctx.measureText(String(M)).width;ctx.fillStyle=ink;ctx.font=`44px ${SCRIPT}`;ctx.fillText(EN,mx+mw+26,sty==="cream"?222:202);
+  ctx.font=`900 50px ${FONT}`;ctx.fillText("お休み・講習日",mx+mw+28,sty==="cream"?300:280);
+  ctx.textAlign="center";signBoard(ctx,W-235,sty==="cream"?122:96,.5);
+  // マス
+  const top=sty==="cream"?380:360,gx=90,gw=W-180,cw=gw/7,first=new Date(CAL.y,CAL.m,1),days=new Date(CAL.y,CAL.m+1,0).getDate(),rows=Math.ceil((first.getDay()+days)/7),ch=Math.min(118,(650)/rows);
+  ctx.font=`900 32px ${FONT}`;[..."日月火水木金土"].forEach((w,i)=>{ctx.fillStyle=i===0?red:i===6?nv:sub;ctx.fillText(w,gx+cw*i+cw/2,top+34)});
+  ctx.strokeStyle=sty==="chalk"?"rgba(246,241,230,.35)":"rgba(58,42,34,.18)";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(gx,top+56);ctx.lineTo(gx+gw,top+56);ctx.stroke();
+  const COL={off:sty==="chalk"?"#C9D3D8":"#5B5B5B",tmp:sty==="chalk"?"#F08A72":"#A8322D",kashi:sty==="chalk"?"#F6E3B0":GOLD,early:grn};
+  for(let d=1;d<=days;d++){const dt=new Date(CAL.y,CAL.m,d),idx=first.getDay()+d-1,r=Math.floor(idx/7),c=idx%7,cx=gx+cw*c+cw/2,cy=top+70+ch*r+ch/2,st=stOf(dt,D);
+    if(st!=="open"){ctx.fillStyle=COL[st];ctx.beginPath();ctx.arc(cx,cy,Math.min(cw,ch)*.43,0,7);ctx.fill();
+      ctx.fillStyle=st==="kashi"?BLK:(sty==="chalk"?"#2F3B33":"#fff");ctx.font=`900 34px ${FONT}`;ctx.fillText(String(d),cx,cy+4);ctx.font=`900 20px ${FONT}`;ctx.fillText(STJ[st],cx,cy+30)}
+    else{ctx.fillStyle=isHol(dt)||c===0?red:c===6?nv:ink;ctx.font=`700 38px ${FONT}`;ctx.fillText(String(d),cx,cy+13)}}
+  // 凡例
+  let y=top+70+ch*rows+46;const used=["off","tmp","kashi"].filter(s=>{for(let d=1;d<=days;d++)if(stOf(new Date(CAL.y,CAL.m,d),D)===s)return true;return false});
+  const LJ={off:"お休み",tmp:"臨時休業",kashi:"講習日"};ctx.font=`700 28px ${FONT}`;
+  const items=used.map(s=>[s,LJ[s]]),tw=items.reduce((a,[,t])=>a+44+ctx.measureText(t).width+30,0);let x=W/2-tw/2;
+  items.forEach(([s,t])=>{ctx.beginPath();ctx.arc(x+14,y-9,14,0,7);ctx.fillStyle=COL[s];ctx.fill();ctx.fillStyle=ink;ctx.textAlign="left";ctx.fillText(t,x+38,y);ctx.textAlign="center";x+=44+ctx.measureText(t).width+30});
+  // 下
+  const msg=(D.msg!=null?D.msg:"講習・研修のご相談は、お気軽にお電話で").trim();
+  const fy=box?H-200:H-210;
+  if(msg){ctx.fillStyle=ink;ctx.font=`900 ${fitSize(ctx,[msg],W-220,38,900)}px ${FONT}`;ctx.fillText(msg,W/2,fy)}
+  ctx.fillStyle=sty==="chalk"?"#F6E3B0":BLK;ctx.font=`900 46px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,fy+62);
+  ctx.fillStyle=sub;ctx.font=`700 25px ${FONT}`;{const t=SHOP.name+"　"+SHOP.hours.replace("受付 ","受付");ctx.font=`700 ${fitSize(ctx,[t],W-200,25,700)}px ${FONT}`;ctx.fillText(t,W/2,fy+106)};
+  if(stock&&sty==="photo")imgNote(ctx,W,H-22);
+  return cv.toDataURL("image/jpeg",.92)}
+
+/* ================= コース紹介 ================= */
+const BK=planList(SHOP);
+const BGROUPS=[...new Set(BK.map(x=>x.g))];
+const BPOINTS=SHOP.merits;
+const BPEOPLE=["書かない","運送会社のみなさまに","バス・タクシー会社のみなさまに","会社の安全運転の担当の方に","総務・人事のみなさまに","ドライバーのみなさんに"];
+function bDefault(){return 0}let bGroup=BGROUPS[0];
+const B={kind:bDefault(),tone:0,points:new Set([0,1,2]),people:0,photo:"rec",pi:null};let bEdited=false,bShift=0;
+function bPrev(){if(B.photo!=="rec"||B.pi!=null){B.photo="rec";B.pi=null;buildParty();return}if(bShift<=0){toast("いちばん最初の写真です");return}bShift--;buildParty();toast("前の写真にもどしました")}
+function buildParty(){const K=BK[B.kind];
+  bGroup=K.g;chips($("bGroup"),BGROUPS,i=>BGROUPS[i]===bGroup,i=>{bGroup=BGROUPS[i];B.kind=BK.findIndex(x=>x.g===bGroup);B.tone=0;B.pi=null;bEdited=false;buildParty()});
+  const KI=BK.map((x,i)=>[x,i]).filter(([x])=>x.g===bGroup);chips($("bKind"),KI.map(([x])=>x.k),j=>B.kind===KI[j][1],j=>{B.kind=KI[j][1];B.tone=0;B.pi=null;bEdited=false;buildParty()});
+  chips($("bTone"),K.tones.map(x=>x.replace("\n","")),i=>B.tone===i,i=>{B.tone=i;bEdited=false;buildParty()});
+  chips($("bPoints"),BPOINTS.map(x=>x[0]+" "+x[1]),i=>B.points.has(i),i=>{B.points.has(i)?B.points.delete(i):B.points.add(i);bEdited=false;buildParty()});
+  chips($("bPeople"),BPEOPLE,i=>B.people===i,i=>{B.people=i;bEdited=false;buildParty()});
+  const PM=[["rec","🖼 おすすめ写真"],["pick","🔍 一覧から選ぶ"],["own","📱 自分の写真"],["none","🎨 写真なし"]];
+  chips($("bPhoto"),PM.map(x=>x[1]),i=>PM[i][0]===B.photo,i=>{const m=PM[i][0];if(m==="pick"){openGallery("party");return}if(m==="own"){pickOwn("party");return}if(m==="rec"&&B.photo==="rec"&&B.pi==null){bShift++;toast("写真をかえました（押すたびに次の写真）")}B.photo=m;B.pi=null;buildParty()});
+  drawParty()}
+function partyInfo(){const K=BK[B.kind];return {K,tone:$("bHead").value.trim()?$("bHead").value.trim().replace(/／|\//g,"\n"):(K.tones[B.tone]||K.tones[0]),points:[...B.points].sort((a,b)=>a-b).map(i=>BPOINTS[i]),people:B.people?BPEOPLE[B.people]:"",course:$("bCourse").value.trim(),note:$("bNote").value.trim()}}
+function partyCaption(o){const L=[`【${SHOP.short}の${o.K.hd}】`,"",o.K.lead,""];
+  o.points.forEach(([e,t])=>L.push(`${e} ${t}`));if(o.points.length)L.push("");
+  if(o.course)L.push("📌 "+o.course);if(o.people)L.push("👥 "+o.people);if(o.course||o.people)L.push("");
+  if(o.note)L.push(o.note,"");L.push(o.K.tail,"","お申し込み・お問い合わせは、プロフィールのリンクから📝","お電話でもどうぞ📞 "+SHOP.tel,"",FOOT,"",tagsOf(o.K.tags));return L.join("\n")}
+let partyTok=0;
+async function drawParty(){const tok=++partyTok;let img=null,stock=false;const o=partyInfo();
+  if(B.photo==="own"&&own.party)img=own.party;else if(B.photo==="rec"){const L=[];o.K.pk.forEach(k=>(PHOTOS[k]||[]).forEach(i=>{if(!L.includes(i))L.push(i)}));const i=B.pi!=null?B.pi:cyc(fullList(L),bShift);img=await loadImg(i);stock=isStock(i)}
+  if(tok!==partyTok)return;$("partyImg").src=drawPartyImg(1080,1350,o,img,stock,0);$("partyStory").src=drawPartyImg(1080,1920,o,img,stock,0);
+  if(!bEdited)$("partyText").value=wfix(partyCaption(o))}
+function drawPartyImg(W,H,o,img,stock,k){const story=H>1500,[cv,ctx]=newCanvas(W,H),Z=v=>Math.round(v*(1-k*.1));
+  // 背景：写真なら上半分に写真、下は薄いグレー。写真なしは薄いグレー＋上下の帯
+  const ph=story?700:470;ctx.fillStyle="#FBF9F4";ctx.fillRect(0,0,W,H);
+  if(img){ctx.save();ctx.beginPath();ctx.rect(0,0,W,ph);ctx.clip();cover(ctx,img,0,0,W,ph);ctx.restore();const g=ctx.createLinearGradient(0,ph*.45,0,ph);g.addColorStop(0,"rgba(251,249,244,0)");g.addColorStop(1,"rgba(251,249,244,1)");ctx.fillStyle=g;ctx.fillRect(0,0,W,ph)}
+  gingham(ctx,0,0,W,story?150:80,24);gingham(ctx,0,H-(story?150:56),W,story?150:56,24);
+  const fy0=story?1700:H-110;
+  let y=signBoard(ctx,W/2,story?262:104,story?.8:.66);
+  y=img?Math.max(y+20,ph-Z(story?60:50)):y+Z(40);
+  // 種類のリボン
+  y+=badge(ctx,o.K.k,W/2,y,Z(34))+Z(22);
+  const lines=o.tone.split("\n"),hs=fitSize(ctx,lines,W-140,Z(story?104:94),900);ctx.fillStyle=C.ink;
+  lines.forEach(l=>{ctx.font=`900 ${hs}px ${FONT}`;ctx.fillText(l,W/2,y+hs*.86);y+=hs*1.2});y+=Z(18);
+  // ポイント
+  if(o.points.length){const P=o.points.slice(0,4),lh=Z(story?64:54),bh=P.length*lh+Z(36);ctx.fillStyle="#fff";ctx.fillRect(110,y,W-220,bh);ctx.strokeStyle=GOLD;ctx.lineWidth=2;ctx.strokeRect(110,y,W-220,bh);ctx.strokeRect(118,y+8,W-236,bh-16);
+    ctx.textAlign="left";P.forEach(([e,t],i)=>{const yy=y+Z(18)+lh*i+lh*.7;ctx.fillStyle=GOLD;ctx.font=`900 ${Z(34)}px ${FONT}`;ctx.fillText("◆",150,yy);ctx.fillStyle=C.ink;ctx.font=`700 ${fitSize(ctx,[t],W-360,Z(story?36:32),700)}px ${FONT}`;ctx.fillText(t,200,yy)});ctx.textAlign="center";y+=bh+Z(20)}
+  const extra=[o.course,o.people].filter(Boolean);
+  if(extra.length){ctx.fillStyle=C.tomato;ctx.font=`900 ${fitSize(ctx,[extra.join("　")],W-180,Z(38),900)}px ${FONT}`;y+=Z(40);ctx.fillText(extra.join("　"),W/2,y);y+=Z(14)}
+  if(o.note){ctx.fillStyle=C.ink;ctx.font=`700 ${fitSize(ctx,[o.note],W-180,Z(32),700)}px ${FONT}`;y+=Z(42);ctx.fillText(o.note,W/2,y)}
+  const limit=story?1440:H-150;if(y+Z(150)>limit&&k<3)return drawPartyImg(W,H,o,img,stock,k+1);
+  const py=story?Math.max(y+Z(80),1300):Math.max(y+Z(60),H-190);
+  ctx.fillStyle="#6B655B";ctx.font=`700 ${story?34:28}px ${FONT}`;ctx.fillText("ご相談・お問い合わせ",W/2,py);
+  ctx.fillStyle=BLK;ctx.font=`900 ${story?74:60}px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,py+(story?84:68));
+  if(stock)imgNote(ctx,W,story?195:118);
+  return cv.toDataURL("image/jpeg",.9)}
+const BANQ=[];
+function banqFor(d){return null}
+
+/* ================= お知らせ ================= */
+const _B="【　】";
+function jd(v){if(!v)return _B;const d=new Date(v+"T00:00");return `${d.getMonth()+1}月${d.getDate()}日（${WD[d.getDay()]}）`}
+const NEWS={
+"大雨・台風でお休み":{pk:"rainy",L:["お休みの日",""],t:true,tl:"お休みする時間（例：15時以降）※1日お休みなら空のまま",ph:"例：15時以降",h:()=>"天候による\nお休みのお知らせ",s:o=>o.t?`${jd(o.d1)} ${o.t}はお休みです`:`${jd(o.d1)}はお休みです`,
+  b:o=>`いつも${SHOP.short}をご利用いただき、ありがとうございます。\n\n${jd(o.d1)}は、大雨・台風などの天候のため、\n${o.t?o.t+"の教習・学科を":"教習・学科をすべて"}お休みとさせていただきます。\n\nご予約の方には、学校からご連絡いたします。\nスクールバスも運休します🚌\nご迷惑をおかけして申し訳ありません🙏`},
+"バスの運休・遅れ":{pk:"bus",L:["日にち",""],t:true,tl:"どのバスか（例：〇〇線）",ph:"例：〇〇線",h:()=>"スクールバスの\nお知らせ",s:o=>o.t?`${jd(o.d1)} ${o.t}`:`${jd(o.d1)}のスクールバス`,
+  b:o=>`スクールバスのお知らせです🚌\n\n${jd(o.d1)}は、${o.t||"【　どのバスか　】"}が\n【　運休／おくれ　】となります。\n\n理由：【　道路の工事・交通規制・天候 など　】\n\nご不便をおかけして申し訳ありません。\nわからないことは、お電話でお問い合わせください📞\n${SHOP.tel}`},
+"臨時お休み":{pk:"build",L:["お休みの日","2日目（あれば）"],t:false,h:()=>"臨時お休みの\nお知らせ",s:o=>o.d2?`${jd(o.d1)}・${jd(o.d2)}はお休みです`:`${jd(o.d1)}はお休みです`,
+  b:o=>`いつも${SHOP.short}をご利用いただき、ありがとうございます。\n\n誠に勝手ながら、\n${o.d2?jd(o.d1)+"と"+jd(o.d2):jd(o.d1)}は\n臨時お休みとさせていただきます。\n\nご迷惑をおかけしますが、どうぞよろしくお願いいたします🙇`},
+"連休のお休み":{pk:"build",L:["お休みの初日","お休みの最後の日"],t:false,h:()=>"お休みの\nお知らせ",s:o=>`${jd(o.d1)}〜${jd(o.d2)}はお休みです`,
+  b:o=>`いつも${SHOP.short}をご利用いただき、ありがとうございます。\n\n${jd(o.d1)}〜${jd(o.d2)}は\nお休みとさせていただきます。\nスクールバスも運休します🚌\n\nお休み明けも、お待ちしています😊`},
+"年末年始":{pk:"newyear",L:["年内の最終日","年明けの初日"],t:false,h:()=>"年末年始の\nお休みのお知らせ",s:o=>`年内は${jd(o.d1)}まで`,
+  b:o=>`年末年始のお休みのお知らせです🎍\n\n🗓 年内の教習は ${jd(o.d1)} まで\n🗓 年明けは ${jd(o.d2)} から\n\nお休み中のお問い合わせは、年明けから順番にお返事します。\n今年も1年、本当にありがとうございました😊`},
+"受講受付中":{pk:"car",L:["講習日（なければ空のまま）",""],t:false,h:()=>"受講\n受付中です",s:o=>o.d1?`次の講習日は${jd(o.d1)}`:"免許をとりませんか？",
+  b:o=>`${SHOP.short}では、受講を受けつけています🚗\n\n${o.d1?"🗓 次の講習日："+jd(o.d1)+"\n":""}🗓 講習日：${SHOP.entryText}\n\n🚌 ${SHOP.bus}\n\nお申し込み・お問い合わせは、プロフィールのリンクから📝\nお電話でもどうぞ📞 ${SHOP.tel}`},
+"受講相談会":{pk:"staff",L:["開催日","2日目（あれば）"],t:true,tl:"時間（例：10:00〜16:00）",h:()=>"受講相談会を\nひらきます",s:o=>`${jd(o.d1)}${o.d2?"・"+jd(o.d2):""}`,
+  b:o=>`受講相談会をひらきます🔰\n\n🗓 ${o.d2?jd(o.d1)+"・"+jd(o.d2):jd(o.d1)}\n🕙 ${o.t||_B}\n📍 ${SHOP.name}\n\n✅ 通い方・講習のご相談\n✅ 校舎・コースの見学\n✅ 【　ほかにあれば　】\n\n保護者の方と一緒のご参加も、大歓迎です😊\nお問い合わせ📞 ${SHOP.tel}`},
+"春休み・夏休みの予約":{pk:"drive",L:["",""],t:true,tl:"いつの休みか（例：春休み）",ph:"例：春休み",h:o=>(o.t||"長いお休み")+"の\nご予約はお早めに",s:()=>"混み合う時期です",
+  b:o=>`${o.t||"【　春休み・夏休み　】"}に免許をとりたい方へ📅\n\n2・3月と8・9月は、教習所がいちばん混み合う時期です。\n受講のご相談は、通いたい時期の2〜3か月前がおすすめです。\n\n🗓 講習日：${SHOP.entryText}\n\nお早めにご相談ください😊`},
+"キャンペーン":{pk:"car",L:["はじまる日","おわる日"],t:true,tl:"キャンペーンの名前",ph:"例：春の受講キャンペーン",h:o=>(o.t||"キャンペーン")+"\n実施中",s:o=>o.d1?`${jd(o.d1)}〜${o.d2?jd(o.d2):""}`:"くわしくはお問い合わせください",
+  b:o=>`${o.t||"【　キャンペーンの名前　】"}を実施しています🎉\n\n🗓 期間：${jd(o.d1)}〜${jd(o.d2)}\n\n【　内容（本部で決まったとおりに書く）　】\n\n※くわしい条件は、お問い合わせください。\nお問い合わせ📞 ${SHOP.tel}`},
+"卒業おめでとう":{pk:"staff",L:["",""],t:false,h:()=>"卒業\nおめでとうございます",s:()=>"安全運転で、楽しいカーライフを",
+  b:()=>`今週も、${SHOP.short}からたくさんの卒業生が巣立っていきました🎓\n\nはじめてハンドルをにぎった日のこと、覚えていますか？\n検定をのりこえたみなさん、本当におめでとうございます。\n\n試験場での学科試験も、落ち着いてがんばってください。\n安全運転で、楽しいカーライフを！🚗\n\n※受講者のお名前や顔の写真は、ご本人の許可をいただいたときだけ使っています。`},
+"合格おめでとう":{pk:"build",L:["",""],t:false,h:()=>"免許取得\nおめでとう",s:()=>"卒業生のみなさんへ",
+  b:()=>`免許をとった卒業生のみなさん、おめでとうございます🎉\n\n「合格しました！」の報告、スタッフ一同とてもうれしいです😊\n\n若葉マーク🔰をつけて、安全運転でいってらっしゃい。\nこれからも、みなさんを応援しています。`},
+"卒業生の声":{pk:"drive",L:["",""],t:true,tl:"免許の種類（例：普通車AT）",ph:"例：普通車AT",h:()=>"卒業生の声\nご紹介します",s:o=>o.t?`${o.t}を卒業された方`:"卒業された方のご感想",
+  b:o=>`卒業生の声をご紹介します🎤\n\n${o.t||"【　免許の種類　】"}を卒業された\n【　年代・学年など（例：高校3年生の方）　】\n\n「【　ご本人の言葉をそのまま　】」\n\nすてきなご感想を、ありがとうございました😊\n安全運転で、楽しいカーライフを🚗\n\n※ご本人の許可をいただいて掲載しています`},
+"交通ルールの変更":{pk:"course",L:["変わる日（なければ空のまま）",""],t:true,tl:"何が変わるか（ひとことで）",ph:"例：〇〇のルール",h:()=>"交通ルールが\n変わります",s:o=>[o.t,o.d1?jd(o.d1)+"から":""].filter(Boolean).join("　")||"警察庁からのお知らせ",
+  b:o=>`交通ルールが変わります📢\n\n${o.t?"📌 "+o.t+"\n":""}${o.d1?"🗓 "+o.d1.slice(0,4)+"年"+jd(o.d1)+"から\n":""}\n【　何が変わるか（警察庁・県警のホームページの言葉をもとに、短く）　】\n\n車を運転する方も、自転車に乗る方も、ご注意ください。\nくわしくは、警察庁・県警のホームページで確かめてください。\n\n※${new Date().getFullYear()}年${jd(ymd(new Date()))}時点の情報です`},
+"自転車の青切符":{pk:"course",L:["",""],t:false,h:()=>"自転車にも\n「青切符」",s:()=>"2026年4月1日から",law:1,
+  b:()=>`【道路交通法の改正】自転車の交通違反に「青切符」📢\n\n🗓 2026年4月1日から\n\n16歳以上の人が自転車で交通違反をすると、\n「青切符」（反則金）の対象になりました🚲\n\n📱 スマホを見ながらの運転\n🚦 信号無視\n🛑 一時停止をしない\n☂️ かさをさしての運転 など\n\n自転車も「車のなかま」です。\nご家族みなさんで、ルールを確認してください😊`},
+"自転車の追い抜き":{pk:"drive",L:["",""],t:false,h:()=>"自転車を\n追い抜くときは",s:()=>"2026年4月1日から",law:1,
+  b:()=>`【道路交通法の改正】自転車を追い抜くときのルール📢\n\n🗓 2026年4月1日から\n\n🚗 車は、自転車との間に十分な間隔がないときは、\n　間隔に合わせて安全なスピードで進む\n🚲 自転車は、できるだけ道路の左はしによって通る\n\n自転車のそばは「ゆっくり・はなれて」。\n教習でも、ていねいにお伝えしています😊`},
+"生活道路は30km/h":{pk:"course",L:["",""],t:false,h:()=>"生活道路は\n30km/hに",s:()=>"2026年9月1日から",law:1,
+  b:()=>`【法定速度の変更】生活道路は30km/hに📢\n\n🗓 2026年9月1日から\n\nセンターラインや中央分離帯などがない一般道（生活道路）の\n法定速度が、60km/hから30km/hになりました🚗\n\n🏠 家の近く・通学路などのせまい道\n🚸 標識がなくても30km/h\n\nおぼえておいてくださいね😊`},
+"17歳6か月から教習OK":{pk:"car",L:["",""],t:false,h:()=>"17歳6か月から\n教習スタート",s:()=>"2026年4月から",law:1,
+  b:()=>`【運転免許の制度の変更】普通免許は17歳6か月から📢\n\n🗓 2026年4月から\n\n🚗 普通車の教習・仮免許・本免許の試験が、17歳6か月から受けられるようになりました\n🪪 免許証がもらえるのは、18歳の誕生日から\n\n高校3年生のうちに、卒業まで進めることもできます。\n受講のご相談は、お気軽にどうぞ📞 ${SHOP.tel}`},
+"自転車のながらスマホ・酒気帯び":{pk:"course",L:["",""],t:false,h:()=>"自転車の\nながらスマホは罰則",s:()=>"2024年11月1日から",law:1,
+  b:()=>`【道路交通法の改正】自転車の「ながらスマホ」「酒気帯び運転」に罰則📢\n\n🗓 2024年11月1日から\n\n📱 自転車に乗りながらスマホで通話・画面を見る → 罰則の対象\n🍺 お酒を飲んで自転車に乗る（酒気帯び運転） → 罰則の対象\n🍺 自転車に乗る人にお酒を出す・自転車を貸す → 罰則の対象\n\n自転車でも、飲んだら乗らない🙅`},
+"電動キックボード":{pk:"course",L:["",""],t:false,h:()=>"電動キックボードの\nルール",s:()=>"特定小型原動機付自転車",law:1,
+  b:()=>`電動キックボードのルールを知っていますか？🛴\n\n🗓 2023年7月1日から、新しいルールになりました（特定小型原動機付自転車）\n\n🔹 16歳以上なら、免許なしで乗れる（16歳未満は乗れない）\n🔹 車道を通るのが原則。最高速度は20km/h\n🔹 ヘルメットは「努力義務」\n🔹 ナンバープレート・自賠責保険が必要\n\n車を運転する人も、まわりの電動キックボードに注意しましょう😊`},
+"75歳以上の運転技能検査":{pk:"staff",L:["",""],t:false,h:()=>"75歳以上の方の\n免許更新",s:()=>"認知機能検査と運転技能検査",law:1,
+  b:()=>`75歳以上の方の免許更新のご案内です🚗\n\n🔹 まず「認知機能検査」（イラストをおぼえる問題・今日の日付などの問題）\n🔹 そのあと「高齢者講習」\n🔹 これまでの3年間に、信号無視・速度超過など決められた違反がある方は「運転技能検査」も（2022年5月から）\n\n✅ 運転技能検査は、コースを実際に運転して、100点から減点。70点以上で合格（二種免許は80点以上）\n⚠️ 合格しないと、免許を更新できません（期間内なら、くり返し受けられます）\n\nお知らせのはがきは、有効期限の6か月前ごろに届きます。届いたら、お早めにご予約ください。\nご家族の方からのご相談も、お気軽にどうぞ😊\n\n${seniorTxt()}`},
+"交通安全運動":{pk:"course",L:["はじまる日","おわる日"],t:true,tl:"運動の名前（例：春の全国交通安全運動）",ph:"例：春の全国交通安全運動",h:o=>(o.t||"交通安全運動")+"\nがはじまります",s:o=>o.d1?`${jd(o.d1)}〜${jd(o.d2)}`:"みんなで安全運転",
+  b:o=>`${o.t||"【　運動の名前　】"}がはじまります🚦\n\n🗓 ${jd(o.d1)}〜${jd(o.d2)}\n\n🚸 横断歩道の手前では、止まれる速度で\n🌙 夕方は早めにライト\n🚲 自転車のそばは、間隔をあけて\n\nみんなで、事故のない毎日にしましょう😊`},
+"高齢者講習":{pk:"staff",L:["",""],t:false,h:()=>"高齢者講習の\nご案内",s:()=>"70歳以上の方の免許更新",
+  b:()=>`70歳以上の方が免許を更新するときは、\n「高齢者講習」を受ける必要があります🚗\n\n📮 有効期限の6か月前ごろに、お知らせのはがきが届きます\n📅 受講できるのは、誕生日の5か月前から1か月後まで\n⏱ 講義・運転適性検査・実際の運転で 約2時間\n（普通車の免許がない方などは、約1時間）\n🔹 75歳以上の方は、先に「認知機能検査」を受けます\n\n時期によっては、予約が数か月先になることもあります。\nはがきが届いたら、お早めにご予約ください。\nご家族の方からのお問い合わせも、お気軽にどうぞ😊\n\n${seniorTxt()}`},
+"高齢者講習の持ち物":{pk:"staff",L:["",""],t:false,h:()=>"高齢者講習の\n持ち物",s:()=>"当日わすれずに",
+  b:()=>`高齢者講習を受ける日の持ち物です🎒\n\n✅ 運転免許証\n✅ 高齢者講習のお知らせ（はがき）\n✅ 講習の手数料\n✅ 筆記用具\n✅ メガネ（運転にメガネが必要な方）\n✅ 運転しやすい靴（サンダル・草履はご遠慮ください）\n\n講習が終わると「修了証明書」がもらえます。\n免許の更新のときに必要なので、なくさないようにしてください😊\n\n${seniorTxt()}`},
+"ペーパードライバー講習":{pk:"drive",L:["",""],t:false,h:()=>"ペーパードライバー\n講習",s:()=>"ひさしぶりの運転も安心",
+  b:()=>`「免許はあるけど、運転は何年もしていない…」\nそんな方のための、ペーパードライバー講習です🚗\n\n指導員がとなりに乗って、あなたのペースで練習します。\n\nご予約・お問い合わせ📞 ${SHOP.tel}`},
+"スタッフ紹介":{pk:"staff",L:["",""],t:true,tl:"スタッフの名前（ご本人の許可をとってから）",ph:"例：山田",h:o=>(o.t?o.t+"さん":"スタッフ")+"を\nご紹介します",s:()=>"アイルのスタッフ紹介",
+  b:o=>`${SHOP.short}のスタッフをご紹介します🙋\n\n👤 ${o.t?o.t+"さん":"【　名前　】"}（【　指導員・フロントなど　】）\n\n🚗 担当：【　普通車・二輪など　】\n💬 ひとこと：「【　ご本人の言葉をそのまま　】」\n⭐ 好きなこと：【　趣味など　】\n\n${SHOP.short}では、指導員の指名もできます😊\n\n※ご本人の許可をいただいて掲載しています`},
+"イベントのお知らせ":{pk:"lobby",L:["開催日","2日目（あれば）"],t:true,tl:"イベントの名前",ph:"例：クリスマスイベント",h:o=>(o.t||"イベント")+"\nのお知らせ",s:o=>o.d1?jd(o.d1)+(o.d2?"・"+jd(o.d2):""):"受講者のみなさんへ",
+  b:o=>`${o.t||"【　イベントの名前　】"}をひらきます🎉\n\n🗓 ${o.d2?jd(o.d1)+"・"+jd(o.d2):jd(o.d1)}\n📍 ${SHOP.name}\n\n【　内容（なにがあるか・だれが参加できるか）　】\n\n教習のあいまに、ぜひ遊びに来てください😊`},
+"フロントからのお願い":{pk:"lobby",L:["",""],t:true,tl:"なにのお願いか（ひとことで）",ph:"例：予約のキャンセル",h:()=>"フロントから\nのお願い",s:o=>o.t||"受講者のみなさんへ",
+  b:o=>`受講者のみなさんへ、フロントからのお願いです🙏\n\n📌 ${o.t||"【　お願いの内容　】"}\n\n【　くわしい内容（いつから・どうしてほしいか）　】\n\nみなさんが気持ちよく通えるように、ご協力をお願いします😊\nわからないことは、フロントでお気軽にお聞きください。`},
+"スタッフ募集":{pk:"staff",L:["",""],t:false,h:()=>"スタッフ\n募集中です",s:()=>"いっしょに働きませんか？",
+  b:()=>`${SHOP.short}では、いっしょに働いてくれるスタッフを募集しています😊\n\n🚗 お仕事：${_B}\n🕙 時間：${_B}\n💴 給与：${_B}\n\nまずはお電話で、お気軽にお問い合わせください📞\n${SHOP.tel}`},
+};
+let newsKind="大雨・台風でお休み";const N={photo:"rec",pi:null};let nShift=0;
+/* お知らせのまとまり（まとまり → お知らせ の2回タップ） */
+const NG=[["🌧 天気・バス",["大雨・台風でお休み","バスの運休・遅れ"]],["🗓 お休み",["臨時お休み","連休のお休み","年末年始"]],["🔰 受講・相談",["受講受付中","受講相談会","春休み・夏休みの予約","キャンペーン"]],["🎉 おめでとう",["卒業おめでとう","合格おめでとう","卒業生の声"]],["📜 道交法の改正",["自転車の青切符","自転車の追い抜き","生活道路は30km/h","17歳6か月から教習OK","自転車のながらスマホ・酒気帯び","電動キックボード","75歳以上の運転技能検査","交通ルールの変更"]],["🚦 交通安全",["交通安全運動"]],["🎓 講習",["高齢者講習","高齢者講習の持ち物",...(SHOP.has.paper?["ペーパードライバー講習"]:[])]],["🙋 スタッフ",["スタッフ紹介","スタッフ募集"]],["🎪 イベント・お願い",["イベントのお知らせ","フロントからのお願い"]]];
+/* 交通教育センター用のお知らせ */
+["大雨・台風でお休み","バスの運休・遅れ","臨時お休み","連休のお休み","年末年始","受講受付中","受講相談会","春休み・夏休みの予約","キャンペーン","卒業おめでとう","合格おめでとう","卒業生の声","17歳6か月から教習OK","75歳以上の運転技能検査","高齢者講習","高齢者講習の持ち物","ペーパードライバー講習","スタッフ紹介","イベントのお知らせ","フロントからのお願い","スタッフ募集"].forEach(k=>delete NEWS[k]);
+Object.assign(NEWS,{
+"臨時休業":{pk:"build",L:["お休みの日","2日目（あれば）"],t:false,h:()=>"臨時休業の\nお知らせ",s:o=>o.d2?`${jd(o.d1)}・${jd(o.d2)}はお休みです`:`${jd(o.d1)}はお休みです`,
+  b:o=>`いつも${SHOP.short}をご利用いただき、ありがとうございます。\n\n誠に勝手ながら、\n${o.d2?jd(o.d1)+"と"+jd(o.d2):jd(o.d1)}は\n臨時休業とさせていただきます。\n\nご迷惑をおかけしますが、どうぞよろしくお願いいたします🙇`},
+"連休のお休み":{pk:"build",L:["お休みの初日","お休みの最後の日"],t:false,h:()=>"お休みの\nお知らせ",s:o=>`${jd(o.d1)}〜${jd(o.d2)}はお休みです`,
+  b:o=>`いつも${SHOP.short}をご利用いただき、ありがとうございます。\n\n${jd(o.d1)}〜${jd(o.d2)}は\nお休みとさせていただきます。\n\n運行管理者講習・適性診断のWEB予約は、お休み中も受けつけています（プロフィールのリンクから）😊`},
+"年末年始":{pk:"build",L:["年内の最終日","年明けの初日"],t:false,h:()=>"年末年始の\nお休みのお知らせ",s:o=>`年内は${jd(o.d1)}まで`,
+  b:o=>`年末年始のお休みのお知らせです🎍\n\n🗓 年内の受付は ${jd(o.d1)} まで\n🗓 年明けは ${jd(o.d2)} から\n\nお休み中のお問い合わせは、年明けから順番にお返事します。\n今年も1年、本当にありがとうございました😊`},
+"講習の受講者募集":{pk:"class",L:["講習の日（1日目）","最後の日（あれば）"],t:true,tl:"講習の名前（例：フォークリフト運転技能講習）",ph:"例：フォークリフト運転技能講習",h:o=>(o.t||"講習")+"\n受講者募集",s:o=>o.d1?`${jd(o.d1)}${o.d2?"〜"+jd(o.d2):""}`:"ご予約受付中",
+  b:o=>`${o.t||"【　講習の名前　】"}の受講者を募集しています📋\n\n🗓 ${o.d1?(o.d2?jd(o.d1)+"〜"+jd(o.d2):jd(o.d1)):"【　日にち　】"}\n📍 【　豊前会場・門司会場　】\n👥 【　定員など　】\n\n定員になりしだい、しめきります。\nご予約📞 ${SHOP.tel2}`},
+"適性診断の空き":{pk:"diag",L:["日にち",""],t:true,tl:"時間（例：15時・17時）",ph:"例：15時・17時",h:()=>"適性診断\n空きがあります",s:o=>o.d1?jd(o.d1)+(o.t?" "+o.t:""):"ご予約受付中",
+  b:o=>`適性診断の空きのお知らせです🧠\n\n🗓 ${o.d1?jd(o.d1):"【　日にち　】"}\n🕙 ${o.t||"【　時間　】"}\n📍 【　豊前会場・門司会場　】\n\nWEB予約は24時間OK（プロフィールのリンクから）。\nお電話でもどうぞ📞 ${SHOP.tel2}`},
+"出張研修・講演のご案内":{pk:"staff",L:["",""],t:false,h:()=>"出張研修・講演\nうかがいます",s:()=>"会社・学校・地域の集まりに",
+  b:()=>`${SHOP.short}の講師が、会社や地域にうかがいます🚗💨\n\n🏢 会社の安全大会・朝礼での講話\n🏫 学校の交通安全教室\n👥 地域の集まりでの安全運転のお話\n🚚 テールゲートリフター特別教育（15名くらいから）\n\n「こんなテーマで」など、お気軽にご相談ください📞 ${SHOP.tel}`},
+"研修のようす":{pk:"class",L:["研修の日",""],t:true,tl:"研修の名前（例：安全運転研修）",ph:"例：安全運転研修",h:o=>(o.t||"研修")+"の\nようす",s:o=>o.d1?jd(o.d1)+"に行いました":"研修のようすをご紹介",
+  b:o=>`${o.d1?jd(o.d1)+"に、":""}${o.t||"【　研修の名前　】"}を行いました📝\n\n【　どんなグループか（会社名は、許可があるときだけ）　】\n【　どんなことをしたか　】\n\n参加されたみなさま、おつかれさまでした😊\n\n※会社名・お顔の写真は、許可をいただいたときだけ載せています`},
+"受講者の声":{pk:"class",L:["",""],t:true,tl:"講習の名前",ph:"例：適性診断",h:()=>"受講者の声\nご紹介します",s:o=>o.t?`${o.t}を受けた方`:"受講された方のご感想",
+  b:o=>`受講者の声をご紹介します🎤\n\n${o.t||"【　講習の名前　】"}を受けた\n【　お仕事・年代など　】の方\n\n「【　ご本人の言葉をそのまま　】」\n\nすてきなご感想を、ありがとうございました😊\n\n※ご本人の許可をいただいて掲載しています`},
+"スタッフ紹介":{pk:"staff",L:["",""],t:true,tl:"講師・スタッフの名前（ご本人の許可をとってから）",ph:"例：山田",h:o=>(o.t?o.t+"さん":"講師")+"を\nご紹介します",s:()=>"交通教育センターのスタッフ紹介",
+  b:o=>`${SHOP.short}のスタッフをご紹介します🙋\n\n👤 ${o.t?o.t+"さん":"【　名前　】"}（【　講師・受付など　】）\n\n🎓 資格・担当：【　交通心理士・運行管理者講習など　】\n💬 ひとこと：「【　ご本人の言葉をそのまま　】」\n\n※ご本人の許可をいただいて掲載しています`}});
+if(NEWS["自転車の追い抜き"]){const o=NEWS["自転車の追い抜き"];o.b=()=>`【道路交通法の改正】自転車を追い抜くときのルール📢\n\n🗓 2026年4月1日から\n\n🚗 車は、自転車との間に十分な間隔がないときは、\n　間隔に合わせて安全なスピードで進む\n🚲 自転車は、できるだけ道路の左はしによって通る\n\n自転車のそばは「ゆっくり・はなれて」。\n車でお仕事をするみなさんも、ご注意ください😊`}
+NG.length=0;NG.push(["🗓 お休み",["臨時休業","連休のお休み","年末年始"]],["📋 講習・研修",["講習の受講者募集","適性診断の空き","出張研修・講演のご案内"]],["📝 研修のようす",["研修のようす","受講者の声"]],["📜 道交法の改正",["自転車の青切符","自転車の追い抜き","生活道路は30km/h","自転車のながらスマホ・酒気帯び","電動キックボード","交通ルールの変更"]],["🚦 交通安全",["交通安全運動"]],["🙋 スタッフ",["スタッフ紹介"]]);
+newsKind="臨時休業";
+/* 自動で入ったお知らせ（ホームページ・警察庁から。ail_auto_news.js） */
+(function(){const today=ymd(new Date());const M=AUTO_NEWS.filter(x=>(x.schools||[]).some(s=>s===SHOP.key||s==="all")&&!(x.until&&x.until<today)).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  M.forEach(x=>{NEWS["🆕 "+x.name]={pk:x.pk||"build",L:["",""],t:false,h:()=>x.h,s:()=>x.s,b:()=>x.b+(x.src?"\n\n📎 くわしくは、ホームページのお知らせをご覧ください（プロフィールのリンクから）":""),law:x.kind==="law",auto:x}});
+  const hp=M.filter(x=>x.kind!=="law").map(x=>"🆕 "+x.name).slice(0,12),lw=M.filter(x=>x.kind==="law").map(x=>"🆕 "+x.name);
+  if(lw.length){const g=NG.find(g=>g[0]==="📜 道交法の改正");if(g)g[1]=lw.concat(g[1])}
+  if(hp.length)NG.unshift(["🏫 ホームページから",hp])})();
+let newsGrp=Math.max(0,NG.findIndex(g=>g[1].includes(newsKind)));
+function buildNews(){chips($("nGroups"),NG.map(g=>g[0]),i=>i===newsGrp,i=>{newsGrp=i;newsKind=NG[i][1][0];N.pi=null;loadNews()});
+  const K=NG[newsGrp][1];$("nKinds").hidden=$("nKindsL").hidden=K.length<2;chips($("nKinds"),K,i=>K[i]===newsKind,i=>{newsKind=K[i];N.pi=null;loadNews()})}
+function newsVals(){return {d1:$("nD1").value,d2:$("nD2").value,t:$("nT").value.trim()}}
+function loadNews(){nShift=0;buildNews();const n=NEWS[newsKind];$("nBanq").hidden=!/受講|キャンペーン|予約/.test(newsKind);$("nLaw").hidden=!(/交通ルールの変更/.test(newsKind)||(NEWS[newsKind]&&NEWS[newsKind].law));$("nL1").textContent=n.L[0]||"日にち";$("nD1").parentElement.hidden=!n.L[0];
+  $("nD2box").hidden=!n.L[1];$("nTL").textContent=n.tl||"時間";$("nT").placeholder=n.ph||"例：10:00〜12:00";$("nL2").textContent=n.L[1]||"";$("nTbox").hidden=!n.t;newsFill();buildNewsPhoto()}
+function newsFill(){const n=NEWS[newsKind],o=newsVals();$("nHead").value=wfix(n.h(o)).replace("\n","／");$("nSub").value=wfix(n.s(o));$("nText").value=wfix(n.b(o)+"\n\n"+FOOT+"\n\n"+tagsOf(["#お知らせ","#企業研修"]));drawNews()}
+function nPrev(){if(N.photo!=="rec"||N.pi!=null){N.photo="rec";N.pi=null;buildNewsPhoto();drawNews();return}if(nShift<=0){toast("いちばん最初の写真です");return}nShift--;buildNewsPhoto();drawNews();toast("前の写真にもどしました")}
+function buildNewsPhoto(){const PM=[["rec","🖼 おすすめ写真"],["pick","🔍 一覧から選ぶ"],["own","📱 自分の写真"],["none","🎨 写真なし"]];
+  chips($("nPhoto"),PM.map(x=>x[1]),i=>PM[i][0]===N.photo&&!(PM[i][0]==="rec"&&N.pi!=null&&false),i=>{const m=PM[i][0];if(m==="pick"){openGallery("news");return}if(m==="own"){pickOwn("news");return}if(m==="rec"&&N.photo==="rec"&&N.pi==null){nShift++;toast("写真をかえました（押すたびに次の写真）")}N.photo=m;N.pi=null;buildNewsPhoto();drawNews()})}
+function newsWarn(){const has=/【　/.test($("nHead").value+$("nSub").value+$("nText").value);$("nWarn").hidden=!has;return !has}
+function newsOK(){if(newsWarn())return true;toast("【　】が残っています。日にちを選ぶか、書きかえてください");$("nWarn").scrollIntoView({behavior:"smooth",block:"center"});return false}
+let newsTok=0;
+async function drawNews(){newsWarn();const tok=++newsTok;let img=null,stock=false;
+  if(N.photo==="own"&&own.news)img=own.news;else if(N.photo==="rec"){const i=N.pi!=null?N.pi:cyc(fullList(photoList(NEWS[newsKind].pk,new Date(),"")),nShift);img=await loadImg(i);stock=isStock(i)}
+  if(tok!==newsTok)return;$("newsImg").src=drawCard({h:$("nHead").value.replace(/／/g,"\n"),s:$("nSub").value,cat:"お知らせ"},img,stock)}
+
+/* 押せるリンクをコピー（プロフィール・ストーリーズのリンクスタンプ用） */
+const LINKS=SHOP.links||[["app","📋 お申し込みのお申し込み",SHOP.url+"application/"],["req","📋 資料請求",SHOP.url+"request/"],["contact","📋 ご相談・お問い合わせ",SHOP.url+"contact/"],["top","📋 ホームページ",SHOP.url],...(SHOP.line?[["line","📋 LINE",SHOP.line]]:[])];
+function copyLink(k,btn){const L=LINKS.find(x=>x[0]===k);if(!L)return;const u=L[2],ok=()=>{mark(btn);toast("リンクをコピーしました。インスタで「ペースト」してください")};
+  const fb=()=>{const t=document.createElement("textarea");t.value=u;document.body.appendChild(t);t.select();let r=false;try{r=document.execCommand("copy")}catch(e){}t.remove();r?ok():toast(u)};
+  try{navigator.clipboard.writeText(u).then(ok,fb)}catch(e){fb()}}
+document.querySelectorAll(".linkbtns").forEach(el=>{el.className="linkbtns half";LINKS.forEach(([k,t])=>{const b=document.createElement("button");b.type="button";b.className="btn sub";b.textContent=t;b.onclick=()=>copyLink(k,b);el.appendChild(b)})});
+/* 運営のお手本 */
+function copyTxt(t,btn){const ok=()=>{mark(btn);toast("コピーしました。インスタで「ペースト」してください")};
+  const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();let r=false;try{r=document.execCommand("copy")}catch(e){}a.remove();r?ok():toast("コピーできませんでした")};
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}}
+(function(){
+  const RE=[
+   ["コメントへのお礼",`コメントありがとうございます😊\nとてもうれしいです。これからも${SHOP.short}をよろしくお願いします🚗`],
+   ["料金を聞かれたとき",`お問い合わせありがとうございます😊\n料金は、講習の種類・人数・会場などによって変わるため、お電話（${SHOP.tel}）か、プロフィールのリンクの「お問い合わせフォーム」でご案内しています。\nお気軽にお問い合わせください。`],
+   ["日にち・空きを聞かれたとき",`お問い合わせありがとうございます😊\n運行管理者講習と適性診断は、プロフィールのリンクからWEB予約（24時間）ができます。\nほかの講習の日にち・空きは、お電話（${SHOP.tel2}）でご確認ください。`],
+   ["出張研修を聞かれたとき",`お問い合わせありがとうございます😊\n会社や地域への出張研修・講演も行っています。\nご希望の内容・人数・日にちをうかがって、ご提案しますので、お電話（${SHOP.tel}）かお問い合わせフォームからご連絡ください。`],
+   ["きびしいご意見",`このたびは、ご不快な思いをおかけしてしまい、申し訳ございません。\nくわしくお話をうかがいたいので、お手数ですが${SHOP.short}（${SHOP.tel}）までご連絡いただけないでしょうか。\n貴重なご意見を、ありがとうございます。`]];
+  const BIO=`${SHOP.name}🏢\n運行管理者講習（国土交通大臣認定）・適性診断・企業向け安全運転研修・フォークリフト\n📍 福岡県豊前市（門司会場もあり）\n📞 ${SHOP.tel}（企業研修）\n📞 ${SHOP.tel2}（講習・適性診断）\n👇 お申し込み・WEB予約はこちら`;
+  const li=a=>"<ul style='margin:6px 0 0;padding-left:20px'>"+a.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+  const sec=(t,h,open)=>`<details style="margin-top:8px"${open?" open":""}><summary><b>${t}</b></summary><div style="margin-top:6px">${h}</div></details>`;
+  let h="";
+  h+=sec("✅ 投稿する前のチェック（毎回）",li(["受講者・スタッフの<b>顔が写る写真は、ご本人の許可</b>があるときだけ","<b>会社の名前・車のロゴ・ナンバー</b>が写っていないか（載せるときは会社の許可を）","<b>料金・助成の金額は書かない</b>（「お問い合わせください」に）","「かならず合格」「事故がなくなる」など、言いきる言葉を使わない","【　】が残っていないか","法律の話は、国土交通省・警察庁・労働局などのホームページで確かめてから"]),true);
+  h+=sec("🕘 投稿する時間の目安",li(["会社の担当の方に見てもらうなら<b>平日のお昼（12時〜13時）</b>がおすすめ","ドライバーさん向けの話は<b>夕方〜夜</b>も見てもらいやすい時間です","時間がないときは、いつでもOK。週に2〜3回でも、つづけることが大切です"]));
+  h+=sec("📱 ストーリーズの使い方",li(["投稿したら、紙飛行機マーク →「ストーリーズに追加」で、ストーリーズにも出す","クイズの日は、ストーリーズの<b>「クイズ」スタンプ</b>で○×を聞くと盛り上がります","講習日・講習紹介は<b>「リンク」スタンプ</b>でWEB予約やお申し込みのリンクを貼る"]));
+  h+=sec("🎬 リールの作り方（画像に音楽をつける）","<ol style='margin:6px 0 0;padding-left:20px'>"+["「講習日」か「講習紹介」の<b>ストーリーズ用の画像</b>（縦長）を保存する","インスタの「＋」→<b>「リール」</b>→ 保存した画像を選ぶ（2〜3枚選ぶと、つながった動画になります）","「音楽」を押して、曲を選ぶ（長さは5〜10秒くらい）","「次へ」→ アプリでコピーした本文を「キャプション」に貼りつける","「シェア」で完成！"].map(x=>"<li>"+x+"</li>").join("")+"</ol>"+li(["フォークリフトの講習・Objetの研修などを、スマホで5〜10秒撮った動画も、そのままリールにできます（顔が写る人には許可を）"]));
+  h+=sec("📌 ハイライト（プロフィールに残すストーリーズ）のおすすめ",li(["講習のご案内","適性診断","安全運転研修","フォークリフト","研修のようす","よくある質問"])+"<p class='hint' style='margin:6px 0 0'>ストーリーズの右下「ハイライト」から、同じ名前のハイライトに追加していきます。</p>");
+  h+=sec("💬 コメント・DMの返し方（お手本）",RE.map((x,i)=>`<div style="margin-top:8px"><b>${x[0]}</b><div style="white-space:pre-wrap;background:var(--soft);border-radius:4px;padding:8px;margin-top:4px;font-size:14px">${x[1]}</div><button class="btn sub" type="button" data-re="${i}" style="margin-top:4px">📋 この文をコピー</button></div>`).join("")
+    +"<p class='hint' style='margin:8px 0 0'>⚠️ きびしいご意見は、<b>返す前に責任者に相談</b>してください。コメントは消さずに、ていねいに。<br>⚠️ 知らない人からのあやしいDM（リンクつき・「当選しました」など）には返事をせず、リンクも押さないでください。</p>");
+  h+=sec("👤 プロフィール文のお手本",`<div style="white-space:pre-wrap;background:var(--soft);border-radius:4px;padding:8px;font-size:14px">${BIO}</div><button class="btn sub" type="button" id="bioCopy" style="margin-top:4px">📋 プロフィール文をコピー</button><p class="hint" style="margin:6px 0 0">「プロフィールを編集」→「自己紹介」に貼りつけます。</p>`);
+  h+=sec("📈 月に1回、見るところ",li(["プロフィールの「プロフェッショナルダッシュボード」→「インサイト」","<b>保存数</b>が多い投稿＝役に立った投稿。同じ種類をふやす","<b>プロフィールへのアクセス</b>と<b>リンクのタップ数</b>＝お申し込みにつながる数","よかった投稿の種類を、本部と共有する"]));
+  h+=sec("🚨 こんなときは",li(["まちがえて投稿した → 本文は「…」→「編集」で直せます。画像を直すときは、消して投稿しなおす","あやしいログインの通知が来た → すぐに本部の担当者に連絡（パスワードは人に教えない）","ご意見で荒れそう → 投稿を消す前に、まず本部に相談","急にお休みする日 → 「お知らせ」→「臨時休業」で、すぐに出せます"]));
+  $("opsBody").innerHTML=h;
+  $("opsBody").querySelectorAll("[data-re]").forEach(b=>b.onclick=()=>copyTxt(RE[+b.dataset.re][1],b));
+  $("bioCopy").onclick=e=>copyTxt(BIO,e.currentTarget)})();
+/* 学校をえらぶ */
+/* PAGE_KEYS＝このページで開けるところ（ほかは、別のページへ移る） */
+const PAGE_KEYS=["center"];
+function openPick(){const g=$("pgrid");g.innerHTML="";
+  const A=SCHOOL_ORDER.map(k=>({key:k,en:SCHOOLS[k].en,short:SCHOOLS[k].short,href:"index.html#s="+k})).concat(PICK_EXTRA);
+  A.forEach(x=>{const b=document.createElement("button");b.type="button";b.className="pcard"+(x.wide?" wide":"")+(SCH_CHOSEN===x.key?" cur":"");
+    b.innerHTML=`<span><img class="pmark" src="logo_mark.png" alt=""><small>${x.en}</small>${x.short}</span>`;b.onclick=()=>choosePick(x.key,x.href);g.appendChild(b)});
+  $("pickClose").hidden=!SCH_CHOSEN;$("pick").hidden=false;document.body.style.overflow="hidden"}
+function closePick(){$("pick").hidden=true;document.body.style.overflow=""}
+function choosePick(k,href){try{localStorage.setItem("ail:school",k)}catch(e){}if(k===SCH_CHOSEN&&(PAGE_KEYS.length===1||location.hash.includes("s="+k))){closePick();return}
+  if(!PAGE_KEYS.includes(k)){location.href=href;return}location.hash="s="+k;location.reload()}
+$("schName").textContent="📍 "+SHOP.short;document.title=SHOP.short+" 投稿アプリ";
+if(!SCH_CHOSEN)openPick();else{try{localStorage.setItem("ail:school",SCH_CHOSEN)}catch(e){}}
+/* ================= はじめに ================= */
+function refreshAll(){if(!READY)return;drawPost();drawSeat();drawCal();drawNews();drawParty()}
+$("footEdit").value=FOOT;$("tagsEdit").value=BASE_TAGS.join(" ");renderWfix();
+calInit();buildSeat();buildParty();renderCal();loadNews();showPost();READY=true;renderShop();shopLoad();
+</script>
+
+</html>
