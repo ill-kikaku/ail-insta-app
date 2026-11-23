@@ -225,7 +225,10 @@ h2{border-left:5px solid #B89B5E;padding-left:10px}
       <button class="btn sub" type="button" onclick="otherPhoto()">次の写真 ▶</button>
     </div>
     <button class="btn sub" type="button" onclick="openGallery('post')">🖼 写真を一覧から選ぶ</button>
-    <button class="btn sub" type="button" onclick="nextIdea()">💡 別のネタにする</button>
+    <div class="half">
+      <button class="btn sub" type="button" onclick="prevIdea()">◀ 前のネタ</button>
+      <button class="btn sub" type="button" onclick="nextIdea()">次のネタ ▶</button>
+    </div>
     <details style="margin-top:8px"><summary>✏️ 画像の文字を書きかえる</summary>
       <label class="f">大きい文字（1行目）</label><input type="text" id="eH1" oninput="editPostImg()">
       <label class="f">大きい文字（2行目）</label><input type="text" id="eH2" oninput="editPostImg()">
@@ -1464,7 +1467,8 @@ function postFor(d,extra){extra=extra||0;
 let curDate=new Date(),shuffle=0,cur=null,pmode=store("pmode")||"rec",shift=0;const pick={post:null};
 function key(){return ymd(curDate)+"-"+shuffle}
 function moveDay(n){curDate=new Date(curDate);curDate.setDate(curDate.getDate()+n);shuffle=0;shift=0;pick.post=null;showPost()}
-function nextIdea(){shuffle++;shift=0;pick.post=null;showPost();toast("別のネタにしました")}
+function nextIdea(){shuffle++;shift=0;pick.post=null;showPost();toast("次のネタにしました")}
+function prevIdea(){if(shuffle<=0){toast("いちばん最初のネタです");return}shuffle--;shift=0;pick.post=null;showPost();toast(shuffle===0?"最初のネタにもどしました":"前のネタにもどしました")}
 function prevPhoto(){if(pmode==="own"){pickOwn("post");return}if(pmode==="none"){pmode="rec";store("pmode",pmode);buildPMode();drawPost();return}
   if(pick.post!=null){pick.post=null;drawPost();return}if(shift<=0){toast("いちばん最初の写真です");return}shift--;drawPost();
   toast(pmode==="shop"?"学校の写真をもどしました":`前の写真にもどしました（${(shift%allPhotos().length)+1}枚目／全${allPhotos().length}枚）`)}
