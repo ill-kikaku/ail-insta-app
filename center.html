@@ -1392,7 +1392,7 @@ function gingham(ctx,x,y,w,h,s,col){ctx.save();ctx.beginPath();ctx.rect(x,y,w,h)
   const top=y<=0;ctx.fillStyle=GOLD;if(top){ctx.fillRect(x,y+h-7,w,3);ctx.fillRect(x,y+h-2,w,2)}else{ctx.fillRect(x,y,w,2);ctx.fillRect(x,y+5,w,3)}
   ctx.restore()}
 function imgNote(ctx,W,y){ctx.save();ctx.textAlign="right";ctx.font=`500 22px ${FONT}`;ctx.fillStyle="rgba(255,255,255,.95)";ctx.shadowColor="rgba(0,0,0,.6)";ctx.shadowBlur=6;ctx.fillText("※写真はイメージです",W-40,y);ctx.restore()}
-function shadowText(ctx,on){if(on){ctx.shadowColor="rgba(0,0,0,.45)";ctx.shadowBlur=16}else{ctx.shadowColor="transparent";ctx.shadowBlur=0}}
+function shadowText(ctx,on){if(on){ctx.shadowColor="rgba(0,0,0,.62)";ctx.shadowBlur=18}else{ctx.shadowColor="transparent";ctx.shadowBlur=0}}
 function pill(ctx,text,cx,y,font,bg,fg,padX,h){ctx.font=font;const w=ctx.measureText(text).width+padX*2;ctx.fillStyle=bg;rr(ctx,cx-w/2,y,w,h,h/2);ctx.fill();ctx.fillStyle=fg;ctx.fillText(text,cx,y+h*.7);return w}
 function brand(ctx,cx,y,col,size,sub){ctx.save();ctx.textAlign="center";ctx.fillStyle=col;ctx.font=`700 ${size}px ${SCRIPT}`;ctx.letterSpacing="4px";ctx.fillText("I'LL MOTOR SCHOOL",cx,y);ctx.letterSpacing="0px";ctx.restore()}
 
@@ -1519,8 +1519,8 @@ function dots3(ctx,cx,y){ctx.save();ctx.strokeStyle=GOLD;ctx.lineWidth=3;ctx.beg
   ctx.fillStyle=BLK;ctx.beginPath();ctx.moveTo(cx,y-13);ctx.lineTo(cx+13,y);ctx.lineTo(cx,y+13);ctx.lineTo(cx-13,y);ctx.closePath();ctx.fill();ctx.restore()}
 /* 投稿の画像（1080×1350） */
 function drawCard(p,img,stock){const W=1080,H=1350,[cv,ctx]=newCanvas(W,H);const lines=p.h.split("\n");
-  if(img){cover(ctx,img,0,0,W,H);const g=ctx.createLinearGradient(0,H*.3,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.55,"rgba(25,15,10,.62)");g.addColorStop(1,"rgba(25,15,10,.86)");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    const tg=ctx.createLinearGradient(0,0,0,220);tg.addColorStop(0,"rgba(25,15,10,.45)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,220);
+  if(img){cover(ctx,img,0,0,W,H);const g=ctx.createLinearGradient(0,H*.38,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.55,"rgba(25,15,10,.48)");g.addColorStop(1,"rgba(25,15,10,.76)");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    const tg=ctx.createLinearGradient(0,0,0,220);tg.addColorStop(0,"rgba(25,15,10,.32)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,200);
     signBoard(ctx,W/2,62,.95);
     let y=H-96;ctx.fillStyle="rgba(255,255,255,.92)";ctx.font=`700 28px ${FONT}`;ctx.fillText(SHOP.name+" ｜ ☎ "+SHOP.tel,W/2,y);
     if(p.s){y-=78;ctx.font=`700 ${fitSize(ctx,[p.s],W-160,42,700)}px ${FONT}`;ctx.fillStyle=GOLD_L;shadowText(ctx,true);ctx.fillText(p.s,W/2,y);shadowText(ctx,false)}
@@ -1541,8 +1541,8 @@ function drawCard(p,img,stock){const W=1080,H=1350,[cv,ctx]=newCanvas(W,H);const
 /* リールの画像（1080×1920）。文字は横120〜960・縦280〜1500 の中だけ（ボタンで隠れない・一覧で切れない） */
 function drawReel(p,img,stock){const W=1080,H=1920,X0=120,X1=960,TW=X1-X0,[cv,ctx]=newCanvas(W,H);const lines=p.h.split("\n");
   if(img){cover(ctx,img,0,0,W,H);
-    const tg=ctx.createLinearGradient(0,0,0,560);tg.addColorStop(0,"rgba(25,15,10,.6)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,560);
-    const g=ctx.createLinearGradient(0,780,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.45,"rgba(25,15,10,.66)");g.addColorStop(1,"rgba(25,15,10,.9)");ctx.fillStyle=g;ctx.fillRect(0,780,W,H-780);
+    const tg=ctx.createLinearGradient(0,0,0,560);tg.addColorStop(0,"rgba(25,15,10,.42)");tg.addColorStop(1,"rgba(25,15,10,0)");ctx.fillStyle=tg;ctx.fillRect(0,0,W,520);
+    const g=ctx.createLinearGradient(0,860,0,H);g.addColorStop(0,"rgba(25,15,10,0)");g.addColorStop(.45,"rgba(25,15,10,.52)");g.addColorStop(1,"rgba(25,15,10,.8)");ctx.fillStyle=g;ctx.fillRect(0,860,W,H-860);
     signBoard(ctx,W/2,290,.95);
     let y=1478;ctx.fillStyle=GOLD_L;shadowText(ctx,true);ctx.font=`900 ${fitSize(ctx,["☎ "+SHOP.tel],TW,58,900)}px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,y);
     y-=72;ctx.fillStyle="rgba(255,255,255,.94)";ctx.font=`700 ${fitSize(ctx,[SHOP.name],TW,32,700)}px ${FONT}`;ctx.fillText(SHOP.name,W/2,y);shadowText(ctx,false);
