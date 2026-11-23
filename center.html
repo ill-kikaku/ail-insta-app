@@ -634,9 +634,8 @@ function footDef(S){return `――――――――
 📞 ${S.tel}（企業研修）
 📞 ${S.tel2}（講習・適性診断のご予約）
 🕘 ${S.hours}　${S.closed}定休
-📝 お申し込み・お問い合わせ
-${S.url}services_entry/
-（リンクが押せないときは、プロフィールのリンクからどうぞ）`}
+📝 お申し込み・お問い合わせは
+👉 ${S.insta?"@"+S.insta+" を押して、":""}プロフィールのリンクからどうぞ`}
 function tagsDef(S){return ["#アイルモータースクール",...S.tags,"#安全運転"].join(" ")}
 
 const EVER=[
@@ -1287,7 +1286,10 @@ const ALL_EVER=EVER.concat(SCHOOL_EVER[SHOP.key]||[]);
 const FOOT_DEF=footDef(SHOP),TAGS_DEF=tagsDef(SHOP);
 /* 講習紹介を「今日の投稿」用にしたもの */
 const PLAN_POSTS=planList(SHOP).map(K=>({c:"BANQUET",pk:K.pk[0],h:K.tones[0],s:K.k,t:K.tags,b:`【{S}の${K.hd}】\n\n${K.lead}\n\n${K.tail}`}));
-let FOOT=store("myFoot")??FOOT_DEF;
+/* 前に保存した「いつもの文」にURLが残っていたら、プロフィールへの案内に入れかえる（インスタの本文のURLは押せないため） */
+let FOOT=(()=>{let o=store("myFoot");if(o&&/\/(application|request|services_entry)\//.test(o)){const end=FOOT_DEF.split("\n").pop();
+  o=o.split("\n").filter(l=>!/^\s*https?:\/\/\S+\/(application|request|services_entry)\/\s*$/.test(l)).join("\n").replace(/（リンクが押せないときは[^）]*）/,end);
+  if(!o.includes(end))o+="\n"+end;store("myFoot",o)}return o})()??FOOT_DEF;
 let BASE_TAGS=(store("myTags")??TAGS_DEF).split(/[\s　]+/).filter(Boolean).map(t=>t.startsWith("#")?t:"#"+t);
 /* ================= 共通の道具 ================= */
 const $=id=>document.getElementById(id);
