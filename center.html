@@ -1756,12 +1756,13 @@ async function drawParty(){const tok=++partyTok;let img=null,stock=false;const o
   if(!bEdited)$("partyText").value=wfix(partyCaption(o))}
 function drawPartyImg(W,H,o,img,stock,k){const story=H>1500,[cv,ctx]=newCanvas(W,H),Z=v=>Math.round(v*(1-k*.1));
   // 背景：写真なら上半分に写真、下は薄いグレー。写真なしは薄いグレー＋上下の帯
-  const ph=story?700:470;ctx.fillStyle="#FBF9F4";ctx.fillRect(0,0,W,H);
-  if(img){ctx.save();ctx.beginPath();ctx.rect(0,0,W,ph);ctx.clip();cover(ctx,img,0,0,W,ph);ctx.restore();const g=ctx.createLinearGradient(0,ph*.45,0,ph);g.addColorStop(0,"rgba(251,249,244,0)");g.addColorStop(1,"rgba(251,249,244,1)");ctx.fillStyle=g;ctx.fillRect(0,0,W,ph)}
+  const BT=story?1560:H-165,GAP=Z(story?80:50);let ch=0;{ch+=badge(newCanvas(W,200)[1],o.K.k,W/2,0,Z(34))+Z(22);const ls=o.tone.split("\n"),h2=fitSize(ctx,ls,W-140,Z(story?104:94),900);ch+=ls.length*h2*1.2+Z(18);if(o.points.length)ch+=Math.min(o.points.length,4)*Z(story?64:54)+Z(56);if(o.course||o.people)ch+=Z(54);if(o.note)ch+=Z(42)}
+  const y0=BT-GAP-ch,ph=Math.max(story?700:470,y0+Z(50));ctx.fillStyle="#FBF9F4";ctx.fillRect(0,0,W,H);
+  if(img){ctx.save();ctx.beginPath();ctx.rect(0,0,W,ph);ctx.clip();cover(ctx,img,0,0,W,ph);ctx.restore();const g=ctx.createLinearGradient(0,ph-210,0,ph-30);g.addColorStop(0,"rgba(251,249,244,0)");g.addColorStop(1,"rgba(251,249,244,1)");ctx.fillStyle=g;ctx.fillRect(0,ph-210,W,210)}
   gingham(ctx,0,0,W,story?150:80,24);gingham(ctx,0,H-(story?150:56),W,story?150:56,24);
   const fy0=story?1700:H-110;
   let y=signBoard(ctx,W/2,story?262:104,story?.8:.66);
-  y=img?Math.max(y+20,ph-Z(story?60:50)):y+Z(40);
+  y=img?Math.max(y+20,y0):y+Z(40);
   // 種類のリボン
   y+=badge(ctx,o.K.k,W/2,y,Z(34))+Z(22);
   const lines=o.tone.split("\n"),hs=fitSize(ctx,lines,W-140,Z(story?104:94),900);ctx.fillStyle=C.ink;
@@ -1772,8 +1773,8 @@ function drawPartyImg(W,H,o,img,stock,k){const story=H>1500,[cv,ctx]=newCanvas(W
   const extra=[o.course,o.people].filter(Boolean);
   if(extra.length){ctx.fillStyle=C.tomato;ctx.font=`900 ${fitSize(ctx,[extra.join("　")],W-180,Z(38),900)}px ${FONT}`;y+=Z(40);ctx.fillText(extra.join("　"),W/2,y);y+=Z(14)}
   if(o.note){ctx.fillStyle=C.ink;ctx.font=`700 ${fitSize(ctx,[o.note],W-180,Z(32),700)}px ${FONT}`;y+=Z(42);ctx.fillText(o.note,W/2,y)}
-  const limit=story?1440:H-150;if(y+Z(150)>limit&&k<3)return drawPartyImg(W,H,o,img,stock,k+1);
-  const py=story?Math.max(y+Z(80),1300):Math.max(y+Z(60),H-190);
+  if(y>BT-GAP+4&&k<3)return drawPartyImg(W,H,o,img,stock,k+1);
+  const py=Math.max(y+GAP,BT);
   ctx.fillStyle="#6B655B";ctx.font=`700 ${story?34:28}px ${FONT}`;ctx.fillText("ご相談・お問い合わせ",W/2,py);
   ctx.fillStyle=BLK;ctx.font=`900 ${story?74:60}px ${FONT}`;ctx.fillText("☎ "+SHOP.tel,W/2,py+(story?84:68));
   if(stock)imgNote(ctx,W,story?195:118);
